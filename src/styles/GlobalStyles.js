@@ -32,6 +32,7 @@ export default createGlobalStyle`
     padding-inline: 19px;
     font-weight: 700;
     border-radius: 100px;
+    background-color: unset;
   }
 
   button.primary {

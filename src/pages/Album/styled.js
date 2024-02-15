@@ -24,11 +24,21 @@ export const ContainerAlbumTracks = styled.div`
 export const ContainerAlbumTrack = styled.li`
   font-size: ${fontSizes.fontSizeBase};
   font-weight: 500;
+  border-radius: .3rem;
+
+  & + & {
+    margin-top: 1rem;
+  }
+
+  &:hover {
+    background-color: ${colors.accent};
+  }
 
   .container-track {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
   }
 
   h3 {

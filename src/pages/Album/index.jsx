@@ -21,21 +21,20 @@ export default function Album() {
   useEffect(() => {
     const requestAlbum = async () => {
       if (!albumId) return;
-      const tracksRequest = await getAlbumTracks(albumId);
       if (state) {
-        var albumData = state;
+        const tracksRequest = await getAlbumTracks(albumId);
+        var albumData = { ...state, tracks: tracksRequest };
+        console.log('VINDO DO STATE: ' + albumData);
       } else {
         const response = await getAlbum(albumId);
-        albumData = response;
+        albumData = { ...response };
+        console.log('VINDO DIRETO: ' + albumData);
       }
-      albumData = { ...albumData, tracks: tracksRequest };
       setAlbum(albumData);
     };
 
     requestAlbum();
   }, [albumId, state]);
-
-  console.log(album);
 
   return album ? (
     <ContainerAlbum>
@@ -63,12 +62,12 @@ export default function Album() {
         <ol>
           {album.tracks.items.map((value) => (
             <ContainerAlbumTrack key={value.id}>
-              <div className="container-track">
+              <button className="container-track">
                 <h3>{value.name}</h3>
                 <span className="track-time">
                   {getMinutesAndSeconds(value.duration_ms)}
                 </span>
-              </div>
+              </button>
             </ContainerAlbumTrack>
           ))}
         </ol>

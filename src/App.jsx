@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store, { persistor } from './store';
 import GlobalStyles, { Main } from './styles/GlobalStyles';
 import Routes from './routes';
+import PreviewPlayer from './components/PreviewPlayer';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           </Main>
           <GlobalStyles />
           <ToastContainer autoClose={2500} className="toast-container" />
+          <PreviewPlayer />
         </PersistGate>
       </Provider>
     </BrowserRouter>
