@@ -21,7 +21,11 @@ export default function Albums() {
       {albums
         ? albums.map((album) => {
             return (
-              <ContainerAlbumItem key={album.id} to={album.href}>
+              <ContainerAlbumItem
+                key={album.id}
+                to={`/album/${album.id}`}
+                state={album}
+              >
                 <div>
                   <div className="container-img">
                     <img src={album.images[2].url} alt={album.name} />
