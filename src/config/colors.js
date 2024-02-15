@@ -6,6 +6,7 @@ export default {
   accent: '#6edd70',
 
   neutral1: '#ffffff33',
+  neutral2: '#d5d5d5f7',
 
   cardColor: '#dbdbdb9e',
 
