@@ -10,7 +10,6 @@ export default function Albums() {
   useEffect(() => {
     const homeAlbumsReleases = async () => {
       const response = await getAlbumsReleases();
-      console.log(response);
       setAlbums(response);
     };
     homeAlbumsReleases();

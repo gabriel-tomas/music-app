@@ -1,8 +1,12 @@
+import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 
 import getAlbum from '../../services/spotifyRequest/albums/album';
 import getAlbumTracks from '../../services/spotifyRequest/albums/albumTracks';
+
+import * as currentMusicActions from '../../store/modules/currentMusic/actions';
+import * as musicPlayerActions from '../../store/modules/musicPlayer/actions';
 
 import getMinutesAndSeconds from '../../utils/musicUtils/getMinutesAndSeconds';
 
@@ -14,6 +18,8 @@ import {
 } from './styled';
 
 export default function Album() {
+  const dispatch = useDispatch();
+
   const { state } = useLocation();
   const { id: albumId } = useParams();
   const [album, setAlbum] = useState(null);
@@ -24,17 +30,21 @@ export default function Album() {
       if (state) {
         const tracksRequest = await getAlbumTracks(albumId);
         var albumData = { ...state, tracks: tracksRequest };
-        console.log('VINDO DO STATE: ' + albumData);
       } else {
         const response = await getAlbum(albumId);
         albumData = { ...response };
-        console.log('VINDO DIRETO: ' + albumData);
       }
       setAlbum(albumData);
     };
 
     requestAlbum();
   }, [albumId, state]);
+
+  const handleSetMusic = (previewUrl) => {
+    dispatch(musicPlayerActions.setStopMusic());
+    dispatch(currentMusicActions.setCurrentMusic({ previewUrl }));
+    setTimeout(() => dispatch(musicPlayerActions.setPlayMusic(), 200));
+  };
 
   return album ? (
     <ContainerAlbum>
@@ -46,9 +56,9 @@ export default function Album() {
           </div>
           <h2>{album.name}</h2>
           <div className="album-info">
-            {album.artists.map((value) => (
-              <Link key={value.id} to={`/artist/${value.id}`}>
-                <span>{value.name}</span>
+            {album.artists.map((trackItem) => (
+              <Link key={trackItem.id} to={`/artist/${trackItem.id}`}>
+                <span>{trackItem.name}</span>
               </Link>
             ))}
             <span>
@@ -60,12 +70,15 @@ export default function Album() {
       </ContainerAlbumInfo>
       <ContainerAlbumTracks>
         <ol>
-          {album.tracks.items.map((value) => (
-            <ContainerAlbumTrack key={value.id}>
-              <button className="container-track">
-                <h3>{value.name}</h3>
+          {album.tracks.items.map((trackItem) => (
+            <ContainerAlbumTrack key={trackItem.id}>
+              <button
+                className="container-track"
+                onClick={() => handleSetMusic(trackItem.preview_url)}
+              >
+                <h3>{trackItem.name}</h3>
                 <span className="track-time">
-                  {getMinutesAndSeconds(value.duration_ms)}
+                  {getMinutesAndSeconds(trackItem.duration_ms)}
                 </span>
               </button>
             </ContainerAlbumTrack>
