@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { ContainerAlbums, ContainerAlbumItem } from './styled';
 
 export default function Albums({ albums }) {
-  console.log(albums);
   return (
     <ContainerAlbums>
       {albums

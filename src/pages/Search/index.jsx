@@ -17,19 +17,34 @@ export default function Search() {
     tracks: 'Músicas',
     playlists: 'Playlists',
   };
+  const typesResult = {
+    all: 'album,artist,playlist,track',
+    albums: 'albums',
+    artists: 'artists',
+    tracks: 'tracks',
+    playlists: 'playlists',
+  };
+  const [typeResult, setTypeResult] = useState(typesResult.all);
 
   useEffect(() => {
     if (!searchString) return;
     const requestSearchItems = async () => {
       try {
-        const items = await searchForItem(searchString);
+        let items;
+        if (typeResult === typesResult.all) {
+          items = await searchForItem(searchString, undefined, 8);
+        } else if (typeResult === typesResult.albums) {
+          items = await searchForItem(searchString, undefined, 50);
+          //todo: resultado para albums
+        }
         setSearchItems(items);
       } catch (err) {
         setSearchItems({});
       }
     };
     requestSearchItems();
-  }, [searchString]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchString, typeResult]);
 
   return Object.keys(searchItems).length !== 0 ? (
     <ContainerSearchResults>
