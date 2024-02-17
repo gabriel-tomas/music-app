@@ -7,6 +7,5 @@ export default async (searchString, type = 'album,artist,playlist,track') => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(request.data);
   return request.data;
 };

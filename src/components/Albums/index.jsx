@@ -1,20 +1,9 @@
-import getAlbumsReleases from '../../services/spotifyRequest/albums/albumsRelease';
-
-import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { ContainerAlbums, ContainerAlbumItem } from './styled';
 
-export default function Albums() {
-  const [albums, setAlbums] = useState();
-
-  useEffect(() => {
-    const homeAlbumsReleases = async () => {
-      const response = await getAlbumsReleases();
-      setAlbums(response);
-    };
-    homeAlbumsReleases();
-  }, []);
-
+export default function Albums({ albums }) {
+  console.log(albums);
   return (
     <ContainerAlbums>
       {albums
@@ -27,7 +16,10 @@ export default function Albums() {
               >
                 <div>
                   <div className="container-img">
-                    <img src={album.images[2].url} alt={album.name} />
+                    <img
+                      src={album.images.find((item) => item.width === 640).url}
+                      alt={album.name}
+                    />
                   </div>
                   <div className="secondary-content">
                     <h2>{album.name}</h2>
@@ -45,3 +37,7 @@ export default function Albums() {
     </ContainerAlbums>
   );
 }
+
+Albums.propTypes = {
+  albums: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
