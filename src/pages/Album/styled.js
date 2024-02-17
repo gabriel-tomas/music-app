@@ -4,11 +4,18 @@ import colors from '../../config/colors';
 import fontSizes from '../../config/fontSizes';
 
 export const ContainerAlbum = styled.section`
-
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 `;
 
 export const ContainerAlbumInfo = styled.div`
+  .container-img {
+    max-width: 300px;
 
+    img {
+      width: 100%;
+    }
+  }
 `;
 
 export const ContainerAlbumTracks = styled.div`

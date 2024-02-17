@@ -16,6 +16,11 @@ export const ContainerPlayer = styled.div`
   backdrop-filter: blur(10px);
   box-shadow: 0px 0px 6px #00000036;
 
+  .play-pause-btn {
+    display: flex;
+    align-items: center;
+  }
+
   .container-duration-current-time {
     display: flex;
   }
