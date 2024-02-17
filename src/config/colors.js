@@ -9,6 +9,7 @@ export default {
   neutral1: '#ffffff33',
   neutral2: '#d5d5d5f7',
   neutral3: '#dbdbdb85',
+  neutral4: '#f4f4f4f7',
 
   cardColor: '#dbdbdb9e',
 

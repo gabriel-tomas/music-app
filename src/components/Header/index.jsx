@@ -1,25 +1,20 @@
-import { FaHome } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
-import Wrapper, { Nav } from './styled';
+import Wrapper from './styled';
+import { FaSearch } from 'react-icons/fa';
+import colors from '../../config/colors';
 
 export default function Header() {
-  const botaoClicado = useSelector(
-    (state) => state.exampleReducer.botaoClicado,
-  );
-  const iconSize = 17;
-
   return (
     <Wrapper>
-      <h1>Logo</h1>
-      <Nav>
-        <Link to="/">
-          <FaHome size={iconSize} />
-          <span>Home</span>
-        </Link>
-        <p>{botaoClicado ? 'Clicado' : 'Não clicado'}</p>
-      </Nav>
+      <div className="container-search">
+        <button className="search-btn">
+          <FaSearch className="search-icon" color={colors.neutral4} />
+        </button>
+        <input
+          type="text"
+          className="input-search"
+          placeholder="Pesquise por música, artista, categoria, álbum..."
+        />
+      </div>
     </Wrapper>
   );
 }

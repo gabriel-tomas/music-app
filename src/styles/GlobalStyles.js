@@ -15,7 +15,7 @@ export default createGlobalStyle`
     font-family: "MuseoModerno", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: 16px;
+    font-size: 14px;
     color: ${colors.text};
   }
 

@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store, { persistor } from './store';
 import GlobalStyles, { Main } from './styles/GlobalStyles';
 import Routes from './routes';
+import Header from './components/Header';
 import PreviewPlayer from './components/PreviewPlayer';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <BrowserRouter>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
+          <Header />
           <Main>
             <Routes />
           </Main>
