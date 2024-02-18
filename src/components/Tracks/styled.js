@@ -10,6 +10,7 @@ export const ContainerTrack = styled.div`
   justify-content: space-between;
   height: 70px;
   gap: 1rem;
+  margin-top: .8rem;
 
   .left-content {
     display: flex;
