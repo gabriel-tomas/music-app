@@ -56,12 +56,18 @@ export default function Album() {
           </div>
           <h2>{album.name}</h2>
           <div className="album-info">
-            {album.artists.map((trackItem) => (
-              <Link key={trackItem.id} to={`/artist/${trackItem.id}`}>
-                <span>{trackItem.name}</span>
-              </Link>
-            ))}
-            <span>
+            <span className="artists-box">
+              {album.artists.map((artist) => (
+                <Link
+                  key={artist.id}
+                  to={`/artist/${artist.id}`}
+                  className="artist-link"
+                >
+                  <span>{artist.name}</span>
+                </Link>
+              ))}
+            </span>
+            <span className="album-release">
               {album.release_date.slice(0, album.release_date.indexOf('-'))}
             </span>
             <div>{album.total_tracks} música(as)</div>

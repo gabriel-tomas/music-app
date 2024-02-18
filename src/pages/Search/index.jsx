@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import searchForItem from '../../services/spotifyRequest/search/searchForItem';
 
 import Albums from '../../components/Albums';
+import Tracks from '../../components/Tracks';
 
 import { ContainerSearchResults, ContainerSearchResult } from './styled';
 
@@ -48,16 +49,23 @@ export default function Search() {
 
   return Object.keys(searchItems).length !== 0 ? (
     <ContainerSearchResults>
-      {Object.keys(searchItems).map((key) => (
-        <ContainerSearchResult key={key}>
-          {key === 'albums' ? (
-            <>
-              <h2>{searchResultsName[key]}</h2>
-              <Albums albums={searchItems[key].items} />
-            </>
-          ) : null}
-        </ContainerSearchResult>
-      ))}
+      {typeResult === typesResult.all &&
+        Object.keys(searchItems).map((key) => (
+          <ContainerSearchResult key={key}>
+            {key === 'albums' && (
+              <>
+                <h2>{searchResultsName[key]}</h2>
+                <Albums albums={searchItems[key].items} />
+              </>
+            )}
+            {key === 'tracks' && (
+              <>
+                <h2>{searchResultsName[key]}</h2>
+                <Tracks tracks={searchItems[key].items} />
+              </>
+            )}
+          </ContainerSearchResult>
+        ))}
     </ContainerSearchResults>
   ) : null;
 }

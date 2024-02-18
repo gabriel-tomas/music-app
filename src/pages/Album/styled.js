@@ -9,11 +9,38 @@ export const ContainerAlbum = styled.section`
 `;
 
 export const ContainerAlbumInfo = styled.div`
-  .container-img {
-    max-width: 300px;
 
-    img {
-      width: 100%;
+  .bottom-content {
+    .container-img {
+      max-width: 300px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .album-info {
+      .artists-box {
+        a {
+          font-size: ${fontSizes.fontSizeBase};
+          color: ${colors.text};
+        }
+
+        a + a::before {
+          content: ', ';
+        }
+      }
+
+      .album-release {
+        margin-left: .6rem;
+        font-size: ${fontSizes.fontSizeBase};
+      }
+
+      .album-release::before {
+        content: '●';
+        font-size: .8rem;
+        margin-right: .5rem;
+      }
     }
   }
 `;
@@ -46,6 +73,11 @@ export const ContainerAlbumTrack = styled.li`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+
+    .track-time {
+      font-weight: 400;
+      font-size: ${fontSizes.fontSizeBase};
+    }
   }
 
   h3 {

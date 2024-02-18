@@ -23,7 +23,7 @@ export const ContainerAlbumItem = styled(Link)`
       border-radius: .6rem;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 
@@ -34,26 +34,27 @@ export const ContainerAlbumItem = styled(Link)`
     height: 100%;
     overflow: hidden;
 
-    h2 {
+    .album-name {
       font-size: ${fontSizes.fontSizeBase};
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-weight: bold;
     }
 
     .artists-box {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
 
-      span {
-        font-size: ${fontSizes.fontSizeSm};
+      a {
+        font-size: ${fontSizes.fontSizeBase};
         color: ${colors.text};
       }
 
-      span + span::before {
+      a + a::before {
         content: ', ';
       }
     }
-
   }
 `;
