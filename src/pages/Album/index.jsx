@@ -1,6 +1,8 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import { FaPlay, FaStop } from 'react-icons/fa';
+import colors from '../../config/colors';
 
 import getAlbum from '../../services/spotifyRequest/albums/album';
 import getAlbumTracks from '../../services/spotifyRequest/albums/albumTracks';
@@ -19,6 +21,12 @@ import {
 
 export default function Album() {
   const dispatch = useDispatch();
+  const currentPreviewUrl = useSelector(
+    (state) => state.currentMusic.currentPreviewMusic,
+  );
+  const currentStateMusic = useSelector(
+    (state) => state.musicPlayer.currentState,
+  );
 
   const { state } = useLocation();
   const { id: albumId } = useParams();
@@ -44,6 +52,15 @@ export default function Album() {
     console.log(previewUrl);
     dispatch(currentMusicActions.setCurrentMusic({ previewUrl }));
     dispatch(musicPlayerActions.setActualMusicState('playing'));
+  };
+
+  const handlePlayPauseMusic = () => {
+    if (currentStateMusic === 'playing') {
+      dispatch(musicPlayerActions.setActualMusicState('stopped'));
+      return;
+    } else if (currentStateMusic === 'stopped') {
+      dispatch(musicPlayerActions.setActualMusicState('playing'));
+    }
   };
 
   return album ? (
@@ -77,11 +94,24 @@ export default function Album() {
       <ContainerAlbumTracks>
         <ol>
           {album.tracks.items.map((trackItem) => (
-            <ContainerAlbumTrack key={trackItem.id}>
-              <button
-                className="container-track"
-                onClick={() => handleSetMusic(trackItem.preview_url)}
-              >
+            <ContainerAlbumTrack
+              key={trackItem.id}
+              onClick={() =>
+                currentPreviewUrl === trackItem.preview_url &&
+                currentStateMusic === 'playing'
+                  ? handlePlayPauseMusic()
+                  : handleSetMusic(trackItem.preview_url)
+              }
+            >
+              <div className="hover-music">
+                {currentPreviewUrl === trackItem.preview_url &&
+                currentStateMusic === 'playing' ? (
+                  <FaStop color={colors.neutral5Light} />
+                ) : (
+                  <FaPlay color={colors.neutral5Light} />
+                )}
+              </div>
+              <div className="container-track">
                 <div className="track-info">
                   <h3 className="track-name">{trackItem.name}</h3>
                   {console.log(trackItem)}
@@ -100,7 +130,7 @@ export default function Album() {
                 <span className="track-time">
                   {getMinutesAndSeconds(trackItem.duration_ms)}
                 </span>
-              </button>
+              </div>
             </ContainerAlbumTrack>
           ))}
         </ol>

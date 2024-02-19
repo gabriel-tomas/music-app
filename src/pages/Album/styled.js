@@ -9,7 +9,6 @@ export const ContainerAlbum = styled.section`
 `;
 
 export const ContainerAlbumInfo = styled.div`
-
   .bottom-content {
     .container-img {
       max-width: 300px;
@@ -66,19 +65,40 @@ export const ContainerAlbumTrack = styled.li`
   align-items: center;
   width: 100%;
   counter-increment: album-list-counter;
+  position: relative;
+  cursor: pointer;
+
+  &:hover .hover-music {
+    display: flex;
+  }
+
+  &:hover::before {
+    content: '';
+  }
 
   & + & {
     margin-top: .8rem;
   }
 
   &:hover {
-    background-color: ${colors.neutral2};
+    background-color: ${colors.neutral6};
   }
 
   &::before {
     content: counter(album-list-counter)".";
     width: 56px;
     text-align: center;
+  }
+
+  .hover-music {
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
+    width: 56px;
+    height: 56px;
+    align-items: center;
+    justify-content: center;
+    display: none;
   }
 
   .container-track {
