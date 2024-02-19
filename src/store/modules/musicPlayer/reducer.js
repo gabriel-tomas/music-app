@@ -1,20 +1,15 @@
 import * as types from '../types';
 
 const initialState = {
-  musicPlaying: false,
+  currentState: 'none',
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.SET_PLAY_MUSIC: {
+    case types.SET_ACTUAL_MUSIC_STATE: {
       const newState = { ...state };
-      newState.musicPlaying = true;
-      return newState;
-    }
-
-    case types.SET_STOP_MUSIC: {
-      const newState = { ...state };
-      newState.musicPlaying = false;
+      newState.currentState = action.payload;
+      console.log(newState);
       return newState;
     }
 

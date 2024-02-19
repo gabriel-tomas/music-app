@@ -10,6 +10,7 @@ export default {
   neutral2: '#d5d5d5f7',
   neutral3: '#dbdbdb85',
   neutral4: '#f4f4f4f7',
+  neutral5Light: '#f4f4f4',
 
   cardColor: '#dbdbdb9e',
 

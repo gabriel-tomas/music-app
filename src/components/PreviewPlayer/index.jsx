@@ -20,14 +20,16 @@ export default function PreviewPlayer() {
   const previewUrl = useSelector(
     (state) => state.currentMusic.currentPreviewMusic,
   );
-  const musicPlaying = useSelector((state) => state.musicPlayer.musicPlaying);
+  const currentStateMusic = useSelector(
+    (state) => state.musicPlayer.currentState,
+  );
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0.3);
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
     const musicControl = async () => {
-      if (musicPlaying) {
+      if (currentStateMusic === 'playing') {
         if (audioElement.src !== previewUrl) audioElement.src = previewUrl;
         await audioElement.play();
         audioElement.addEventListener('timeupdate', () => {
@@ -40,18 +42,23 @@ export default function PreviewPlayer() {
             getSecondsToMinutes(audioElement.currentTime.toFixed(0)),
           );
         });
+        audioElement.addEventListener('ended', () => {
+          dispatch(actions.setActualMusicState('none'));
+        });
         setDuration(getSecondsToMinutes(audioElement.duration.toFixed(0)));
       } else {
         audioElement.pause();
       }
     };
     musicControl();
-  }, [musicPlaying, previewUrl]);
+  }, [currentStateMusic, previewUrl]);
 
   const handlePlayPause = () => {
-    musicPlaying
-      ? dispatch(actions.setStopMusic())
-      : dispatch(actions.setPlayMusic());
+    if (currentStateMusic === 'playing') {
+      dispatch(actions.setActualMusicState('stopped'));
+      return;
+    }
+    dispatch(actions.setActualMusicState('playing'));
   };
 
   const handleVolume = (e) => {
@@ -63,7 +70,7 @@ export default function PreviewPlayer() {
   return (
     <ContainerPlayer>
       <button className="play-pause-btn" onClick={handlePlayPause}>
-        {musicPlaying ? <FaStop /> : <FaPlay />}
+        {currentStateMusic === 'playing' ? <FaStop /> : <FaPlay />}
       </button>
       <div className="music-slide-back">
         <div className="music-range"></div>

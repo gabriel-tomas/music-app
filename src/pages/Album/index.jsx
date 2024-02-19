@@ -41,9 +41,9 @@ export default function Album() {
   }, [albumId, state]);
 
   const handleSetMusic = (previewUrl) => {
-    dispatch(musicPlayerActions.setStopMusic());
+    console.log(previewUrl);
     dispatch(currentMusicActions.setCurrentMusic({ previewUrl }));
-    setTimeout(() => dispatch(musicPlayerActions.setPlayMusic(), 200));
+    dispatch(musicPlayerActions.setActualMusicState('playing'));
   };
 
   return album ? (
@@ -82,7 +82,21 @@ export default function Album() {
                 className="container-track"
                 onClick={() => handleSetMusic(trackItem.preview_url)}
               >
-                <h3>{trackItem.name}</h3>
+                <div className="track-info">
+                  <h3 className="track-name">{trackItem.name}</h3>
+                  {console.log(trackItem)}
+                  <div className="track-artists">
+                    {trackItem.artists.map((artist) => (
+                      <Link
+                        key={artist.id}
+                        to={`/artist/${artist.id}`}
+                        className="artist-link"
+                      >
+                        {artist.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
                 <span className="track-time">
                   {getMinutesAndSeconds(trackItem.duration_ms)}
                 </span>

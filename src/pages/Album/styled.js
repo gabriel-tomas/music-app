@@ -51,7 +51,7 @@ export const ContainerAlbumTracks = styled.div`
   border-top: 1px solid ${colors.neutral2};
 
   ol {
-    padding-left: 1.2rem;
+    counter-reset: my-awesome-counter;
   }
 `;
 
@@ -59,20 +59,74 @@ export const ContainerAlbumTrack = styled.li`
   font-size: ${fontSizes.fontSizeBase};
   font-weight: 500;
   border-radius: .3rem;
+  height: 70px;
+  list-style-position: inside;
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  counter-increment: album-list-counter;
 
   & + & {
-    margin-top: 1rem;
+    margin-top: .8rem;
   }
 
   &:hover {
-    background-color: ${colors.accent};
+    background-color: ${colors.neutral2};
+  }
+
+  &::before {
+    content: counter(album-list-counter)".";
+    width: 56px;
+    text-align: center;
   }
 
   .container-track {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    padding-inline: unset;
+    width: calc(100% - 56px);
+    height: 100%;
+
+    .track-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 70%;
+      height: 100%;
+      margin-left: 1rem;
+
+      .track-name {
+        font-weight: 600;
+        font-size: ${fontSizes.fontSizeBase};
+        text-align: left;
+        white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .track-artists {
+        text-align: left;
+        width: 100%;
+        display: block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        a {
+          font-weight: normal;
+          font-size: ${fontSizes.fontSizeBase};
+          color: ${colors.text};
+        }
+
+        a + a::before {
+          content: ', ';
+        }
+      }
+    }
 
     .track-time {
       font-weight: 400;
