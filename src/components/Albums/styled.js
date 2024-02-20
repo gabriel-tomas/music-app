@@ -24,6 +24,7 @@ export const ContainerAlbumItem = styled(Link)`
       width: 100%;
       height: 100%;
       object-fit: contain;
+      box-shadow: 0 5px 5px rgba(0,0,0, 0.17)
     }
   }
 

@@ -16,7 +16,7 @@ export default createGlobalStyle`
     font-optical-sizing: auto;
     font-style: normal;
     font-size: 14px;
-    color: ${colors.text};
+    color: ${colors.text['900']};
   }
 
   h1 {
@@ -24,7 +24,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background-color: ${colors.background};
+    background-color: ${colors.background['50']};
   }
 
   button {
@@ -36,7 +36,7 @@ export default createGlobalStyle`
   }
 
   button.primary {
-    background-color: ${colors.primary};
+    background-color: ${colors.primary['950']};
   }
 
   button, a {
@@ -58,7 +58,7 @@ export default createGlobalStyle`
   }
 
   body .Toastify div.Toastify__toast-body > div:nth-child(2) {
-    color: ${colors.text};
+    color: ${colors.text['50']};
   }
 
   body .Toastify .Toastify__toast-container .Toastify__toast--success {

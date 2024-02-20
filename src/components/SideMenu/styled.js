@@ -17,14 +17,14 @@ export const ContainerSideMenu = styled.nav`
   padding-right: 1rem;
 
   a {
-    color: ${colors.text};
+    color: ${colors.text['950']};
     font-size: ${fontSizes.fontSizeBase};
     padding: 1rem;
     transition: all .3s;
   }
 
   a.active {
-    background-color: ${colors.primary};
+    background-color: ${colors.primary['200']};
     color: ${colors.textLight};
   }
 `;
@@ -47,13 +47,13 @@ const containerTopAndBottomStyle = `
       width: 30px;
       height: 30px;
       border-radius: .4rem;
-      color: ${colors.text};
+      color: ${colors.text['950']};
       transition: all .3s;
     }
 
     .container-icon.active {
       background-color: ${colors.textLight};
-      color: ${colors.primary};
+      color: ${colors.primary['950']};
     }
   }
 `;

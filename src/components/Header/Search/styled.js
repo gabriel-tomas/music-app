@@ -20,7 +20,7 @@ export default styled.div`
   }
 
   input {
-    background-color: ${colors.primaryDarker};
+    background-color: ${colors.whtColor};
     width: 100%;
     border-radius: 8px;
     height: 50px;

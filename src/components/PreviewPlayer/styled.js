@@ -36,7 +36,7 @@ export const ContainerPlayer = styled.div`
     background-color: ${colors.neutral2};
 
     .music-range {
-      background-color: ${colors.primary};
+      background-color: ${colors.primary['700']};
       border-radius: 1000px;
       width: 0;
       height: 100%;
