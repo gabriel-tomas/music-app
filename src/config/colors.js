@@ -14,7 +14,7 @@ export default {
   neutral5Light: '#f4f4f4',
   neutral6: '#bebebef7',
 
-  cardColor: '#dbdbdb9e',
+  cardColor: '#dcdcdc',
 
   messages: {
     success: '#577d3d',
