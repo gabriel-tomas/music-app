@@ -130,11 +130,19 @@ export const ContainerAlbumTrack = styled.li`
 
       .track-artists {
         text-align: left;
-        width: 100%;
+        width: min(70vw, 700px);
         display: block;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+
+        @media screen and (max-width: 1160px) {
+          width: min(50vw, 500px);
+        }
+
+        @media screen and (max-width: 760px) {
+          width: min(40vw, 500px);
+        }
 
         a {
           font-weight: normal;
