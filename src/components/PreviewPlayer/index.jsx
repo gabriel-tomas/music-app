@@ -10,6 +10,7 @@ import {
 } from 'react-icons/io5';
 
 import * as actions from '../../store/modules/musicPlayer/actions';
+import * as actionsVolume from '../../store/modules/playerVolume/actions';
 import getSecondsToMinutes from '../../utils/musicUtils/getSecondsToMinutes';
 
 import { ContainerPlayer } from './styled';
@@ -24,7 +25,8 @@ export default function PreviewPlayer() {
     (state) => state.musicPlayer.currentState,
   );
   const [currentTime, setCurrentTime] = useState(0);
-  const [volume, setVolume] = useState(0.3);
+  /* const [volume, setVolume] = useState(0.3); */
+  const volume = useSelector((state) => state.playerVolume.playerVolume);
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
@@ -53,6 +55,10 @@ export default function PreviewPlayer() {
     musicControl();
   }, [currentStateMusic, previewUrl]);
 
+  useEffect(() => {
+    audioElement.volume = volume;
+  }, [volume]);
+
   const handlePlayPause = () => {
     if (currentStateMusic === 'playing') {
       dispatch(actions.setActualMusicState('stopped'));
@@ -63,8 +69,7 @@ export default function PreviewPlayer() {
 
   const handleVolume = (e) => {
     const inputVolume = e.target.value;
-    setVolume(Number(inputVolume / 100));
-    audioElement.volume = Number(inputVolume / 100);
+    dispatch(actionsVolume.setVolume(Number(inputVolume / 100)));
   };
 
   return (
@@ -91,6 +96,7 @@ export default function PreviewPlayer() {
           name="volume"
           min="0"
           max="100"
+          value={volume * 100}
           onChange={handleVolume}
         />
       </div>
