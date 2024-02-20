@@ -1,10 +1,11 @@
 export default {
   text: '#03080e',
+  textLight: '#f0f0f0',
   background: '#eff5fb',
   primary: '#143F6B',
   primaryDarker: '#17477875',
-  secondary: '#e6df94',
-  accent: '#6edd70',
+  secondary: '#e698b5',
+  accent: '#d98d63',
 
   neutral1: '#ffffff33',
   neutral2: '#d5d5d5f7',

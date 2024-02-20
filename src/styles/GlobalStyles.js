@@ -80,7 +80,17 @@ export default createGlobalStyle`
 
 export const Main = styled.main`
   width: 100%;
-  padding-inline: clamp(1rem, 5vw, 3rem);
-  margin-inline: auto;
   margin-bottom: 8rem;
+`;
+
+export const WrapperMainContent = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: clamp(0.3rem, -0.414rem + 1.667vw, 1.3rem);
+  gap: clamp(1rem, -0.429rem + 3.333vw, 3rem);
+`;
+
+export const WrapperRightContent = styled.div`
+  width: 100%;
 `;
