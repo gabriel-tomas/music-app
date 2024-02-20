@@ -1,9 +1,19 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { ContainerAlbums, ContainerAlbumItem } from './styled';
 
 export default function Albums({ albums }) {
+  const navigate = useNavigate();
+
+  const handleRedirectToAlbum = (link) => {
+    navigate(link);
+  };
+
+  const handleArtistLinkClick = (event) => {
+    event.stopPropagation();
+  };
+
   return (
     <ContainerAlbums>
       {albums &&
@@ -11,8 +21,7 @@ export default function Albums({ albums }) {
           return (
             <ContainerAlbumItem
               key={album.id}
-              to={`/album/${album.id}`}
-              state={album}
+              onClick={() => handleRedirectToAlbum(`/album/${album.id}`)}
             >
               <div>
                 <div className="container-img">
@@ -30,6 +39,7 @@ export default function Albums({ albums }) {
                           key={artist.id}
                           className="artist-link"
                           to={`/artist/${artist.id}`}
+                          onClick={handleArtistLinkClick}
                         >
                           {artist.name}
                         </Link>

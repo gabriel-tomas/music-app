@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 import colors from '../../config/colors';
 import fontSizes from '../../config/fontSizes';
+import { Link } from 'react-router-dom';
 
-export const ContainerAlbums = styled.div`
+export const ContainerPlaylists = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem;
   margin-top: .7rem;
 `;
 
-export const ContainerAlbumItem = styled.div`
+export const ContainerPlaylistItem = styled(Link)`
   background-color: ${colors.cardColor};
   padding: 1rem;
   border-radius: 1rem;
@@ -35,7 +36,7 @@ export const ContainerAlbumItem = styled.div`
     height: 100%;
     overflow: hidden;
 
-    .album-name {
+    .playlist-name {
       font-size: ${fontSizes.fontSizeBase};
       white-space: nowrap;
       overflow: hidden;
@@ -43,18 +44,10 @@ export const ContainerAlbumItem = styled.div`
       font-weight: bold;
     }
 
-    .artists-box {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-
-      a {
+    .owner-box {
+      .owner {
         font-size: ${fontSizes.fontSizeBase};
         color: ${colors.text['950']};
-      }
-
-      a + a::before {
-        content: ', ';
       }
     }
   }
