@@ -24,6 +24,7 @@ export default function PreviewPlayer() {
   const currentStateMusic = useSelector(
     (state) => state.musicPlayer.currentState,
   );
+  const userPlatform = useSelector((state) => state.userPlatform.userPlatform);
   const [currentTime, setCurrentTime] = useState(0);
   /* const [volume, setVolume] = useState(0.3); */
   const volume = useSelector((state) => state.playerVolume.playerVolume);
@@ -84,22 +85,24 @@ export default function PreviewPlayer() {
         <span>{currentTime ? currentTime : '0:00'}</span> /{' '}
         <span>{duration ? duration : '0:00'}</span>
       </div>
-      <div className="container-volume">
-        {volume > 0.7 ? <IoVolumeHigh /> : null}
-        {volume <= 0.7 && volume >= 0.4 ? <IoVolumeMedium /> : null}
-        {volume < 0.4 && volume > 0.05 ? <IoVolumeLow /> : null}
-        {volume <= 0.05 && volume >= 0.01 ? <IoVolumeOff /> : null}
-        {volume === 0 ? <IoVolumeMute /> : null}
-        <input
-          type="range"
-          id="volume"
-          name="volume"
-          min="0"
-          max="100"
-          value={volume * 100}
-          onChange={handleVolume}
-        />
-      </div>
+      {userPlatform === 'PC' && (
+        <div className="container-volume">
+          {volume > 0.7 ? <IoVolumeHigh /> : null}
+          {volume <= 0.7 && volume >= 0.4 ? <IoVolumeMedium /> : null}
+          {volume < 0.4 && volume > 0.05 ? <IoVolumeLow /> : null}
+          {volume <= 0.05 && volume >= 0.01 ? <IoVolumeOff /> : null}
+          {volume === 0 ? <IoVolumeMute /> : null}
+          <input
+            type="range"
+            id="volume"
+            name="volume"
+            min="0"
+            max="100"
+            value={volume * 100}
+            onChange={handleVolume}
+          />
+        </div>
+      )}
     </ContainerPlayer>
   );
 }

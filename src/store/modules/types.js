@@ -3,3 +3,4 @@ export const SET_PLAY_MUSIC = 'SET_PLAY_MUSIC';
 export const SET_STOP_MUSIC = 'SET_STOP_MUSIC';
 export const SET_ACTUAL_MUSIC_STATE = 'SET_ACTUAL_MUSIC_STATE';
 export const SET_VOLUME = 'SET_VOLUME';
+/* export const SET_USER_PLATFORM = 'SET_USER_PLATFORM'; */
