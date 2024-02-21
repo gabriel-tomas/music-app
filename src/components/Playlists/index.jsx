@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { ContainerPlaylists, ContainerPlaylistItem } from './styled';
 
 export default function Playlists({ playlists }) {
-  console.log(playlists);
-
   return (
     <ContainerPlaylists>
       {playlists &&

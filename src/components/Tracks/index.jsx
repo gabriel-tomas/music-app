@@ -8,9 +8,15 @@ import * as musicPlayerActions from '../../store/modules/musicPlayer/actions';
 import colors from '../../config/colors';
 import getMinutesAndSeconds from '../../utils/musicUtils/getMinutesAndSeconds';
 
-import { ContainerTracks, ContainerTrack } from './styled';
+import {
+  ContainerTracks,
+  ContainerTrack,
+  ContainerTracksOl,
+  ContainerTrackLi,
+  ContainerTrackContent,
+} from './styled';
 
-export default function Tracks({ tracks }) {
+export default function Tracks({ tracks, numbered }) {
   const dispatch = useDispatch();
   const currentPreviewUrl = useSelector(
     (state) => state.currentMusic.currentPreviewMusic,
@@ -34,7 +40,8 @@ export default function Tracks({ tracks }) {
   };
 
   return (
-    tracks && (
+    tracks &&
+    (!numbered ? (
       <ContainerTracks>
         {tracks.map((track) => (
           <ContainerTrack key={track.id}>
@@ -86,10 +93,71 @@ export default function Tracks({ tracks }) {
           </ContainerTrack>
         ))}
       </ContainerTracks>
-    )
+    ) : (
+      <ContainerTracksOl>
+        {tracks.map((track) => (
+          <ContainerTrackLi key={track.track.id}>
+            <ContainerTrackContent>
+              <div className="left-content">
+                <button
+                  className="play-track-btn"
+                  onClick={() =>
+                    currentPreviewUrl === track.track.preview_url &&
+                    currentStateMusic === 'playing'
+                      ? handlePlayPauseMusic()
+                      : handleSetMusic(track.track.preview_url)
+                  }
+                >
+                  <div className="container-img">
+                    <div className="hover-img">
+                      {currentPreviewUrl === track.track.preview_url &&
+                      currentStateMusic === 'playing' ? (
+                        <FaStop color={colors.neutral5Light} />
+                      ) : (
+                        <FaPlay color={colors.neutral5Light} />
+                      )}
+                    </div>
+                    <img
+                      src={
+                        track.track.album.images.find(
+                          (item) => item.width === 300,
+                        ).url
+                      }
+                      alt={track.track.name}
+                    />
+                  </div>
+                </button>
+                <div className="track-info">
+                  <span className="track-name">{track.track.name}</span>
+                  <div className="track-artists">
+                    {track.track.artists.map((artist) => (
+                      <Link
+                        key={artist.id}
+                        to={`/artist/${artist.id}`}
+                        className="artist-link"
+                      >
+                        {artist.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="track-duration">
+                <span>{getMinutesAndSeconds(track.track.duration_ms)}</span>
+              </div>
+            </ContainerTrackContent>
+          </ContainerTrackLi>
+        ))}
+      </ContainerTracksOl>
+    ))
   );
 }
 
+Tracks.defaultProps = {
+  numbered: false,
+};
+
 Tracks.propTypes = {
   tracks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  numbered: PropTypes.bool,
 };

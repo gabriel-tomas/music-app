@@ -22,7 +22,7 @@ export const ContainerAlbumInfo = styled.div`
       .artists-box {
         a {
           font-size: ${fontSizes.fontSizeBase};
-          color: ${colors.text};
+          color: ${colors.text['950']};
         }
 
         a + a::before {
@@ -48,10 +48,6 @@ export const ContainerAlbumTracks = styled.div`
   margin-top: 2rem;
   padding-top: 1rem;
   border-top: 1px solid ${colors.neutral2};
-
-  ol {
-    counter-reset: my-awesome-counter;
-  }
 `;
 
 export const ContainerAlbumTrack = styled.li`

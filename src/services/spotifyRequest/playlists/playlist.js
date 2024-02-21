@@ -1,15 +1,11 @@
 import base, { requestSpotifyToken } from '../index';
 
-export default async (limit, locale = 'pt_BR') => {
+export default async (playlist_id) => {
   const token = await requestSpotifyToken();
-  const request = await base.get(
-    `/browse/featured-playlists?locale=${locale}&limit=${limit}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+  const request = await base.get(`/playlists/${playlist_id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
-  );
-  console.log(request.data);
+  });
   return request.data;
 };

@@ -16,7 +16,6 @@ async function tokenExpired(token) {
 }
 
 async function requestNewAccessToken() {
-  if (localStorage.getItem('access_token')) return;
   const request = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     headers: {
@@ -39,7 +38,8 @@ export async function requestSpotifyToken() {
     return accessToken;
   } catch (err) {
     if (err.response.data.error.status === 401) {
-      return requestNewAccessToken();
+      const accessToken = await requestNewAccessToken();
+      return accessToken;
     }
   }
 }
