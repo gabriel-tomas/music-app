@@ -37,6 +37,7 @@ export const ContainerSideMenu = styled.nav`
     left: 50%;
     transform: translateX(-50%);
     background-color: ${colors.background200Opacity86};
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     padding: .5rem;
     border-radius: 10px;

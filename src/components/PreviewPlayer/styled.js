@@ -13,6 +13,7 @@ export const ContainerPlayer = styled.div`
   position: fixed;
   bottom: .7rem;
   right: .7rem;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0px 0px 6px #00000036;
 
