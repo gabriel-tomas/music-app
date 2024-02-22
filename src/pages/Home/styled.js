@@ -4,8 +4,6 @@ import fontSizes from '../../config/fontSizes';
 
 export const ContainerHome = styled.section`
   section {
-    margin-top: 2rem;
-
     h1 {
       font-size: ${fontSizes.fontSizeLg};
       color: ${colors.primary['900']};

@@ -56,13 +56,13 @@ export default function Search() {
           <ContainerSearchResult key={key}>
             {key === 'albums' && (
               <>
-                <h2>{searchResultsName[key]}</h2>
+                <h2 className="title-item-section">{searchResultsName[key]}</h2>
                 <Albums albums={searchItems[key].items} />
               </>
             )}
             {key === 'tracks' && (
               <>
-                <h2>{searchResultsName[key]}</h2>
+                <h2 className="title-item-section">{searchResultsName[key]}</h2>
                 <Tracks tracks={searchItems[key].items} />
               </>
             )}
