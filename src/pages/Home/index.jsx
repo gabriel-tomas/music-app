@@ -1,7 +1,8 @@
+import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import getAlbumsReleases from '../../services/spotifyRequest/albums/albumsRelease';
 import getFeaturedPlaylists from '../../services/spotifyRequest/playlists/getFeaturedPlaylists';
 
-import { useState, useEffect } from 'react';
 import { ContainerHome } from './styled';
 import Albums from '../../components/Albums';
 import Playlists from '../../components/Playlists';
@@ -21,8 +22,16 @@ export default function Home() {
       setPlaylists(response);
     };
 
-    homeAlbumsReleases();
-    homeFeaturedPlaylists(5);
+    const requestHomeContent = async () => {
+      try {
+        await homeAlbumsReleases();
+        await homeFeaturedPlaylists(5);
+      } catch (err) {
+        toast.error('Ocorreu um erro ao tentar carregar os dados');
+      }
+    };
+
+    requestHomeContent();
   }, []);
 
   return (

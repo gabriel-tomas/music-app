@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { FaPlay, FaStop } from 'react-icons/fa';
 import colors from '../../config/colors';
@@ -35,14 +36,19 @@ export default function Album() {
   useEffect(() => {
     const requestAlbum = async () => {
       if (!albumId) return;
-      if (state) {
-        const tracksRequest = await getAlbumTracks(albumId);
-        var albumData = { ...state, tracks: tracksRequest };
-      } else {
-        const response = await getAlbum(albumId);
-        albumData = { ...response };
+      try {
+        if (state) {
+          const tracksRequest = await getAlbumTracks(albumId);
+          var albumData = { ...state, tracks: tracksRequest };
+        } else {
+          const response = await getAlbum(albumId);
+          albumData = { ...response };
+        }
+        setAlbum(albumData);
+      } catch (err) {
+        toast.error('Ocorreu um erro ao tentar carregar os dados do álbum');
+        setAlbum(null);
       }
-      setAlbum(albumData);
     };
 
     requestAlbum();

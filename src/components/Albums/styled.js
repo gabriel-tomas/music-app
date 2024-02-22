@@ -4,9 +4,13 @@ import fontSizes from '../../config/fontSizes';
 
 export const ContainerAlbums = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1rem;
   margin-top: .7rem;
+
+  @media screen and (max-width: 1080px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 `;
 
 export const ContainerAlbumItem = styled.div`
@@ -18,13 +22,18 @@ export const ContainerAlbumItem = styled.div`
   .container-img {
     width: 100%;
     height: 100%;
+    background-color: transparent;
 
     img {
       border-radius: .6rem;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      box-shadow: 0 5px 5px rgba(0,0,0, 0.17)
+      box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
+
+      @media screen and (max-width: 600px) {
+        border-radius: .4rem;
+      }
     }
   }
 
@@ -46,9 +55,11 @@ export const ContainerAlbumItem = styled.div`
     .artists-box {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
 
       a {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         font-size: ${fontSizes.fontSizeBase};
         color: ${colors.text['950']};
       }

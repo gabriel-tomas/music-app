@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import getPlaylist from '../../services/spotifyRequest/playlists/playlist';
 
@@ -18,10 +19,13 @@ export default function Playlist() {
   useEffect(() => {
     const requestPlaylist = async () => {
       if (!playlistId) return;
-      const response = await getPlaylist(playlistId);
-      const playlistData = { ...response };
-      console.log(playlistData);
-      setPlaylist(playlistData);
+      try {
+        const response = await getPlaylist(playlistId);
+        const playlistData = { ...response };
+        setPlaylist(playlistData);
+      } catch (err) {
+        toast.error('Ocorreu um erro ao tentar acessar a playlist');
+      }
     };
     requestPlaylist();
   }, [playlistId]);

@@ -9,6 +9,10 @@ export const ContainerHome = styled.section`
     h1 {
       font-size: ${fontSizes.fontSizeLg};
       color: ${colors.primary['900']};
+
+      @media screen and (max-width: 600px) {
+        font-size: ${fontSizes.fontSizeMd};
+      }
     }
   }
 

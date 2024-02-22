@@ -5,9 +5,13 @@ import { Link } from 'react-router-dom';
 
 export const ContainerPlaylists = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1rem;
   margin-top: .7rem;
+
+  @media screen and (max-width: 1080px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 `;
 
 export const ContainerPlaylistItem = styled(Link)`
@@ -19,13 +23,18 @@ export const ContainerPlaylistItem = styled(Link)`
   .container-img {
     width: 100%;
     height: 100%;
+    background-color: transparent;
 
     img {
       border-radius: .6rem;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      box-shadow: 0 5px 5px rgba(0,0,0, 0.17)
+      box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
+
+      @media screen and (max-width: 600px) {
+        border-radius: .4rem;
+      }
     }
   }
 

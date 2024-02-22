@@ -7,6 +7,7 @@ import Albums from '../../components/Albums';
 import Tracks from '../../components/Tracks';
 
 import { ContainerSearchResults, ContainerSearchResult } from './styled';
+import { toast } from 'react-toastify';
 
 export default function Search() {
   const [qs] = useSearchParams();
@@ -41,6 +42,7 @@ export default function Search() {
         setSearchItems(items);
       } catch (err) {
         setSearchItems({});
+        toast.error('Ocorreu um erro ao tentar pesquisar');
       }
     };
     requestSearchItems();
