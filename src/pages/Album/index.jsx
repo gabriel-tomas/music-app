@@ -55,7 +55,10 @@ export default function Album() {
   }, [albumId, state]);
 
   const handleSetMusic = (previewUrl) => {
-    console.log(previewUrl);
+    if (!previewUrl.match(/https:|mp3-preview/i)) {
+      toast.info('Preview da música não disponível');
+      return;
+    }
     dispatch(currentMusicActions.setCurrentMusic({ previewUrl }));
     dispatch(musicPlayerActions.setActualMusicState('playing'));
   };
@@ -108,7 +111,7 @@ export default function Album() {
                 currentPreviewUrl === trackItem.preview_url &&
                 currentStateMusic === 'playing'
                   ? handlePlayPauseMusic()
-                  : handleSetMusic(trackItem.preview_url)
+                  : handleSetMusic(trackItem.preview_url || trackItem.id)
               }
             >
               <div className="hover-music">

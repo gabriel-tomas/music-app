@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import { FaPlay, FaStop, FaVolumeUp } from 'react-icons/fa';
 import {
   IoVolumeHigh,
@@ -33,11 +32,7 @@ export default function PreviewPlayer() {
 
   useEffect(() => {
     const musicControl = async () => {
-      console.log(previewUrl);
-      if (!previewUrl.match(/https:|mp3-preview/i)) {
-        toast.info('Preview da música não disponível');
-        return;
-      }
+      if (!previewUrl.match(/https:|mp3-preview/i)) return;
       if (currentStateMusic === 'playing') {
         if (audioElement.src !== previewUrl) audioElement.src = previewUrl;
         await audioElement.play();

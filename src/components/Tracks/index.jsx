@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FaPlay, FaStop, FaBan } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import { FaPlay, FaStop } from 'react-icons/fa';
 
 import * as currentMusicActions from '../../store/modules/currentMusic/actions';
 import * as musicPlayerActions from '../../store/modules/musicPlayer/actions';
@@ -26,8 +27,11 @@ export default function Tracks({ tracks, numbered }) {
   );
 
   const handleSetMusic = (previewUrl) => {
+    if (!previewUrl.match(/https:|mp3-preview/i)) {
+      toast.info('Preview da música não disponível');
+      return;
+    }
     dispatch(currentMusicActions.setCurrentMusic({ previewUrl }));
-    if (!previewUrl.match(/https:|mp3-preview/i)) return; // << todo: block de músicas sem preview url
     dispatch(musicPlayerActions.setActualMusicState('playing'));
   };
 
@@ -106,7 +110,9 @@ export default function Tracks({ tracks, numbered }) {
                     currentPreviewUrl === track.track.preview_url &&
                     currentStateMusic === 'playing'
                       ? handlePlayPauseMusic()
-                      : handleSetMusic(track.track.preview_url)
+                      : handleSetMusic(
+                          track.track.preview_url || track.track.id,
+                        )
                   }
                 >
                   <div className="container-img">
