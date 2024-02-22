@@ -7,4 +7,8 @@ export default styled.header`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin-bottom: 1.4rem;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr 1.8fr 1fr;
+  }
 `;

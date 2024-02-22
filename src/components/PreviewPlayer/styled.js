@@ -42,4 +42,14 @@ export const ContainerPlayer = styled.div`
       height: 100%;
     }
   }
+
+  @media screen and (max-width: 600px) {
+    width: 97%;
+    bottom: clamp(30px, 20vh, 60px);
+    right: unset;
+    height: clamp(30px, 20vh, 60px);
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: .3rem;
+  }
 `;

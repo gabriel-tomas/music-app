@@ -25,6 +25,7 @@ export default {
     900: '#0a1929',
     950: '#050d14',
   },
+  background200Opacity86: '#d6e5f5e0',
   primary: {
     50: '#e9f2fb',
     100: '#d4e5f7',

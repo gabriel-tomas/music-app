@@ -27,6 +27,27 @@ export const ContainerSideMenu = styled.nav`
     background-color: ${colors.primary['200']};
     color: ${colors.textLight};
   }
+
+  @media screen and (max-width: 600px) {
+    position: fixed;
+    height: clamp(30px, 20vh, 60px);
+    width: 98%;
+    flex-direction: row;
+    justify-content: space-between;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: ${colors.background200Opacity86};
+    backdrop-filter: blur(15px);
+    padding: .5rem;
+    border-radius: 10px;
+    top: unset;
+    bottom: 0px;
+
+    a {
+      padding: unset;
+      font-size: ${fontSizes.fontSizeSm};
+    }
+  }
 `;
 
 const containerTopAndBottomStyle = `
@@ -56,8 +77,30 @@ const containerTopAndBottomStyle = `
       color: ${colors.primary['950']};
     }
   }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: row;
+    gap: .2rem;
+
+    .container-link {
+      flex-direction: column;
+      gap: unset;
+      padding: .5rem;
+      width: 100%;
+
+      .container-icon {
+        width: 100%;
+      }
+    }
+  }
 `;
 
-export const ContainerTopContent = styled.div`${containerTopAndBottomStyle}`;
+export const ContainerTopContent = styled.div`
+  ${containerTopAndBottomStyle}
+  width: 45%;
+`;
 
-export const ContainerBottomContent = styled.div`${containerTopAndBottomStyle}`;
+export const ContainerBottomContent = styled.div`
+  ${containerTopAndBottomStyle}
+  width: 45%;
+`;

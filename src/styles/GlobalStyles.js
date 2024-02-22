@@ -45,7 +45,7 @@ export default createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: ${colors.text};
+    color: ${colors.text['950']};
     /* font-weight: 500; */
   }
 
@@ -81,6 +81,10 @@ export default createGlobalStyle`
 export const Main = styled.main`
   width: 100%;
   margin-bottom: 8rem;
+
+  @media screen and (max-width: 600px) {
+    margin-bottom: clamp(60px, 40vh, 155px);
+  }
 `;
 
 export const WrapperMainContent = styled.div`
@@ -89,6 +93,11 @@ export const WrapperMainContent = styled.div`
   justify-content: space-between;
   padding-inline: clamp(0.3rem, -0.414rem + 1.667vw, 1.3rem);
   gap: clamp(1rem, -0.429rem + 3.333vw, 3rem);
+
+  @media screen and (max-width: 600px) {
+    display: block;
+    padding-inline: clamp(1rem, -0.414rem + 1.667vw, 1.3rem);
+  }
 `;
 
 export const WrapperRightContent = styled.div`
