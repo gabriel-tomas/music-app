@@ -29,13 +29,13 @@ export default function Playlist() {
   return playlist ? (
     <ContainerPlaylist>
       <ContainerPlaylistInfo>
-        <h1>Playlist</h1>
+        <h1 className="playlist-type">Playlist</h1>
         <div className="bottom-content">
           <div className="container-img">
             <img src={playlist.images[0].url} alt={playlist.name} />
           </div>
           <div className="container-playlist-info-top">
-            <h2>{playlist.name}</h2>
+            <h2 className="playlist-name">{playlist.name}</h2>
             <p>{playlist.description}</p>
           </div>
           <div className="container-playlist-info-bottom">

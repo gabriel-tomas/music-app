@@ -9,9 +9,17 @@ export const ContainerPlaylist = styled.section`
 `;
 
 export const ContainerPlaylistInfo = styled.div`
+  .playlist-type {
+    font-size: ${fontSizes.fontSizeMd};
+  }
+
   .bottom-content {
     .container-img {
       max-width: 300px;
+
+      @media screen and (max-width: 600px) {
+        max-width: 240px;
+      }
 
       img {
         width: 100%;
@@ -19,6 +27,10 @@ export const ContainerPlaylistInfo = styled.div`
     }
 
     .container-playlist-info-top {
+      .playlist-name {
+        font-size: ${fontSizes.fontSizeMd};
+      }
+
       p {
         margin-top: .3rem;
         font-size: ${fontSizes.fontSizeBase};

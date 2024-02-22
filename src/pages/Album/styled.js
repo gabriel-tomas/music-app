@@ -9,13 +9,25 @@ export const ContainerAlbum = styled.section`
 `;
 
 export const ContainerAlbumInfo = styled.div`
+  .album-type {
+    font-size: ${fontSizes.fontSizeMd};
+  }
+
   .bottom-content {
     .container-img {
       max-width: 300px;
 
+      @media screen and (max-width: 600px) {
+        max-width: 240px;
+      }
+
       img {
         width: 100%;
       }
+    }
+
+    .album-name {
+      font-size: ${fontSizes.fontSizeMd};
     }
 
     .album-info {

@@ -66,12 +66,14 @@ export default function Album() {
   return album ? (
     <ContainerAlbum>
       <ContainerAlbumInfo>
-        <h1>{album.album_type === 'single' ? 'Single' : 'Álbum'}</h1>
+        <h1 className="album-type">
+          {album.album_type === 'single' ? 'Single' : 'Álbum'}
+        </h1>
         <div className="bottom-content">
           <div className="container-img">
             <img src={album.images[0].url} alt={album.name} />
           </div>
-          <h2>{album.name}</h2>
+          <h2 className="album-name">{album.name}</h2>
           <div className="album-info">
             <span className="artists-box">
               {album.artists.map((artist) => (
