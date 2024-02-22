@@ -81,6 +81,7 @@ const containerTopAndBottomStyle = `
   @media screen and (max-width: 600px) {
     flex-direction: row;
     gap: .2rem;
+    width: 45%;
 
     .container-link {
       flex-direction: column;
@@ -97,10 +98,8 @@ const containerTopAndBottomStyle = `
 
 export const ContainerTopContent = styled.div`
   ${containerTopAndBottomStyle}
-  width: 45%;
 `;
 
 export const ContainerBottomContent = styled.div`
   ${containerTopAndBottomStyle}
-  width: 45%;
 `;
