@@ -43,6 +43,7 @@ export const ContainerSideMenu = styled.nav`
     border-radius: 10px;
     top: unset;
     bottom: 0px;
+    z-index: 10;
 
     a {
       padding: unset;
