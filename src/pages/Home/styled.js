@@ -7,9 +7,9 @@ export const ContainerHome = styled.section`
     margin-top: 2rem;
 
     h1 {
-    font-size: ${fontSizes.fontSizeLg};
-    color: ${colors.primary['900']};
-  }
+      font-size: ${fontSizes.fontSizeLg};
+      color: ${colors.primary['900']};
+    }
   }
 
   section + section {
