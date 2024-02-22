@@ -28,6 +28,7 @@ export const ContainerPlayer = styled.div`
 
   .container-volume {
     display: flex;
+    align-items: center;
   }
 
   .music-slide-back {
@@ -44,6 +45,10 @@ export const ContainerPlayer = styled.div`
     }
   }
 
+  .btn-volumeup {
+    display: none;
+  }
+
   @media screen and (max-width: 600px) {
     width: 97%;
     bottom: clamp(30px, 20vh, 60px);
@@ -52,5 +57,32 @@ export const ContainerPlayer = styled.div`
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: .3rem;
+
+    .container-volume {
+      display: none;
+      height: 100%;
+      opacity: 0;
+      animation: .3s .1s showContainerVolume forwards;
+    }
+
+    .container-volume:hover {
+      display: flex;
+    }
+
+    &:has(.btn-volumeup:hover) .container-volume {
+      display: flex;
+    }
+
+    .btn-volumeup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes showContainerVolume {
+      100% {
+        opacity: 1;
+      }
+    }
   }
 `;

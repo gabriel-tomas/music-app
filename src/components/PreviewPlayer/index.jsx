@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaPlay, FaStop } from 'react-icons/fa';
+import { FaPlay, FaStop, FaVolumeUp } from 'react-icons/fa';
 import {
   IoVolumeHigh,
   IoVolumeMedium,
@@ -86,22 +86,27 @@ export default function PreviewPlayer() {
         <span>{duration ? duration : '0:00'}</span>
       </div>
       {userPlatform === 'PC' && (
-        <div className="container-volume">
-          {volume > 0.7 ? <IoVolumeHigh /> : null}
-          {volume <= 0.7 && volume >= 0.4 ? <IoVolumeMedium /> : null}
-          {volume < 0.4 && volume > 0.05 ? <IoVolumeLow /> : null}
-          {volume <= 0.05 && volume >= 0.01 ? <IoVolumeOff /> : null}
-          {volume === 0 ? <IoVolumeMute /> : null}
-          <input
-            type="range"
-            id="volume"
-            name="volume"
-            min="0"
-            max="100"
-            value={volume * 100}
-            onChange={handleVolume}
-          />
-        </div>
+        <>
+          <button className="btn-volumeup">
+            <FaVolumeUp size="18" />
+          </button>
+          <div className="container-volume">
+            {volume > 0.7 ? <IoVolumeHigh /> : null}
+            {volume <= 0.7 && volume >= 0.4 ? <IoVolumeMedium /> : null}
+            {volume < 0.4 && volume > 0.05 ? <IoVolumeLow /> : null}
+            {volume <= 0.05 && volume >= 0.01 ? <IoVolumeOff /> : null}
+            {volume === 0 ? <IoVolumeMute /> : null}
+            <input
+              type="range"
+              id="volume"
+              name="volume"
+              min="0"
+              max="100"
+              value={volume * 100}
+              onChange={handleVolume}
+            />
+          </div>
+        </>
       )}
     </ContainerPlayer>
   );
