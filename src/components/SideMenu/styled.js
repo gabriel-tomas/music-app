@@ -44,6 +44,7 @@ export const ContainerSideMenu = styled.nav`
     top: unset;
     bottom: 0px;
     z-index: 10;
+    gap: .2rem;
 
     a {
       padding: unset;
@@ -83,7 +84,7 @@ const containerTopAndBottomStyle = `
   @media screen and (max-width: 600px) {
     flex-direction: row;
     gap: .2rem;
-    width: 45%;
+    width: 50%;
 
     .container-link {
       flex-direction: column;
@@ -104,4 +105,24 @@ export const ContainerTopContent = styled.div`
 
 export const ContainerBottomContent = styled.div`
   ${containerTopAndBottomStyle}
+  height: 100%;
+  justify-content: space-between;
+
+  button {
+    font-weight: normal;
+    height: auto;
+    padding: 1rem;
+    color: ${colors.text['950']};
+    transition: all .3s;
+
+    span {
+      font-size: ${fontSizes.fontSizeBase};
+    }
+
+    @media screen and (max-width: 600px) {
+      span {
+        font-size: ${fontSizes.fontSizeSm};
+      }
+    }
+  }
 `;
