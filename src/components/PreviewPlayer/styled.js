@@ -22,6 +22,7 @@ export const ContainerPlayer = styled.div`
   .play-pause-btn {
     display: flex;
     align-items: center;
+    padding-inline: 13px;
   }
 
   .container-duration-current-time {
@@ -33,7 +34,7 @@ export const ContainerPlayer = styled.div`
     align-items: center;
 
     input {
-      max-width: 80px;
+      max-width: 75px;
     }
   }
 
