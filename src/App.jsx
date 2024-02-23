@@ -11,7 +11,7 @@ import GlobalStyles, {
 } from './styles/GlobalStyles';
 import Routes from './routes';
 import SideMenu from './components/SideMenu';
-import Header from './components/Header';
+/* import Header from './components/Header'; */
 import PreviewPlayer from './components/PreviewPlayer';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
           <WrapperMainContent>
             <SideMenu />
             <WrapperRightContent>
-              <Header />
+              {/* <Header /> */}
               <Main>
                 <Routes />
               </Main>

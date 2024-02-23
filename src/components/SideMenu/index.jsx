@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
-import { IoGrid, IoInformation } from 'react-icons/io5';
+import { IoSearch, IoInformation } from 'react-icons/io5';
 import { LuLibrary } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
 
@@ -33,15 +33,15 @@ export default function SideMenu() {
           <span>Home</span>
         </Link>
         <Link
-          className={`container-link ${currentPath === '/categories' && 'active'}`}
-          to="/categories"
+          className={`container-link ${currentPath === '/search' && 'active'}`}
+          to="/search"
         >
           <div
-            className={`container-icon ${currentPath === '/categories' && 'active'}`}
+            className={`container-icon ${currentPath === '/search' && 'active'}`}
           >
-            <IoGrid size="22" />
+            <IoSearch size="22" />
           </div>
-          <span>Categorias</span>
+          <span>Buscar</span>
         </Link>
       </ContainerTopContent>
       <ContainerBottomContent>

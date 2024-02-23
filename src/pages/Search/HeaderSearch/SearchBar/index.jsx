@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
-import colors from '../../../config/colors';
+import colors from '../../../../config/colors';
 import ContainerSearch from './styled';
 
 export default function Search() {

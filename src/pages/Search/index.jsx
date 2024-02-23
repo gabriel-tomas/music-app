@@ -1,73 +1,18 @@
-import { useEffect, useState } from 'react';
+import HeaderSearchBar from './HeaderSearch';
 import { useSearchParams } from 'react-router-dom';
 
-import searchForItem from '../../services/spotifyRequest/search/searchForItem';
+import SearchResult from './SearchResult';
 
-import Albums from '../../components/Albums';
-import Tracks from '../../components/Tracks';
+import { ContainerSearch } from './styled';
 
-import { ContainerSearchResults, ContainerSearchResult } from './styled';
-import { toast } from 'react-toastify';
-
-export default function Search() {
+export default function Header() {
   const [qs] = useSearchParams();
-  const [searchItems, setSearchItems] = useState({});
   const searchString = qs.get('q');
-  const searchResultsName = {
-    albums: 'Álbums',
-    artists: 'Artistas',
-    tracks: 'Músicas',
-    playlists: 'Playlists',
-  };
-  const typesResult = {
-    all: 'album,artist,playlist,track',
-    albums: 'albums',
-    artists: 'artists',
-    tracks: 'tracks',
-    playlists: 'playlists',
-  };
-  const [typeResult, setTypeResult] = useState(typesResult.all);
 
-  useEffect(() => {
-    if (!searchString) return;
-    const requestSearchItems = async () => {
-      try {
-        let items;
-        if (typeResult === typesResult.all) {
-          items = await searchForItem(searchString, undefined, 8);
-        } else if (typeResult === typesResult.albums) {
-          items = await searchForItem(searchString, undefined, 50);
-          //todo: resultado para albums
-        }
-        setSearchItems(items);
-      } catch (err) {
-        setSearchItems({});
-        toast.error('Ocorreu um erro ao tentar pesquisar');
-      }
-    };
-    requestSearchItems();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchString, typeResult]);
-
-  return Object.keys(searchItems).length !== 0 ? (
-    <ContainerSearchResults>
-      {typeResult === typesResult.all &&
-        Object.keys(searchItems).map((key) => (
-          <ContainerSearchResult key={key}>
-            {key === 'albums' && (
-              <>
-                <h2 className="title-item-section">{searchResultsName[key]}</h2>
-                <Albums albums={searchItems[key].items} />
-              </>
-            )}
-            {key === 'tracks' && (
-              <>
-                <h2 className="title-item-section">{searchResultsName[key]}</h2>
-                <Tracks tracks={searchItems[key].items} />
-              </>
-            )}
-          </ContainerSearchResult>
-        ))}
-    </ContainerSearchResults>
-  ) : null;
+  return (
+    <ContainerSearch>
+      <HeaderSearchBar />
+      {searchString && <SearchResult searchString={searchString} />}
+    </ContainerSearch>
+  );
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import fontSizes from '../../../config/fontSizes';
-import colors from '../../../config/colors';
+import fontSizes from '../../../../config/fontSizes';
+import colors from '../../../../config/colors';
 
 export default styled.div`
   grid-column: 2;
