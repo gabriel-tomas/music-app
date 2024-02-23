@@ -26,12 +26,19 @@ export default function Tracks({ tracks, numbered }) {
     (state) => state.musicPlayer.currentState,
   );
 
-  const handleSetMusic = (previewUrl) => {
+  const handleSetMusic = (previewUrl, trackImg, trackTitle, trackArtists) => {
     if (!previewUrl.match(/https:|mp3-preview/i)) {
       toast.info('Preview da música não disponível');
       return;
     }
-    dispatch(currentMusicActions.setCurrentMusic({ previewUrl }));
+    dispatch(
+      currentMusicActions.setCurrentMusic({
+        previewUrl,
+        trackImg,
+        trackTitle,
+        trackArtists,
+      }),
+    );
     dispatch(musicPlayerActions.setActualMusicState('playing'));
   };
 
@@ -57,7 +64,13 @@ export default function Tracks({ tracks, numbered }) {
                   currentPreviewUrl === track.preview_url &&
                   currentStateMusic === 'playing'
                     ? handlePlayPauseMusic()
-                    : handleSetMusic(track.preview_url || track.id)
+                    : handleSetMusic(
+                        track.preview_url || '',
+                        track.album.images.find((item) => item.width === 300)
+                          .url,
+                        track.name,
+                        track.artists,
+                      )
                 }
               >
                 <div className="container-img">
@@ -111,7 +124,12 @@ export default function Tracks({ tracks, numbered }) {
                     currentStateMusic === 'playing'
                       ? handlePlayPauseMusic()
                       : handleSetMusic(
-                          track.track.preview_url || track.track.id,
+                          track.track.preview_url || '',
+                          track.track.album.images.find(
+                            (item) => item.width === 300,
+                          ).url,
+                          track.track.name,
+                          track.track.artists,
                         )
                   }
                 >

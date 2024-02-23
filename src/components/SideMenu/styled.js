@@ -28,6 +28,10 @@ export const ContainerSideMenu = styled.nav`
     color: ${colors.textLight};
   }
 
+  @media screen and (max-width: 800px) {
+    padding-bottom: calc(70px + 1rem);
+  }
+
   @media screen and (max-width: 600px) {
     position: fixed;
     height: clamp(30px, 20vh, 60px);

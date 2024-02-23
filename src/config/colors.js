@@ -72,6 +72,7 @@ export default {
   neutral4: '#f4f4f4f7',
   neutral5Light: '#f4f4f4',
   neutral6: '#bebebef7',
+  neutral7: '#bcbcbc9c',
 
   whtColor: '#fff',
 

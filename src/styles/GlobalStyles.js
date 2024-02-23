@@ -59,6 +59,7 @@ export default createGlobalStyle`
 
   body .Toastify div.Toastify__toast-body > div:nth-child(2) {
     color: ${colors.text['50']};
+    font-family: "MuseoModerno", sans-serif;
   }
 
   body .Toastify .Toastify__toast-container .Toastify__toast--success {

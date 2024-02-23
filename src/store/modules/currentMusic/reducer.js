@@ -1,7 +1,10 @@
 import * as types from '../types';
 
 const initialState = {
-  currentPreviewMusic: null,
+  currentPreviewMusic: '',
+  currentTrackImg: '',
+  currentTrackTitle: '',
+  currentTrackArtists: [],
 };
 
 export default (state = initialState, action) => {
@@ -9,6 +12,10 @@ export default (state = initialState, action) => {
     case types.SET_CURRENT_MUSIC: {
       const newState = { ...state };
       newState.currentPreviewMusic = action.payload.previewUrl;
+      newState.currentTrackImg = action.payload.trackImg;
+      newState.currentTrackTitle = action.payload.trackTitle;
+      newState.currentTrackArtists = action.payload.trackArtists;
+      console.log(newState);
       return newState;
     }
 

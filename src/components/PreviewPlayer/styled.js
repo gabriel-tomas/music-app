@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import colors from '../../config/colors';
+import fontSizes from '../../config/fontSizes';
 
 export const ContainerPlayer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(.5rem, 3vw, 1.2rem);
   height: 70px;
-  width: min(100%, 500px);
+  width: min(100%, 600px);
   background-color: ${colors.neutral3};
-  padding: 1rem;
+  padding: .4rem;
+  padding-inline: 1rem;
   border-radius: 10px;
   position: fixed;
   bottom: .7rem;
@@ -29,10 +31,14 @@ export const ContainerPlayer = styled.div`
   .container-volume {
     display: flex;
     align-items: center;
+
+    input {
+      max-width: 80px;
+    }
   }
 
   .music-slide-back {
-    width: 100%;
+    width: 60%;
     height: 10px;
     border-radius: 1000px;
     background-color: ${colors.neutral2};
@@ -49,14 +55,57 @@ export const ContainerPlayer = styled.div`
     display: none;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 648px) {
     width: 97%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media screen and (max-width: 600px) {
     bottom: clamp(30px, 20vh, 60px);
     right: unset;
     height: clamp(30px, 20vh, 60px);
-    left: 50%;
-    transform: translateX(-50%);
     margin-bottom: .3rem;
+
+    .track-infos {
+      width: 50%;
+    }
+
+    button {
+      padding-inline: unset;
+    }
+
+
+    .play-pause-btn, .container-duration-current-time, .btn-volumeup {
+      width: 16.6%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container-volume {
+      width: 100%;
+    }
+
+    .container-volume {
+      input {
+        width: 100%;
+      }
+    }
+
+    .music-slide-back {
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      left: 0;
+      bottom: 0;
+
+      .music-range {
+        border-top-left-radius: 0;
+      }
+    }
 
     .container-volume {
       display: none;
@@ -82,6 +131,82 @@ export const ContainerPlayer = styled.div`
     @keyframes showContainerVolume {
       100% {
         opacity: 1;
+      }
+    }
+  }
+
+  @media screen and (max-width: 525px) {
+    .track-infos.mobile {
+      width: 80%;
+    }
+
+    .play-pause-btn, .btn-volumeup  {
+      width: 100%;
+    }
+
+    .container-duration-current-time {
+      display: none;
+    }
+  }
+`;
+
+export const ContainerCurrentTrackInfo = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  width: 37%;
+  border-right: 1px solid ${colors.neutral7};
+  padding-right: .7rem;
+
+  .container-img {
+    height: 100%;
+
+    img {
+      height: 100%;
+      border-radius: 5px;
+    }
+  }
+
+  .container-right-info {
+    width: 100%;
+    overflow: hidden;
+
+    .track-title {
+      width: 100%;
+
+      span {
+        font-size: ${fontSizes.fontSizeBase};
+        display: block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .track-artists {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+
+      a {
+        display: block;
+        white-space: nowrap;
+        width: 100%;
+        font-weight: normal;
+        font-size: ${fontSizes.fontSizeBase};
+        color: ${colors.text['950']};
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      a + a::before {
+        content: ', ';
       }
     }
   }

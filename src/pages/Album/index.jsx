@@ -54,12 +54,19 @@ export default function Album() {
     requestAlbum();
   }, [albumId, state]);
 
-  const handleSetMusic = (previewUrl) => {
+  const handleSetMusic = (previewUrl, trackImg, trackTitle, trackArtists) => {
     if (!previewUrl.match(/https:|mp3-preview/i)) {
       toast.info('Preview da música não disponível');
       return;
     }
-    dispatch(currentMusicActions.setCurrentMusic({ previewUrl }));
+    dispatch(
+      currentMusicActions.setCurrentMusic({
+        previewUrl,
+        trackImg,
+        trackTitle,
+        trackArtists,
+      }),
+    );
     dispatch(musicPlayerActions.setActualMusicState('playing'));
   };
 
@@ -111,7 +118,12 @@ export default function Album() {
                 currentPreviewUrl === trackItem.preview_url &&
                 currentStateMusic === 'playing'
                   ? handlePlayPauseMusic()
-                  : handleSetMusic(trackItem.preview_url || trackItem.id)
+                  : handleSetMusic(
+                      trackItem.preview_url || '',
+                      album.images[0].url,
+                      trackItem.name,
+                      trackItem.artists,
+                    )
               }
             >
               <div className="hover-music">

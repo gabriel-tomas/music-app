@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { FaPlay, FaStop, FaVolumeUp } from 'react-icons/fa';
 import {
   IoVolumeHigh,
@@ -13,13 +14,20 @@ import * as actions from '../../store/modules/musicPlayer/actions';
 import * as actionsVolume from '../../store/modules/playerVolume/actions';
 import getSecondsToMinutes from '../../utils/musicUtils/getSecondsToMinutes';
 
-import { ContainerPlayer } from './styled';
+import { ContainerPlayer, ContainerCurrentTrackInfo } from './styled';
 
 const audioElement = new Audio();
 export default function PreviewPlayer() {
   const dispatch = useDispatch();
   const previewUrl = useSelector(
     (state) => state.currentMusic.currentPreviewMusic,
+  );
+  const trackImg = useSelector((state) => state.currentMusic.currentTrackImg);
+  const trackTitle = useSelector(
+    (state) => state.currentMusic.currentTrackTitle,
+  );
+  const trackArtists = useSelector(
+    (state) => state.currentMusic.currentTrackArtists,
   );
   const currentStateMusic = useSelector(
     (state) => state.musicPlayer.currentState,
@@ -76,6 +84,31 @@ export default function PreviewPlayer() {
 
   return (
     <ContainerPlayer>
+      {trackImg && trackTitle && trackArtists && (
+        <ContainerCurrentTrackInfo
+          className={`track-infos ${(userPlatform === 'Android') | (userPlatform === 'iPhone') && 'mobile'}`}
+        >
+          <div className="container-img">
+            <img src={trackImg} alt={trackTitle} />
+          </div>
+          <div className="container-right-info">
+            <div className="track-title">
+              <span>{trackTitle}</span>
+            </div>
+            <div className="track-artists">
+              {trackArtists.map((artist) => (
+                <Link
+                  key={artist.id}
+                  to={`/artist/${artist.id}`}
+                  className="artist-span"
+                >
+                  {artist.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </ContainerCurrentTrackInfo>
+      )}
       <button className="play-pause-btn" onClick={handlePlayPause}>
         {currentStateMusic === 'playing' ? <FaStop /> : <FaPlay />}
       </button>

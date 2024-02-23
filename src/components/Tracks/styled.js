@@ -89,7 +89,7 @@ export const ContainerTrack = styled.div`
         a {
           font-weight: normal;
           font-size: ${fontSizes.fontSizeBase};
-          color: ${colors.text};
+          color: ${colors.text['950']};
         }
 
         a + a::before {
