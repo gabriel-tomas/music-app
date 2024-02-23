@@ -10,6 +10,5 @@ export default async (limit, locale = 'pt_BR') => {
       },
     },
   );
-  console.log(request.data);
   return request.data;
 };

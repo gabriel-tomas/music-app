@@ -137,7 +137,6 @@ export default function Album() {
               <div className="container-track">
                 <div className="track-info">
                   <h3 className="track-name">{trackItem.name}</h3>
-                  {console.log(trackItem)}
                   <div className="track-artists">
                     {trackItem.artists.map((artist) => (
                       <Link

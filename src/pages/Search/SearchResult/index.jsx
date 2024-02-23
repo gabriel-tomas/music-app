@@ -11,7 +11,6 @@ import { toast } from 'react-toastify';
 
 export default function Search({ searchString }) {
   const [searchItems, setSearchItems] = useState({});
-  console.log(searchString);
   const searchResultsName = {
     albums: 'Álbums',
     artists: 'Artistas',

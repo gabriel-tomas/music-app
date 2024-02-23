@@ -14,6 +14,5 @@ export default async (
       },
     },
   );
-  console.log(request);
   return request.data;
 };

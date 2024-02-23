@@ -15,7 +15,6 @@ export default (state = initialState, action) => {
       newState.currentTrackImg = action.payload.trackImg;
       newState.currentTrackTitle = action.payload.trackTitle;
       newState.currentTrackArtists = action.payload.trackArtists;
-      console.log(newState);
       return newState;
     }
 
