@@ -109,7 +109,10 @@ export default function PreviewPlayer() {
           </div>
         </ContainerCurrentTrackInfo>
       )}
-      <button className="play-pause-btn" onClick={handlePlayPause}>
+      <button
+        className={`play-pause-btn ${(userPlatform === 'Android') | (userPlatform === 'iPhone') && 'mobile'}`}
+        onClick={handlePlayPause}
+      >
         {currentStateMusic === 'playing' ? <FaStop /> : <FaPlay />}
       </button>
       <div className="music-slide-back">

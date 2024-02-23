@@ -19,6 +19,14 @@ export const ContainerPlayer = styled.div`
   backdrop-filter: blur(10px);
   box-shadow: 0px 0px 6px #00000036;
 
+  .track-infos.mobile {
+    width: 80%;
+  }
+
+  .play-pause-btn.mobile {
+    width: 20%;
+  }
+
   .play-pause-btn {
     display: flex;
     align-items: center;
@@ -137,10 +145,6 @@ export const ContainerPlayer = styled.div`
   }
 
   @media screen and (max-width: 525px) {
-    .track-infos.mobile {
-      width: 80%;
-    }
-
     .play-pause-btn, .btn-volumeup  {
       width: 100%;
     }
