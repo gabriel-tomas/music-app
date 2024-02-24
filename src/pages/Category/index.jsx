@@ -32,7 +32,11 @@ export default function Category() {
           <h1>{category.message}</h1>
         </div>
         <ContainerPlaylists>
-          <Playlists playlists={category.playlists.items} />
+          <Playlists
+            playlists={category.playlists.items}
+            showDescription={true}
+            showOwner={false}
+          />
         </ContainerPlaylists>
       </ContainerCategory>
     )

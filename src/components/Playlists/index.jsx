@@ -5,7 +5,7 @@ import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
 import { ContainerPlaylists, ContainerPlaylistItem } from './styled';
 
-export default function Playlists({ playlists }) {
+export default function Playlists({ playlists, showDescription, showOwner }) {
   return (
     <ContainerPlaylists>
       {playlists &&
@@ -25,14 +25,18 @@ export default function Playlists({ playlists }) {
                 </div>
                 <div className="secondary-content">
                   <span className="playlist-name">{playlist.name}</span>
-                  {playlist.description && (
+                  {playlist.description && showDescription && (
                     <p className="playlist-description">
                       {playlist.description}
                     </p>
                   )}
-                  <div className="owner-box">
-                    <span className="owner">{playlist.owner.display_name}</span>
-                  </div>
+                  {showOwner && (
+                    <div className="owner-box">
+                      <span className="owner">
+                        {playlist.owner.display_name}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </ContainerPlaylistItem>
@@ -42,6 +46,13 @@ export default function Playlists({ playlists }) {
   );
 }
 
+Playlists.defaultProps = {
+  showDescription: false,
+  showOwner: true,
+};
+
 Playlists.propTypes = {
   playlists: PropTypes.arrayOf(PropTypes.object).isRequired,
+  showDescription: PropTypes.bool,
+  showOwner: PropTypes.bool,
 };
