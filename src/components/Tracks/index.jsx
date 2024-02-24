@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaPlay, FaStop } from 'react-icons/fa';
 
+import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
+
 import * as currentMusicActions from '../../store/modules/currentMusic/actions';
 import * as musicPlayerActions from '../../store/modules/musicPlayer/actions';
 import colors from '../../config/colors';
@@ -66,8 +68,7 @@ export default function Tracks({ tracks, numbered }) {
                     ? handlePlayPauseMusic()
                     : handleSetMusic(
                         track.preview_url || '',
-                        track.album.images.find((item) => item.width === 300)
-                          .url,
+                        getAlbumImageUrl(track.album.images, 300),
                         track.name,
                         track.artists,
                       )
@@ -83,9 +84,7 @@ export default function Tracks({ tracks, numbered }) {
                     )}
                   </div>
                   <img
-                    src={
-                      track.album.images.find((item) => item.width === 300).url
-                    }
+                    src={getAlbumImageUrl(track.album.images, 300)}
                     alt={track.name}
                   />
                 </div>
@@ -125,9 +124,7 @@ export default function Tracks({ tracks, numbered }) {
                       ? handlePlayPauseMusic()
                       : handleSetMusic(
                           track.track.preview_url || '',
-                          track.track.album.images.find(
-                            (item) => item.width === 300,
-                          ).url,
+                          getAlbumImageUrl(track.track.album.images, 300),
                           track.track.name,
                           track.track.artists,
                         )
@@ -143,11 +140,7 @@ export default function Tracks({ tracks, numbered }) {
                       )}
                     </div>
                     <img
-                      src={
-                        track.track.album.images.find(
-                          (item) => item.width === 300,
-                        ).url
-                      }
+                      src={getAlbumImageUrl(track.track.album.images, 300)}
                       alt={track.track.name}
                     />
                   </div>

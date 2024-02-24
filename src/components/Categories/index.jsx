@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
+import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
+
 import severalCategories from '../../services/spotifyRequest/categories/severalCategories';
 
 import {
@@ -38,7 +40,10 @@ export default function Categories() {
               className="category-link"
             >
               <div className="container-img">
-                <img src={category.icons[0].url} alt={category.name} />
+                <img
+                  src={getAlbumImageUrl(category.icons, 300)}
+                  alt={category.name}
+                />
               </div>
               <div className="container-bottom">
                 <span className="category-title">{category.name}</span>

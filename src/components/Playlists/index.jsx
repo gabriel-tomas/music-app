@@ -1,4 +1,7 @@
 import PropTypes from 'prop-types';
+import { IoDiscSharp } from 'react-icons/io5';
+
+import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
 import { ContainerPlaylists, ContainerPlaylistItem } from './styled';
 
@@ -14,7 +17,14 @@ export default function Playlists({ playlists }) {
             >
               <div>
                 <div className="container-img">
-                  <img src={playlist.images[0].url} alt={playlist.name} />
+                  {playlist.images.length === 0 ? (
+                    <IoDiscSharp />
+                  ) : (
+                    <img
+                      src={getAlbumImageUrl(playlist.images, 300)}
+                      alt={playlist.name}
+                    />
+                  )}
                 </div>
                 <div className="secondary-content">
                   <span className="playlist-name">{playlist.name}</span>

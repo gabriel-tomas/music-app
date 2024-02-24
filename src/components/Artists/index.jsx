@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { FaUserAlt } from 'react-icons/fa';
+
+import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
 import { ContainerArtists, ContainerArtist } from './styled';
 
@@ -19,10 +22,14 @@ export default function Artists({ artists }) {
             onClick={() => handleRedirectToArtist(`/artist/${artist.id}`)}
           >
             <div className="container-img">
-              <img
-                src={artist.images.find((item) => item.width === 640).url}
-                alt={artist.name}
-              />
+              {artist.images.length === 0 ? (
+                <FaUserAlt />
+              ) : (
+                <img
+                  src={getAlbumImageUrl(artist.images, 640)}
+                  alt={artist.name}
+                />
+              )}
             </div>
             <div className="container-info-bottom">
               <span className="artist-name">{artist.name}</span>

@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 
+import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
+
 import { ContainerAlbums, ContainerAlbumItem } from './styled';
 
 export default function Albums({ albums }) {
@@ -26,7 +28,7 @@ export default function Albums({ albums }) {
               <div>
                 <div className="container-img">
                   <img
-                    src={album.images.find((item) => item.width === 640).url}
+                    src={getAlbumImageUrl(album.images, 640)}
                     alt={album.name}
                   />
                 </div>
