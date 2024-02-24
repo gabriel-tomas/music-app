@@ -28,8 +28,12 @@ export const ContainerArtist = styled.div`
     border-radius: 50%;
     overflow: hidden;
     background-color: transparent;
-    transition: .2s width, .2s height ;
-
+    transition: .2s width, .2s height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
+    background-color: ${colors.secondary['50']};
 
     @media screen and (min-width: 1200px) {
       width: 155px;
@@ -146,7 +150,11 @@ export const ContainerArtist = styled.div`
       width: 100%;
       height: 100%;
       object-fit: cover;
-      box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
+    }
+
+    svg {
+      width: 50%;
+      height: 50%;
     }
   }
 

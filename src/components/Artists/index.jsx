@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { FaUserAlt } from 'react-icons/fa';
+import colors from '../../config/colors';
 
 import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
@@ -23,7 +24,7 @@ export default function Artists({ artists }) {
           >
             <div className="container-img">
               {artist.images.length === 0 ? (
-                <FaUserAlt />
+                <FaUserAlt color={colors.secondary['950']} />
               ) : (
                 <img
                   src={getAlbumImageUrl(artist.images, 640)}
