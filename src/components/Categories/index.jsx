@@ -18,7 +18,6 @@ export default function Categories() {
     const requestSeveralCategories = async () => {
       try {
         const response = await severalCategories(50);
-        console.log(response);
         setCategories(response);
       } catch (err) {
         toast.error('Ocorreu um erro ao tentar carregar as categorias');
