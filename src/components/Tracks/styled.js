@@ -96,6 +96,24 @@ export const ContainerTrack = styled.div`
           content: ', ';
         }
       }
+
+      @media screen and (max-width: 1080px) {
+        .track-name, .track-artists {
+          max-width: 500px;
+        }
+      }
+
+      @media screen and (max-width: 860px) {
+        .track-name, .track-artists {
+          max-width: 300px;
+        }
+      }
+
+      @media screen and (max-width: 660px) {
+        .track-name, .track-artists {
+          max-width: 150px;
+        }
+      }
     }
   }
 
