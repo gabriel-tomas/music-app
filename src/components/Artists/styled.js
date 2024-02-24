@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import colors from '../../config/colors';
 import fontSizes from '../../config/fontSizes';
 
-export const ContainerAlbums = styled.div`
+export const ContainerArtists = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1rem;
@@ -13,7 +13,7 @@ export const ContainerAlbums = styled.div`
   }
 `;
 
-export const ContainerAlbumItem = styled.div`
+export const ContainerArtist = styled.div`
   background-color: ${colors.cardColor};
   padding: 1rem;
   border-radius: 1rem;
@@ -21,30 +21,23 @@ export const ContainerAlbumItem = styled.div`
 
   .container-img {
     width: 100%;
-    height: 100%;
     background-color: transparent;
 
     img {
-      border-radius: .6rem;
+      border-radius: 50%;
       width: 100%;
       height: 100%;
       object-fit: contain;
       box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
-
-      @media screen and (max-width: 600px) {
-        border-radius: .4rem;
-      }
     }
   }
 
-  .secondary-content {
+  .container-info-bottom {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    overflow: hidden;
+    gap: .2rem;
 
-    .album-name {
+    .artist-name {
       font-size: ${fontSizes.fontSizeBase};
       white-space: nowrap;
       overflow: hidden;
@@ -53,21 +46,12 @@ export const ContainerAlbumItem = styled.div`
       color: ${colors.text['950']};
     }
 
-    .artists-box {
-      display: flex;
-      align-items: center;
-
-      a {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-size: ${fontSizes.fontSizeBase};
-        color: ${colors.text['950']};
-      }
-
-      a + a::before {
-        content: ', ';
-      }
+    .type {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: ${fontSizes.fontSizeBase};
+      color: ${colors.text['950']};
     }
   }
 `;
