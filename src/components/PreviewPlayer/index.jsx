@@ -128,11 +128,15 @@ export default function PreviewPlayer() {
             <FaVolumeUp size="18" />
           </button>
           <div className="container-volume">
-            {volume > 0.7 ? <IoVolumeHigh size={22} /> : null}
-            {volume <= 0.7 && volume >= 0.4 ? <IoVolumeMedium size={22} /> : null}
-            {volume < 0.4 && volume > 0.05 ? <IoVolumeLow size={22} /> : null}
-            {volume <= 0.05 && volume >= 0.01 ? <IoVolumeOff size={22} /> : null}
-            {volume === 0 ? <IoVolumeMute size={22} /> : null}
+            {volume > 0.7 ? <IoVolumeHigh size={15.5} /> : null}
+            {volume <= 0.7 && volume >= 0.4 ? (
+              <IoVolumeMedium size={15.5} />
+            ) : null}
+            {volume < 0.4 && volume > 0.05 ? <IoVolumeLow size={15.5} /> : null}
+            {volume <= 0.05 && volume >= 0.01 ? (
+              <IoVolumeOff size={15.5} />
+            ) : null}
+            {volume === 0 ? <IoVolumeMute size={15.5} /> : null}
             <input
               type="range"
               id="volume"
