@@ -99,6 +99,7 @@ export const ContainerPlayer = styled.div`
     .container-volume {
       input {
         width: 100%;
+        max-width: 100px;
       }
     }
 
@@ -144,9 +145,13 @@ export const ContainerPlayer = styled.div`
     }
   }
 
-  @media screen and (max-width: 525px) {
+  @media screen and (max-width: 585px) {
+    .track-infos {
+      width: 65%;
+    }
+
     .play-pause-btn, .btn-volumeup  {
-      width: 100%;
+      width: 17.5%;
     }
 
     .container-duration-current-time {
