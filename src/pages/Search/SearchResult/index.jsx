@@ -6,6 +6,7 @@ import searchForItem from '../../../services/spotifyRequest/search/searchForItem
 import Albums from '../../../components/Albums';
 import Tracks from '../../../components/Tracks';
 import Artists from '../../../components/Artists';
+import Playlists from '../../../components/Playlists';
 
 import { ContainerSearchResults, ContainerSearchResult } from './styled';
 import { toast } from 'react-toastify';
@@ -69,6 +70,12 @@ export default function Search({ searchString }) {
               <>
                 <h2 className="title-item-section">{searchResultsName[key]}</h2>
                 <Artists artists={searchItems[key].items} />
+              </>
+            )}
+            {key === 'playlists' && (
+              <>
+                <h2 className="title-item-section">{searchResultsName[key]}</h2>
+                <Playlists playlists={searchItems[key].items} />
               </>
             )}
           </ContainerSearchResult>
