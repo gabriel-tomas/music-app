@@ -53,6 +53,14 @@ export const ContainerPlaylistItem = styled(Link)`
       font-weight: bold;
     }
 
+    .playlist-description {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+              line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
     .owner-box {
       .owner {
         font-size: ${fontSizes.fontSizeBase};

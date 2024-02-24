@@ -9,12 +9,9 @@ export default function Playlists({ playlists }) {
   return (
     <ContainerPlaylists>
       {playlists &&
-        playlists.map((playlist) => {
+        playlists.map((playlist, index) => {
           return (
-            <ContainerPlaylistItem
-              key={playlist.id}
-              to={`/playlist/${playlist.id}`}
-            >
+            <ContainerPlaylistItem key={index} to={`/playlist/${playlist.id}`}>
               <div>
                 <div className="container-img">
                   {playlist.images.length === 0 ? (
@@ -28,6 +25,11 @@ export default function Playlists({ playlists }) {
                 </div>
                 <div className="secondary-content">
                   <span className="playlist-name">{playlist.name}</span>
+                  {playlist.description && (
+                    <p className="playlist-description">
+                      {playlist.description}
+                    </p>
+                  )}
                   <div className="owner-box">
                     <span className="owner">{playlist.owner.display_name}</span>
                   </div>

@@ -1,5 +1,4 @@
 export default function GetAlbumImageUrl(arrayImages, size) {
-  console.log(arrayImages);
   if (arrayImages.length === 0) return '';
   let imageUrl;
   imageUrl = arrayImages.find((item) => item.width === size);
