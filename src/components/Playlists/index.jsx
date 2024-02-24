@@ -11,35 +11,40 @@ export default function Playlists({ playlists, showDescription, showOwner }) {
       {playlists &&
         playlists.map((playlist, index) => {
           return (
-            <ContainerPlaylistItem key={index} to={`/playlist/${playlist.id}`}>
-              <div>
-                <div className="container-img">
-                  {playlist.images.length === 0 ? (
-                    <IoDiscSharp />
-                  ) : (
-                    <img
-                      src={getAlbumImageUrl(playlist.images, 300)}
-                      alt={playlist.name}
-                    />
-                  )}
+            playlist && (
+              <ContainerPlaylistItem
+                key={index}
+                to={`/playlist/${playlist.id}`}
+              >
+                <div>
+                  <div className="container-img">
+                    {playlist.images.length === 0 ? (
+                      <IoDiscSharp />
+                    ) : (
+                      <img
+                        src={getAlbumImageUrl(playlist.images, 300)}
+                        alt={playlist.name}
+                      />
+                    )}
+                  </div>
+                  <div className="secondary-content">
+                    <span className="playlist-name">{playlist.name}</span>
+                    {playlist.description && showDescription && (
+                      <p className="playlist-description">
+                        {playlist.description}
+                      </p>
+                    )}
+                    {showOwner && (
+                      <div className="owner-box">
+                        <span className="owner">
+                          {playlist.owner.display_name}
+                        </span>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="secondary-content">
-                  <span className="playlist-name">{playlist.name}</span>
-                  {playlist.description && showDescription && (
-                    <p className="playlist-description">
-                      {playlist.description}
-                    </p>
-                  )}
-                  {showOwner && (
-                    <div className="owner-box">
-                      <span className="owner">
-                        {playlist.owner.display_name}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </ContainerPlaylistItem>
+              </ContainerPlaylistItem>
+            )
           );
         })}
     </ContainerPlaylists>

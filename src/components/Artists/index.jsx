@@ -17,27 +17,30 @@ export default function Artists({ artists }) {
   return (
     <ContainerArtists>
       {artists &&
-        artists.map((artist) => (
-          <ContainerArtist
-            key={artist.id}
-            onClick={() => handleRedirectToArtist(`/artist/${artist.id}`)}
-          >
-            <div className="container-img">
-              {artist.images.length === 0 ? (
-                <FaUserAlt color={colors.secondary['950']} />
-              ) : (
-                <img
-                  src={getAlbumImageUrl(artist.images, 640)}
-                  alt={artist.name}
-                />
-              )}
-            </div>
-            <div className="container-info-bottom">
-              <span className="artist-name">{artist.name}</span>
-              <span className="type">Artista</span>
-            </div>
-          </ContainerArtist>
-        ))}
+        artists.map(
+          (artist) =>
+            artist && (
+              <ContainerArtist
+                key={artist.id}
+                onClick={() => handleRedirectToArtist(`/artist/${artist.id}`)}
+              >
+                <div className="container-img">
+                  {artist.images.length === 0 ? (
+                    <FaUserAlt color={colors.secondary['950']} />
+                  ) : (
+                    <img
+                      src={getAlbumImageUrl(artist.images, 640)}
+                      alt={artist.name}
+                    />
+                  )}
+                </div>
+                <div className="container-info-bottom">
+                  <span className="artist-name">{artist.name}</span>
+                  <span className="type">Artista</span>
+                </div>
+              </ContainerArtist>
+            ),
+        )}
     </ContainerArtists>
   );
 }

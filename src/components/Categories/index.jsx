@@ -33,23 +33,26 @@ export default function Categories() {
       <ContainerCategories>
         <h1 className="title">Categorias</h1>
         <ContainerCategoryItems>
-          {categories.map((category) => (
-            <ContainerCategoryItem
-              key={category.id}
-              to={`/category/${category.id}`}
-              className="category-link"
-            >
-              <div className="container-img">
-                <img
-                  src={getAlbumImageUrl(category.icons, 300)}
-                  alt={category.name}
-                />
-              </div>
-              <div className="container-bottom">
-                <span className="category-title">{category.name}</span>
-              </div>
-            </ContainerCategoryItem>
-          ))}
+          {categories.map(
+            (category) =>
+              category && (
+                <ContainerCategoryItem
+                  key={category.id}
+                  to={`/category/${category.id}`}
+                  className="category-link"
+                >
+                  <div className="container-img">
+                    <img
+                      src={getAlbumImageUrl(category.icons, 300)}
+                      alt={category.name}
+                    />
+                  </div>
+                  <div className="container-bottom">
+                    <span className="category-title">{category.name}</span>
+                  </div>
+                </ContainerCategoryItem>
+              ),
+          )}
         </ContainerCategoryItems>
       </ContainerCategories>
     )

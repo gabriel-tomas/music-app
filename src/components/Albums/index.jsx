@@ -21,36 +21,38 @@ export default function Albums({ albums }) {
       {albums &&
         albums.map((album) => {
           return (
-            <ContainerAlbumItem
-              key={album.id}
-              onClick={() => handleRedirectToAlbum(`/album/${album.id}`)}
-            >
-              <div>
-                <div className="container-img">
-                  <img
-                    src={getAlbumImageUrl(album.images, 640)}
-                    alt={album.name}
-                  />
-                </div>
-                <div className="secondary-content">
-                  <span className="album-name">{album.name}</span>
-                  <div className="artists-box">
-                    {album.artists.map((artist) => {
-                      return (
-                        <Link
-                          key={artist.id}
-                          className="artist-link"
-                          to={`/artist/${artist.id}`}
-                          onClick={handleArtistLinkClick}
-                        >
-                          {artist.name}
-                        </Link>
-                      );
-                    })}
+            album && (
+              <ContainerAlbumItem
+                key={album.id}
+                onClick={() => handleRedirectToAlbum(`/album/${album.id}`)}
+              >
+                <div>
+                  <div className="container-img">
+                    <img
+                      src={getAlbumImageUrl(album.images, 640)}
+                      alt={album.name}
+                    />
+                  </div>
+                  <div className="secondary-content">
+                    <span className="album-name">{album.name}</span>
+                    <div className="artists-box">
+                      {album.artists.map((artist) => {
+                        return (
+                          <Link
+                            key={artist.id}
+                            className="artist-link"
+                            to={`/artist/${artist.id}`}
+                            onClick={handleArtistLinkClick}
+                          >
+                            {artist.name}
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </ContainerAlbumItem>
+              </ContainerAlbumItem>
+            )
           );
         })}
     </ContainerAlbums>
