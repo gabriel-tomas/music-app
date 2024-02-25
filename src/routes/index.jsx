@@ -5,6 +5,7 @@ import Album from '../pages/Album';
 import Playlist from '../pages/Playlist';
 import Search from '../pages/Search';
 import Category from '../pages/Category';
+import Artist from '../pages/Artist';
 import Page404 from '../pages/Page404';
 
 export default function AllRoutes() {
@@ -15,6 +16,7 @@ export default function AllRoutes() {
       <Route path="/playlist/:id" element={<Playlist />} />
       <Route path="/search" element={<Search />} />
       <Route path="/category/:id" element={<Category />} />
+      <Route path="/artist/:id" element={<Artist />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
   );

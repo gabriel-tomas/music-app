@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+import getOnlyTrackFromTracks from '../../utils/musicUtils/getOnlyTrackFromTracks';
+
 import getPlaylist from '../../services/spotifyRequest/playlists/playlist';
 
 import Tracks from '../../components/Tracks';
@@ -51,7 +53,10 @@ export default function Playlist() {
         </div>
       </ContainerPlaylistInfo>
       <ContainerPlaylistTracks className="container-playlist-tracks">
-        <Tracks tracks={playlist.tracks.items} numbered />
+        <Tracks
+          tracks={getOnlyTrackFromTracks(playlist.tracks.items)}
+          numbered
+        />
       </ContainerPlaylistTracks>
     </ContainerPlaylist>
   ) : null;

@@ -114,27 +114,27 @@ export default function Tracks({ tracks, numbered }) {
       <ContainerTracksOl>
         {tracks.map(
           (track) =>
-            track.track && (
-              <ContainerTrackLi key={track.track.id}>
+            track && (
+              <ContainerTrackLi key={track.id}>
                 <ContainerTrackContent>
                   <div className="left-content">
                     <button
                       className="play-track-btn"
                       onClick={() =>
-                        currentPreviewUrl === track.track.preview_url &&
+                        currentPreviewUrl === track.preview_url &&
                         currentStateMusic === 'playing'
                           ? handlePlayPauseMusic()
                           : handleSetMusic(
-                              track.track.preview_url || '',
-                              getAlbumImageUrl(track.track.album.images, 300),
-                              track.track.name,
-                              track.track.artists,
+                              track.preview_url || '',
+                              getAlbumImageUrl(track.album.images, 300),
+                              track.name,
+                              track.artists,
                             )
                       }
                     >
                       <div className="container-img">
                         <div className="hover-img">
-                          {currentPreviewUrl === track.track.preview_url &&
+                          {currentPreviewUrl === track.preview_url &&
                           currentStateMusic === 'playing' ? (
                             <FaStop color={colors.neutral5Light} />
                           ) : (
@@ -142,15 +142,15 @@ export default function Tracks({ tracks, numbered }) {
                           )}
                         </div>
                         <img
-                          src={getAlbumImageUrl(track.track.album.images, 300)}
-                          alt={track.track.name}
+                          src={getAlbumImageUrl(track.album.images, 300)}
+                          alt={track.name}
                         />
                       </div>
                     </button>
                     <div className="track-info">
-                      <span className="track-name">{track.track.name}</span>
+                      <span className="track-name">{track.name}</span>
                       <div className="track-artists">
-                        {track.track.artists.map((artist) => (
+                        {track.artists.map((artist) => (
                           <Link
                             key={artist.id}
                             to={`/artist/${artist.id}`}
@@ -163,7 +163,7 @@ export default function Tracks({ tracks, numbered }) {
                     </div>
                   </div>
                   <div className="track-duration">
-                    <span>{getMinutesAndSeconds(track.track.duration_ms)}</span>
+                    <span>{getMinutesAndSeconds(track.duration_ms)}</span>
                   </div>
                 </ContainerTrackContent>
               </ContainerTrackLi>
