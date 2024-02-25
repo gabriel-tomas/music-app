@@ -34,7 +34,7 @@ export default function Artist() {
       }
     };
     requestArtistItems();
-  }, []);
+  }, [artistId]);
 
   return (
     artist && (
