@@ -6,27 +6,45 @@ import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
 import getArtist from '../../services/spotifyRequest/artists/artist';
 import getArtistTopTracks from '../../services/spotifyRequest/artists/artistTopTracks';
+import getArtistAlbums from '../../services/spotifyRequest/artists/artistAlbums';
 
 import Tracks from '../../components/Tracks';
+import Albums from '../../components/Albums';
 
 import {
   ContainerArtist,
   ContainerArtistInfo,
   ContainerTopTracks,
+  ContainerArtistAlbums,
+  ContainerArtistAlbumsAppearsOn,
 } from './styled';
 
 export default function Artist() {
   const { id: artistId } = useParams();
   const [artist, setArtist] = useState(null);
   const [artistTopTracks, setArtistTopTracks] = useState(null);
+  const [artistAlbums, setArtistAlbums] = useState(null);
+  const [artistAlbumsAppearsOn, setArtistAlbumsAppearsOn] = useState(null);
 
   useEffect(() => {
     const requestArtistItems = async () => {
       try {
         const responseArtist = await getArtist(artistId);
         const responseArtistTopTracks = await getArtistTopTracks(artistId);
-        setArtistTopTracks(responseArtistTopTracks);
+        const responseArtistAlbums = await getArtistAlbums(
+          artistId,
+          8,
+          'album,single',
+        );
+        const responseArtistAlbumsAppearsOn = await getArtistAlbums(
+          artistId,
+          8,
+          'appears_on',
+        );
         setArtist(responseArtist);
+        setArtistTopTracks(responseArtistTopTracks);
+        setArtistAlbums(responseArtistAlbums);
+        setArtistAlbumsAppearsOn(responseArtistAlbumsAppearsOn);
       } catch (err) {
         toast.error(
           'Ocorreu um erro ao tentar acessar as informações do artista',
@@ -37,7 +55,10 @@ export default function Artist() {
   }, [artistId]);
 
   return (
-    artist && (
+    artist &&
+    artistTopTracks &&
+    artistAlbums &&
+    artistAlbumsAppearsOn && (
       <ContainerArtist>
         <ContainerArtistInfo>
           <h1 className="type">Artista</h1>
@@ -57,6 +78,18 @@ export default function Artist() {
           <h3 className="title-top-tracks">Músicas populares</h3>
           <Tracks tracks={artistTopTracks.tracks} numbered />
         </ContainerTopTracks>
+        {artistAlbums.items.length !== 0 && (
+          <ContainerArtistAlbums>
+            <h3 className="title-albums">Discografia</h3>
+            <Albums albums={artistAlbums.items} />
+          </ContainerArtistAlbums>
+        )}
+        {artistAlbumsAppearsOn.items.length !== 0 && (
+          <ContainerArtistAlbums>
+            <h3 className="title-albums">Aparece em</h3>
+            <Albums albums={artistAlbumsAppearsOn.items} />
+          </ContainerArtistAlbums>
+        )}
       </ContainerArtist>
     )
   );

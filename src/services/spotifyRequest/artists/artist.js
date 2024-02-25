@@ -7,6 +7,5 @@ export default async (id) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(request.data);
   return request.data;
 };
