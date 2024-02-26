@@ -14,7 +14,9 @@ export default function Header() {
     <ContainerSearch>
       <HeaderSearchBar />
       {!searchString && <Categories />}
-      {searchString && <SearchResult searchString={searchString} />}
+      {searchString && (
+        <SearchResult searchString={searchString} slowAppearanceAnimation />
+      )}
     </ContainerSearch>
   );
 }

@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import * as loadingActions from '../../../store/modules/loading/actions';
 
 import searchForItem from '../../../services/spotifyRequest/search/searchForItem';
 
@@ -11,7 +14,9 @@ import Playlists from '../../../components/Playlists';
 import { ContainerSearchResults, ContainerSearchResult } from './styled';
 import { toast } from 'react-toastify';
 
-export default function Search({ searchString }) {
+export default function Search({ searchString, slowAppearanceAnimation }) {
+  const dispatch = useDispatch();
+
   const [searchItems, setSearchItems] = useState({});
   const searchResultsName = {
     albums: 'Álbums',
@@ -30,7 +35,9 @@ export default function Search({ searchString }) {
 
   useEffect(() => {
     if (!searchString) return;
+    setSearchItems({});
     const requestSearchItems = async () => {
+      dispatch(loadingActions.isLoading());
       try {
         let items;
         if (typeResult === typesResult.all) {
@@ -40,8 +47,10 @@ export default function Search({ searchString }) {
           //todo: resultado para albums
         }
         setSearchItems(items);
+        dispatch(loadingActions.isNotLoading());
       } catch (err) {
         setSearchItems({});
+        dispatch(loadingActions.isNotLoading());
         toast.error('Ocorreu um erro ao tentar buscar');
       }
     };
@@ -50,7 +59,9 @@ export default function Search({ searchString }) {
   }, [searchString, typeResult]);
 
   return Object.keys(searchItems).length !== 0 ? (
-    <ContainerSearchResults>
+    <ContainerSearchResults
+      className={`${slowAppearanceAnimation && 'slow-appearance-animation'}`}
+    >
       {typeResult === typesResult.all &&
         Object.keys(searchItems).map((key) => (
           <ContainerSearchResult key={key}>
@@ -84,6 +95,11 @@ export default function Search({ searchString }) {
   ) : null;
 }
 
+Search.defaultProps = {
+  slowAppearanceAnimation: false,
+};
+
 Search.propTypes = {
   searchString: PropTypes.string.isRequired,
+  slowAppearanceAnimation: PropTypes.bool,
 };
