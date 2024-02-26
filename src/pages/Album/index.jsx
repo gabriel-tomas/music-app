@@ -10,6 +10,7 @@ import getAlbumTracks from '../../services/spotifyRequest/albums/albumTracks';
 
 import * as currentMusicActions from '../../store/modules/currentMusic/actions';
 import * as musicPlayerActions from '../../store/modules/musicPlayer/actions';
+import * as loadingActions from '../../store/modules/loading/actions';
 
 import getMinutesAndSeconds from '../../utils/musicUtils/getMinutesAndSeconds';
 
@@ -36,6 +37,7 @@ export default function Album() {
   useEffect(() => {
     const requestAlbum = async () => {
       if (!albumId) return;
+      dispatch(loadingActions.isLoading());
       try {
         if (state) {
           const tracksRequest = await getAlbumTracks(albumId);
@@ -45,9 +47,11 @@ export default function Album() {
           albumData = { ...response };
         }
         setAlbum(albumData);
+        dispatch(loadingActions.isNotLoading());
       } catch (err) {
         toast.error('Ocorreu um erro ao tentar carregar os dados do álbum');
         setAlbum(null);
+        dispatch(loadingActions.isNotLoading());
       }
     };
 

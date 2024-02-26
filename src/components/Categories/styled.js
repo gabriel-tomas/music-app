@@ -4,7 +4,21 @@ import styled from 'styled-components';
 import colors from '../../config/colors';
 import fontSizes from '../../config/fontSizes';
 
-export const ContainerCategories = styled.div``;
+export const ContainerCategories = styled.div`
+  &.slow-appearance-animation {
+    animation: .3s sectionItemsAppear;
+  }
+
+  @keyframes sectionItemsAppear {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+`;
 
 export const ContainerCategoryItems = styled.div`
   display: grid;

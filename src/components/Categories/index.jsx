@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
@@ -14,7 +15,7 @@ import {
   ContainerCategoryItem,
 } from './styled';
 
-export default function Categories() {
+export default function Categories({ slowAppearanceAnimation }) {
   const dispatch = useDispatch();
   const [categories, setCategories] = useState(null);
 
@@ -36,7 +37,9 @@ export default function Categories() {
 
   return (
     categories && (
-      <ContainerCategories>
+      <ContainerCategories
+        className={`${slowAppearanceAnimation && 'slow-appearance-animation'}`}
+      >
         <ContainerCategoryItems>
           {categories.map(
             (category) =>
@@ -63,3 +66,11 @@ export default function Categories() {
     )
   );
 }
+
+Categories.defaultProps = {
+  slowAppearanceAnimation: false,
+};
+
+Categories.propTypes = {
+  slowAppearanceAnimation: PropTypes.bool,
+};

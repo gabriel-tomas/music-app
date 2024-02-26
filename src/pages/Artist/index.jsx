@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+import * as loadingActions from '../../store/modules/loading/actions';
 
 import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
@@ -19,6 +22,8 @@ import {
 } from './styled';
 
 export default function Artist() {
+  const dispatch = useDispatch();
+
   const { id: artistId } = useParams();
   const [artist, setArtist] = useState(null);
   const [artistTopTracks, setArtistTopTracks] = useState(null);
@@ -27,6 +32,7 @@ export default function Artist() {
 
   useEffect(() => {
     const requestArtistItems = async () => {
+      dispatch(loadingActions.isLoading());
       try {
         const responseArtist = await getArtist(artistId);
         const responseArtistTopTracks = await getArtistTopTracks(artistId);
@@ -44,7 +50,9 @@ export default function Artist() {
         setArtistTopTracks(responseArtistTopTracks);
         setArtistAlbums(responseArtistAlbums);
         setArtistAlbumsAppearsOn(responseArtistAlbumsAppearsOn);
+        dispatch(loadingActions.isNotLoading());
       } catch (err) {
+        dispatch(loadingActions.isNotLoading());
         toast.error(
           'Ocorreu um erro ao tentar acessar as informações do artista',
         );

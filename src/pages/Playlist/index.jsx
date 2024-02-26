@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+import * as loadingActions from '../../store/modules/loading/actions';
 
 import getOnlyTrackFromTracks from '../../utils/musicUtils/getOnlyTrackFromTracks';
 
@@ -15,17 +18,22 @@ import {
 } from './styled';
 
 export default function Playlist() {
+  const dispatch = useDispatch();
+
   const { id: playlistId } = useParams();
   const [playlist, setPlaylist] = useState(null);
 
   useEffect(() => {
     const requestPlaylist = async () => {
       if (!playlistId) return;
+      dispatch(loadingActions.isLoading());
       try {
         const response = await getPlaylist(playlistId);
         const playlistData = { ...response };
         setPlaylist(playlistData);
+        dispatch(loadingActions.isNotLoading());
       } catch (err) {
+        dispatch(loadingActions.isNotLoading());
         toast.error('Ocorreu um erro ao tentar acessar a playlist');
       }
     };
