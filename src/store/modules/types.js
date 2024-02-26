@@ -1,6 +1,10 @@
+// Player types
 export const SET_CURRENT_MUSIC = 'SET_CURRENT_MUSIC';
 export const SET_PLAY_MUSIC = 'SET_PLAY_MUSIC';
 export const SET_STOP_MUSIC = 'SET_STOP_MUSIC';
 export const SET_ACTUAL_MUSIC_STATE = 'SET_ACTUAL_MUSIC_STATE';
 export const SET_VOLUME = 'SET_VOLUME';
-/* export const SET_USER_PLATFORM = 'SET_USER_PLATFORM'; */
+
+// Loading types
+export const SET_IS_LOADING = 'SET_IS_LOADING';
+export const SET_IS_NOT_LOADING = 'SET_IS_NOT_LOADING';
