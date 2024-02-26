@@ -5,12 +5,12 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import { FaPlay, FaStop } from 'react-icons/fa';
 import colors from '../../config/colors';
 
+import Loading from '../../components/Loading';
 import getAlbum from '../../services/spotifyRequest/albums/album';
 import getAlbumTracks from '../../services/spotifyRequest/albums/albumTracks';
 
 import * as currentMusicActions from '../../store/modules/currentMusic/actions';
 import * as musicPlayerActions from '../../store/modules/musicPlayer/actions';
-import * as loadingActions from '../../store/modules/loading/actions';
 
 import getMinutesAndSeconds from '../../utils/musicUtils/getMinutesAndSeconds';
 
@@ -30,6 +30,7 @@ export default function Album() {
     (state) => state.musicPlayer.currentState,
   );
 
+  const [isLoading, setIsLoading] = useState(false);
   const { state } = useLocation();
   const { id: albumId } = useParams();
   const [album, setAlbum] = useState(null);
@@ -37,7 +38,7 @@ export default function Album() {
   useEffect(() => {
     const requestAlbum = async () => {
       if (!albumId) return;
-      dispatch(loadingActions.isLoading());
+      setIsLoading(true);
       try {
         if (state) {
           const tracksRequest = await getAlbumTracks(albumId);
@@ -47,11 +48,11 @@ export default function Album() {
           albumData = { ...response };
         }
         setAlbum(albumData);
-        dispatch(loadingActions.isNotLoading());
+        setIsLoading(false);
       } catch (err) {
         toast.error('Ocorreu um erro ao tentar carregar os dados do álbum');
         setAlbum(null);
-        dispatch(loadingActions.isNotLoading());
+        setIsLoading(false);
       }
     };
 
@@ -83,84 +84,89 @@ export default function Album() {
     }
   };
 
-  return album ? (
-    <ContainerAlbum>
-      <ContainerAlbumInfo>
-        <h1 className="album-type">
-          {album.album_type === 'single' ? 'Single' : 'Álbum'}
-        </h1>
-        <div className="bottom-content">
-          <div className="container-img">
-            <img src={album.images[0].url} alt={album.name} />
-          </div>
-          <h2 className="album-name">{album.name}</h2>
-          <div className="album-info">
-            <span className="artists-box">
-              {album.artists.map((artist) => (
-                <Link
-                  key={artist.id}
-                  to={`/artist/${artist.id}`}
-                  className="artist-link"
-                >
-                  <span>{artist.name}</span>
-                </Link>
-              ))}
-            </span>
-            <span className="album-release">
-              {album.release_date.slice(0, album.release_date.indexOf('-'))}
-            </span>
-            <div>{album.total_tracks} música(as)</div>
-          </div>
-        </div>
-      </ContainerAlbumInfo>
-      <ContainerAlbumTracks>
-        <ol>
-          {album.tracks.items.map((trackItem) => (
-            <ContainerAlbumTrack
-              key={trackItem.id}
-              onClick={() =>
-                currentPreviewUrl === trackItem.preview_url &&
-                currentStateMusic === 'playing'
-                  ? handlePlayPauseMusic()
-                  : handleSetMusic(
-                      trackItem.preview_url || '',
-                      album.images[0].url,
-                      trackItem.name,
-                      trackItem.artists,
-                    )
-              }
-            >
-              <div className="hover-music">
-                {currentPreviewUrl === trackItem.preview_url &&
-                currentStateMusic === 'playing' ? (
-                  <FaStop color={colors.neutral5Light} />
-                ) : (
-                  <FaPlay color={colors.neutral5Light} />
-                )}
+  return (
+    <>
+      {album ? (
+        <ContainerAlbum>
+          <ContainerAlbumInfo>
+            <h1 className="album-type">
+              {album.album_type === 'single' ? 'Single' : 'Álbum'}
+            </h1>
+            <div className="bottom-content">
+              <div className="container-img">
+                <img src={album.images[0].url} alt={album.name} />
               </div>
-              <div className="container-track">
-                <div className="track-info">
-                  <h3 className="track-name">{trackItem.name}</h3>
-                  <div className="track-artists">
-                    {trackItem.artists.map((artist) => (
-                      <Link
-                        key={artist.id}
-                        to={`/artist/${artist.id}`}
-                        className="artist-link"
-                      >
-                        {artist.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-                <span className="track-time">
-                  {getMinutesAndSeconds(trackItem.duration_ms)}
+              <h2 className="album-name">{album.name}</h2>
+              <div className="album-info">
+                <span className="artists-box">
+                  {album.artists.map((artist) => (
+                    <Link
+                      key={artist.id}
+                      to={`/artist/${artist.id}`}
+                      className="artist-link"
+                    >
+                      <span>{artist.name}</span>
+                    </Link>
+                  ))}
                 </span>
+                <span className="album-release">
+                  {album.release_date.slice(0, album.release_date.indexOf('-'))}
+                </span>
+                <div>{album.total_tracks} música(as)</div>
               </div>
-            </ContainerAlbumTrack>
-          ))}
-        </ol>
-      </ContainerAlbumTracks>
-    </ContainerAlbum>
-  ) : null;
+            </div>
+          </ContainerAlbumInfo>
+          <ContainerAlbumTracks>
+            <ol>
+              {album.tracks.items.map((trackItem) => (
+                <ContainerAlbumTrack
+                  key={trackItem.id}
+                  onClick={() =>
+                    currentPreviewUrl === trackItem.preview_url &&
+                    currentStateMusic === 'playing'
+                      ? handlePlayPauseMusic()
+                      : handleSetMusic(
+                          trackItem.preview_url || '',
+                          album.images[0].url,
+                          trackItem.name,
+                          trackItem.artists,
+                        )
+                  }
+                >
+                  <div className="hover-music">
+                    {currentPreviewUrl === trackItem.preview_url &&
+                    currentStateMusic === 'playing' ? (
+                      <FaStop color={colors.neutral5Light} />
+                    ) : (
+                      <FaPlay color={colors.neutral5Light} />
+                    )}
+                  </div>
+                  <div className="container-track">
+                    <div className="track-info">
+                      <h3 className="track-name">{trackItem.name}</h3>
+                      <div className="track-artists">
+                        {trackItem.artists.map((artist) => (
+                          <Link
+                            key={artist.id}
+                            to={`/artist/${artist.id}`}
+                            className="artist-link"
+                          >
+                            {artist.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                    <span className="track-time">
+                      {getMinutesAndSeconds(trackItem.duration_ms)}
+                    </span>
+                  </div>
+                </ContainerAlbumTrack>
+              ))}
+            </ol>
+          </ContainerAlbumTracks>
+        </ContainerAlbum>
+      ) : null}
+      <Loading isLoading={isLoading} />
+    </>
+  );
 }

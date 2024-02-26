@@ -1,18 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import getAlbumsReleases from '../../services/spotifyRequest/albums/albumsRelease';
 import getFeaturedPlaylists from '../../services/spotifyRequest/playlists/getFeaturedPlaylists';
 
-import * as loadingActions from '../../store/modules/loading/actions';
-
 import { ContainerHome } from './styled';
+import Loading from '../../components/Loading';
 import Albums from '../../components/Albums';
 import Playlists from '../../components/Playlists';
 
 export default function Home() {
-  const dispatch = useDispatch();
-
+  const [isLoading, setIsLoading] = useState(false);
   const [albums, setAlbums] = useState(null);
   const [playlists, setPlaylists] = useState(null);
   const [contentPrepared, setContentPrepared] = useState(false);
@@ -29,15 +26,15 @@ export default function Home() {
     };
 
     const requestHomeContent = async () => {
-      dispatch(loadingActions.isLoading());
+      setIsLoading(true);
       try {
         await homeAlbumsReleases();
         await homeFeaturedPlaylists(5);
         setContentPrepared(true);
-        dispatch(loadingActions.isNotLoading());
+        setIsLoading(false);
       } catch (err) {
         setContentPrepared(false);
-        dispatch(loadingActions.isNotLoading());
+        setIsLoading(false);
         toast.error('Ocorreu um erro ao tentar carregar os dados');
       }
     };
@@ -46,24 +43,27 @@ export default function Home() {
   }, []);
 
   return (
-    contentPrepared && (
-      <ContainerHome>
-        {albums ? (
-          <section>
-            <h1>Novos lançamentos</h1>
-            <Albums albums={albums} slowAppearanceAnimation />
-          </section>
-        ) : null}
-        {playlists ? (
-          <section>
-            <h1>{playlists.message}</h1>
-            <Playlists
-              playlists={playlists.playlists.items}
-              slowAppearanceAnimation
-            />
-          </section>
-        ) : null}
-      </ContainerHome>
-    )
+    <>
+      {contentPrepared && (
+        <ContainerHome>
+          {albums ? (
+            <section>
+              <h1>Novos lançamentos</h1>
+              <Albums albums={albums} slowAppearanceAnimation />
+            </section>
+          ) : null}
+          {playlists ? (
+            <section>
+              <h1>{playlists.message}</h1>
+              <Playlists
+                playlists={playlists.playlists.items}
+                slowAppearanceAnimation
+              />
+            </section>
+          ) : null}
+        </ContainerHome>
+      )}
+      <Loading isLoading={isLoading} />
+    </>
   );
 }

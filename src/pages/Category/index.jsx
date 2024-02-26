@@ -1,31 +1,28 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 
-import * as loadingActions from '../../store/modules/loading/actions';
-
 import categoryPlaylist from '../../services/spotifyRequest/playlists/categoryPlaylist';
 
+import Loading from '../../components/Loading';
 import Playlists from '../../components/Playlists';
 
 import { ContainerCategory, ContainerPlaylists } from './styled';
 
 export default function Category() {
-  const dispatch = useDispatch();
-
   const { id: albumId } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
   const [category, setCategory] = useState(null);
 
   useEffect(() => {
     const requestCategoryItems = async () => {
-      dispatch(loadingActions.isLoading());
+      setIsLoading(true);
       try {
         const response = await categoryPlaylist(albumId, 36);
         setCategory(response);
-        dispatch(loadingActions.isNotLoading());
+        setIsLoading(false);
       } catch (err) {
-        dispatch(loadingActions.isNotLoading());
+        setIsLoading(false);
         toast.error('Ocorreu um erro ao tentar carregar os dados do álbum');
         setCategory(null);
       }
@@ -34,7 +31,8 @@ export default function Category() {
   }, [albumId]);
 
   return (
-    category && (
+    <>
+      {category && (
       <ContainerCategory>
         <div className="container-top">
           <h1>{category.message}</h1>
@@ -47,6 +45,8 @@ export default function Category() {
           />
         </ContainerPlaylists>
       </ContainerCategory>
-    )
+      )}
+      <Loading isLoading={isLoading} />
+    </>
   );
 }
