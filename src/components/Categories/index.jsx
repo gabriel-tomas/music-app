@@ -37,7 +37,6 @@ export default function Categories() {
   return (
     categories && (
       <ContainerCategories>
-        <h1 className="title">Categorias</h1>
         <ContainerCategoryItems>
           {categories.map(
             (category) =>
