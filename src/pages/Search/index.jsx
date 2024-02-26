@@ -15,7 +15,7 @@ export default function Header() {
       <HeaderSearchBar />
       {!searchString && (
         <ContainerDefaultSearchContent>
-          <h1 className="title">Categorias</h1>
+          <h1 className="title">Navegue pelas categorias</h1>
           <Categories />
         </ContainerDefaultSearchContent>
       )}
