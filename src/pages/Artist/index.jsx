@@ -14,9 +14,8 @@ import Albums from '../../components/Albums';
 import {
   ContainerArtist,
   ContainerArtistInfo,
-  ContainerTopTracks,
-  ContainerArtistAlbums,
-  ContainerArtistAlbumsAppearsOn,
+  ContainerArtistContent,
+  ContainerArtistContentItem,
 } from './styled';
 
 export default function Artist() {
@@ -61,7 +60,7 @@ export default function Artist() {
     artistAlbumsAppearsOn && (
       <ContainerArtist>
         <ContainerArtistInfo>
-          <h1 className="type">Artista</h1>
+          <h1 className="title-type">Artista</h1>
           <div className="container-img">
             <img src={getAlbumImageUrl(artist.images, 320)} alt={artist.name} />
           </div>
@@ -74,22 +73,26 @@ export default function Artist() {
             </div>
           </div>
         </ContainerArtistInfo>
-        <ContainerTopTracks>
-          <h3 className="title-top-tracks">Músicas populares</h3>
-          <Tracks tracks={artistTopTracks.tracks} numbered />
-        </ContainerTopTracks>
-        {artistAlbums.items.length !== 0 && (
-          <ContainerArtistAlbums>
-            <h3 className="title-albums">Discografia</h3>
-            <Albums albums={artistAlbums.items} />
-          </ContainerArtistAlbums>
-        )}
-        {artistAlbumsAppearsOn.items.length !== 0 && (
-          <ContainerArtistAlbums>
-            <h3 className="title-albums">Aparece em</h3>
-            <Albums albums={artistAlbumsAppearsOn.items} />
-          </ContainerArtistAlbums>
-        )}
+        <ContainerArtistContent>
+          {artistTopTracks.length !== 0 && (
+            <ContainerArtistContentItem>
+              <h3 className="title-content-item">Músicas populares</h3>
+              <Tracks tracks={artistTopTracks.tracks} numbered />
+            </ContainerArtistContentItem>
+          )}
+          {artistAlbums.items.length !== 0 && (
+            <ContainerArtistContentItem>
+              <h3 className="title-content-item">Discografia</h3>
+              <Albums albums={artistAlbums.items} />
+            </ContainerArtistContentItem>
+          )}
+          {artistAlbumsAppearsOn.items.length !== 0 && (
+            <ContainerArtistContentItem>
+              <h3 className="title-content-item">Aparece em</h3>
+              <Albums albums={artistAlbumsAppearsOn.items} />
+            </ContainerArtistContentItem>
+          )}
+        </ContainerArtistContent>
       </ContainerArtist>
     )
   );
