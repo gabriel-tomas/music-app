@@ -5,7 +5,7 @@ export const WrapperLoading = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40px;
+  width: clamp(2.143rem, 1.25rem + 2.5vw, 2.857rem);
   aspect-ratio: 1;
   --c: linear-gradient(#000 0 0);
   --r1: radial-gradient(farthest-side at bottom,#000 93%,#0000);
