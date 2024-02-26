@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+
+import * as loadingActions from '../../store/modules/loading/actions';
 
 import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
@@ -12,14 +15,18 @@ import {
 } from './styled';
 
 export default function Categories() {
+  const dispatch = useDispatch();
   const [categories, setCategories] = useState(null);
 
   useEffect(() => {
     const requestSeveralCategories = async () => {
+      dispatch(loadingActions.isLoading());
       try {
         const response = await severalCategories(50);
         setCategories(response);
+        dispatch(loadingActions.isNotLoading());
       } catch (err) {
+        dispatch(loadingActions.isNotLoading());
         toast.error('Ocorreu um erro ao tentar carregar as categorias');
         setCategories(null);
       }

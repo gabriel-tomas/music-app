@@ -9,7 +9,7 @@ export const ContainerAlbums = styled.div`
   margin-top: .7rem;
 
   &.slow-appearance-animation {
-    animation: .5s sectionItemsAppear;
+    animation: .3s sectionItemsAppear;
   }
 
   @media screen and (max-width: 1080px) {
