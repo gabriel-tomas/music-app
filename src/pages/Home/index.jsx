@@ -51,13 +51,16 @@ export default function Home() {
         {albums ? (
           <section>
             <h1>Novos lançamentos</h1>
-            <Albums albums={albums} />
+            <Albums albums={albums} slowAppearanceAnimation />
           </section>
         ) : null}
         {playlists ? (
           <section>
             <h1>{playlists.message}</h1>
-            <Playlists playlists={playlists.playlists.items} />
+            <Playlists
+              playlists={playlists.playlists.items}
+              slowAppearanceAnimation
+            />
           </section>
         ) : null}
       </ContainerHome>

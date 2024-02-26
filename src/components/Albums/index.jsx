@@ -5,7 +5,7 @@ import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
 import { ContainerAlbums, ContainerAlbumItem } from './styled';
 
-export default function Albums({ albums }) {
+export default function Albums({ albums, slowAppearanceAnimation }) {
   const navigate = useNavigate();
 
   const handleRedirectToAlbum = (link) => {
@@ -17,7 +17,9 @@ export default function Albums({ albums }) {
   };
 
   return (
-    <ContainerAlbums>
+    <ContainerAlbums
+      className={`${slowAppearanceAnimation && 'slow-appearance-animation'}`}
+    >
       {albums &&
         albums.map((album) => {
           return (
@@ -59,6 +61,11 @@ export default function Albums({ albums }) {
   );
 }
 
+Albums.defaultProps = {
+  slowAppearanceAnimation: false,
+};
+
 Albums.propTypes = {
   albums: PropTypes.arrayOf(PropTypes.object).isRequired,
+  slowAppearanceAnimation: PropTypes.bool,
 };

@@ -5,9 +5,16 @@ import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
 import { ContainerPlaylists, ContainerPlaylistItem } from './styled';
 
-export default function Playlists({ playlists, showDescription, showOwner }) {
+export default function Playlists({
+  playlists,
+  showDescription,
+  showOwner,
+  slowAppearanceAnimation,
+}) {
   return (
-    <ContainerPlaylists>
+    <ContainerPlaylists
+      className={`${slowAppearanceAnimation && 'slow-appearance-animation'}`}
+    >
       {playlists &&
         playlists.map((playlist, index) => {
           return (
@@ -54,10 +61,12 @@ export default function Playlists({ playlists, showDescription, showOwner }) {
 Playlists.defaultProps = {
   showDescription: false,
   showOwner: true,
+  slowAppearanceAnimation: false,
 };
 
 Playlists.propTypes = {
   playlists: PropTypes.arrayOf(PropTypes.object).isRequired,
   showDescription: PropTypes.bool,
   showOwner: PropTypes.bool,
+  slowAppearanceAnimation: PropTypes.bool,
 };

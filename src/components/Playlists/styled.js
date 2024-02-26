@@ -9,8 +9,22 @@ export const ContainerPlaylists = styled.div`
   gap: 1rem;
   margin-top: .7rem;
 
+  &.slow-appearance-animation {
+    animation: .5s sectionItemsAppear;
+  }
+
   @media screen and (max-width: 1080px) {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  @keyframes sectionItemsAppear {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
   }
 `;
 
