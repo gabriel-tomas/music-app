@@ -83,6 +83,9 @@ export const Main = styled.main`
   width: 100%;
   margin-bottom: 8rem;
   margin-top: 2rem;
+  position: relative;
+  min-height: calc(100vh - 8rem);
+  min-height: calc(100svh - 8rem);
 
   @media screen and (max-width: 600px) {
     margin-bottom: clamp(60px, 40vh, 155px);
