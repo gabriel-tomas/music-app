@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+
+import * as dataSaverActions from '../../store/modules/dataSaver/actions';
 
 import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
@@ -15,23 +18,51 @@ import {
 } from './styled';
 
 export default function Categories({ slowAppearanceAnimation }) {
+  const dispatch = useDispatch();
+
+  const categoriesDataSaved = useSelector(
+    (state) => state.dataSaver.global.Categories,
+  );
+
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState(null);
 
   useEffect(() => {
+    const tryGetCategoriesSavedData = () => {
+      let requestCategories = true;
+      if (categoriesDataSaved.length !== 0) {
+        setCategories(categoriesDataSaved);
+        requestCategories = false;
+      }
+      return requestCategories;
+    };
+
     const requestSeveralCategories = async () => {
       setIsLoading(true);
       try {
         const response = await severalCategories(50);
+        dispatch(
+          dataSaverActions.setDataSave({
+            type: 'categories',
+            content: response,
+          }),
+        );
         setCategories(response);
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
+        dispatch(
+          dataSaverActions.setDataSave({
+            type: 'categories',
+            content: [],
+          }),
+        );
         toast.error('Ocorreu um erro ao tentar carregar as categorias');
         setCategories(null);
       }
     };
-    requestSeveralCategories();
+
+    tryGetCategoriesSavedData() && requestSeveralCategories();
   }, []);
 
   return (

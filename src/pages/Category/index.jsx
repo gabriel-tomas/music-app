@@ -33,18 +33,18 @@ export default function Category() {
   return (
     <>
       {category && (
-      <ContainerCategory>
-        <div className="container-top">
-          <h1>{category.message}</h1>
-        </div>
-        <ContainerPlaylists>
-          <Playlists
-            playlists={category.playlists.items}
-            showDescription={true}
-            showOwner={false}
-          />
-        </ContainerPlaylists>
-      </ContainerCategory>
+        <ContainerCategory>
+          <div className="container-top">
+            <h1>{category.message}</h1>
+          </div>
+          <ContainerPlaylists>
+            <Playlists
+              playlists={category.playlists.items}
+              showDescription={true}
+              showOwner={false}
+            />
+          </ContainerPlaylists>
+        </ContainerCategory>
       )}
       <Loading isLoading={isLoading} />
     </>

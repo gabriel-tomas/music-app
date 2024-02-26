@@ -5,6 +5,5 @@ export const SET_STOP_MUSIC = 'SET_STOP_MUSIC';
 export const SET_ACTUAL_MUSIC_STATE = 'SET_ACTUAL_MUSIC_STATE';
 export const SET_VOLUME = 'SET_VOLUME';
 
-// Loading types
-export const SET_IS_LOADING = 'SET_IS_LOADING';
-export const SET_IS_NOT_LOADING = 'SET_IS_NOT_LOADING';
+// Data saver types
+export const SAVE_DATA = 'SAVE_DATA';
