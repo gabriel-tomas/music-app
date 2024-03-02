@@ -43,6 +43,13 @@ export const ContainerForm = styled.form`
     input.input-field:focus {
       outline: 1px solid ${colors.background['200']};
     }
+
+    .container-errors {
+      li {
+        font-size: calc(${fontSizes.fontSizeBase} - .09rem);
+        color: ${colors.secondary['500']};
+      }
+    }
   }
 
   .container-submit {
