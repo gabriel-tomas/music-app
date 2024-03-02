@@ -1,9 +1,15 @@
+import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { isEmail } from 'validator';
+
+import * as registerActions from '../../../store/modules/register/actions';
+import * as loginActions from '../../../store/modules/login/actions';
 
 import { ContainerTop, ContainerForm, ContainerChangeType } from './styled';
 
 export default function Form() {
+  const dispatch = useDispatch();
+
   const [typeRegister, setTypeRegister] = useState(true);
   const [inputsErrors, setInputsErrors] = useState({
     username: [],
@@ -106,7 +112,11 @@ export default function Form() {
       inputsErrors.email.length === 0 &&
       inputsErrors.password.length === 0
     ) {
-      console.log('Pode enviar');
+      typeRegister
+        ? dispatch(
+            registerActions.registerRequest({ username, email, password }),
+          )
+        : dispatch(loginActions.loginRequest({ email, password }));
     }
   };
 

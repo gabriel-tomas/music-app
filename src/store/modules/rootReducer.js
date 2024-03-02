@@ -7,6 +7,8 @@ import dataSaver from './dataSaver/reducer';
 
 // music app backend
 import checkLogin from './checkLogin/reducer';
+import register from './register/reducer';
+import login from './login/reducer';
 
 export default combineReducers({
   currentMusic,
@@ -15,4 +17,6 @@ export default combineReducers({
   userPlatform,
   dataSaver,
   checkLogin,
+  register,
+  login,
 });
