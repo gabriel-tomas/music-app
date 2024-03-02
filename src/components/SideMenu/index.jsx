@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
-import { IoSearch, IoInformation } from 'react-icons/io5';
-import { LuLibrary } from 'react-icons/lu';
+import { IoSearch } from 'react-icons/io5';
+import { LuLibrary, LuUserCircle2 } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
 
 import {
@@ -56,12 +56,17 @@ export default function SideMenu() {
           </div>
           <span>Biblioteca</span>
         </Link>
-        <button className={`container-link `}>
-          <div className={`container-icon `}>
-            <IoInformation size="24" />
+        <Link
+          className={`container-link ${currentPath === '/account' && 'active'}`}
+          to="/account"
+        >
+          <div
+            className={`container-icon ${currentPath === '/account' && 'active'}`}
+          >
+            <LuUserCircle2 size="24" />
           </div>
-          <span>Info</span>
-        </button>
+          <span>Conta</span>
+        </Link>
       </ContainerBottomContent>
     </ContainerSideMenu>
   );
