@@ -14,7 +14,6 @@ function* loginRequest({ payload }) {
       password: payload.password,
     });
     const responseData = response.data;
-    console.log(responseData);
     if (!responseData.loggedIn) {
       yield put(
         loginActions.loginFail({

@@ -12,7 +12,6 @@ export default (state = initialState, action) => {
       const newState = { ...state };
       newState.loggedIn = action.payload.loggedIn;
       newState.successMsg = action.payload.successMsg;
-      console.log(newState);
       return newState;
     }
 
@@ -20,7 +19,6 @@ export default (state = initialState, action) => {
       const newState = { ...state };
       newState.loggedIn = action.payload.loggedIn;
       newState.errors = action.payload.errors;
-      console.log(newState);
       return newState;
     }
 
