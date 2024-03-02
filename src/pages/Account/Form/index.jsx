@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { isEmail } from 'validator';
 
 import { ContainerTop, ContainerForm, ContainerChangeType } from './styled';
@@ -10,10 +10,20 @@ export default function Form() {
     email: [],
     password: [],
   });
-  /* const [containErrors, setContainErrors] = useState(false); */
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    setInputsErrors({
+      username: [],
+      email: [],
+      password: [],
+    });
+    setUsername('');
+    setEmail('');
+    setPassword('');
+  }, [typeRegister]);
 
   const handleInputUserNameChange = (e) => {
     setUsername(e.target.value);
@@ -60,8 +70,10 @@ export default function Form() {
     errors.email = [];
     errors.password = [];
 
-    if (username.length < 3 || username.length > 24) {
-      errors.username.push('O Nome deve conter entre 3 e 24 caracteres');
+    if (typeRegister) {
+      if (username.length < 3 || username.length > 24) {
+        errors.username.push('O Nome deve conter entre 3 e 24 caracteres');
+      }
     }
 
     if (!isEmail(email)) {
