@@ -11,6 +11,7 @@ function* checkRequest() {
   try {
     const response = yield call(backendApi.get, '/checkLogin');
     const isLoggedIn = response.data.login;
+    console.log(response.data);
     if (!isLoggedIn) {
       yield put(checkLoginActions.checkLoginFail());
     } else {
