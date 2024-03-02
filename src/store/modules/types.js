@@ -7,3 +7,8 @@ export const SET_VOLUME = 'SET_VOLUME';
 
 // Data saver types
 export const SAVE_DATA = 'SAVE_DATA';
+
+// checkLogin types
+export const CHECK_LOGIN_REQUEST = 'CHECK_LOGIN_REQUEST';
+export const CHECK_LOGIN_SUCCESS = 'CHECK_LOGIN_LOGGED';
+export const CHECK_LOGIN_FAIL = 'CHECK_NOT_LOGGED';
