@@ -9,8 +9,11 @@ import * as types from '../types';
 
 function* checkRequest() {
   try {
-    const response = yield call(backendApi.get, '/checkLogin');
+    const response = yield call(backendApi.get, '/checkLogin', {
+      withCredentials: true,
+    });
     const isLoggedIn = response.data.login;
+    console.log(response);
     if (!isLoggedIn) {
       yield put(checkLoginActions.checkLoginFail());
     } else {
