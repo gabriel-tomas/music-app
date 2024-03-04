@@ -4,9 +4,9 @@ import { persistReducer } from 'redux-persist';
 export default (reducers) => {
   const persistedReducers = persistReducer(
     {
-      key: 'REACT-BASE',
+      key: 'Music-App',
       storage,
-      whitelist: ['currentMusic', 'playerVolume'],
+      whitelist: ['currentMusic', 'playerVolume', 'auth'],
     },
     reducers,
   );

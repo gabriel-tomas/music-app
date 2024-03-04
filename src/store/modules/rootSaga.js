@@ -1,9 +1,7 @@
 import { all } from 'redux-saga/effects';
 
-import checkLogin from './checkLogin/sagas';
-import register from './register/sagas';
-import login from './login/sagas';
+import auth from './auth/sagas';
 
 export default function* rootSaga() {
-  return yield all([checkLogin, register, login]);
+  return yield all([auth]);
 }

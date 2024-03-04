@@ -2,8 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { isEmail } from 'validator';
 
-import * as registerActions from '../../../store/modules/register/actions';
-import * as loginActions from '../../../store/modules/login/actions';
+import * as authActions from '../../../store/modules/auth/actions';
 
 import { ContainerTop, ContainerForm, ContainerChangeType } from './styled';
 
@@ -114,9 +113,20 @@ export default function Form() {
     ) {
       typeRegister
         ? dispatch(
-            registerActions.registerRequest({ username, email, password }),
+            authActions.authRequest({
+              username,
+              email,
+              password,
+              type: 'register',
+            }),
           )
-        : dispatch(loginActions.loginRequest({ email, password }));
+        : dispatch(
+            authActions.authRequest({
+              email,
+              password,
+              type: 'login',
+            }),
+          );
     }
   };
 
