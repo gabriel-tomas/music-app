@@ -1,6 +1,8 @@
-/* import { useSelector, useDispatch } from 'react-redux'; */
+import { useSelector } from 'react-redux';
 import Form from './Form';
 
 export default function Account() {
-  return <Form />;
+  const userIsLoggedIn = useSelector((state) => state.auth.token);
+
+  return !userIsLoggedIn ? <Form /> : <h1>[Content when user is logged in]</h1>;
 }

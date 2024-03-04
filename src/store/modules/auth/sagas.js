@@ -43,7 +43,6 @@ function* authRequest({ payload }) {
 }
 
 function persistRehydrateAuthorization({ payload }) {
-  console.log(payload);
   const token = get(payload, 'auth.token');
   if (!token) return;
   backendApi.defaults.headers.Authorization = `Bearer ${token}`;
