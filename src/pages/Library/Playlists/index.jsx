@@ -10,8 +10,6 @@ import colors from '../../../config/colors';
 export default function Playlists({ playlists }) {
   const keys = Object.keys(playlists);
 
-  console.log(playlists);
-
   return keys.length > 0 ? (
     <ContainerPlaylistItems>
       {keys.map((key, index) => {
