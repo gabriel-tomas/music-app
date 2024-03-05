@@ -4,6 +4,7 @@ import musicPlayer from './musicPlayer/reducer';
 import playerVolume from './playerVolume/reducer';
 import userPlatform from './userPlatform/reducer';
 import dataSaver from './dataSaver/reducer';
+import updatePlaylists from './updatePlaylist/reducer';
 
 // music app backend
 import auth from './auth/reducer';
@@ -15,4 +16,5 @@ export default combineReducers({
   userPlatform,
   dataSaver,
   auth,
+  updatePlaylists,
 });

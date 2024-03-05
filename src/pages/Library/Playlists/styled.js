@@ -70,11 +70,12 @@ export const ContainerPlaylistItems = styled.div`
 export const ContainerItemPlaylist = styled.div`
   display: grid;
   grid-template-columns: max-content 1fr;
-  grid-template-rows: 60px;
+  grid-template-rows: 56px;
   gap: 1rem;
 
   .container-img {
-    height: 100%;
+    height: 56px;
+    width: 56px;
     background-color: transparent;
     grid-column: 1;
     grid-row: 1;
@@ -83,6 +84,7 @@ export const ContainerItemPlaylist = styled.div`
     img {
       border-radius: .3rem;
       height: 100%;
+      width: 100%;
       object-fit: contain;
       box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
 
@@ -106,5 +108,34 @@ export const ContainerItemPlaylist = styled.div`
     grid-row: 1;
     display: flex;
     flex-direction: column;
+
+    .name-playlist {
+      max-width: 500px;
+
+      h2 {
+        font-size: calc(${fontSizes.fontSizeBase} + .15rem);
+        color: ${colors.text['950']};
+        width: 100%;
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+      }
+
+      @media screen and (max-width: 965px) {
+        max-width: 300px;
+      }
+
+      @media screen and (max-width: 757px) {
+        max-width: 200px;
+      }
+
+      @media screen and (max-width: 410px) {
+        max-width: 150px;
+      }
+
+      @media screen and (max-width: 364px) {
+        max-width: 80px;
+      }
+    }
   }
 `;

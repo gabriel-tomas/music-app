@@ -13,5 +13,9 @@ export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const AUTH_SUCCESS = 'REGISTER_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 
+// update playlists types
+export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
+export const NOT_UPDATE_PLAYLIST = 'NOT_UPDATE_PLAYLIST';
+
 // rehydrate authorization
 export const PERSIST_REHYDRATE = 'persist/REHYDRATE';
