@@ -27,6 +27,14 @@ export default createGlobalStyle`
     background-color: ${colors.background['50']};
   }
 
+  body.back-blocker {
+    height: 100vh;
+    height: 100svh;
+    pointer-events: none;
+    overflow: hidden;
+    touch-action: none;
+  }
+
   button {
     height: 35px;
     padding-inline: 19px;

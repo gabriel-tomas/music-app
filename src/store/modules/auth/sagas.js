@@ -36,9 +36,9 @@ function* authRequest({ payload }) {
       responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
     }
     if (status === 401) {
-      yield put(authActions.authFail());
       responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
     }
+    yield put(authActions.authFail());
   }
 }
 
