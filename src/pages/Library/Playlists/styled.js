@@ -50,6 +50,14 @@ export const ContainerUserPlaylists = styled.div`
         width: 100%;
       }
     }
+
+    .create-new-playlist-btn:hover {
+      background-color: ${colors.primary['300']};
+    }
+
+    .create-new-playlist-btn:active {
+      background-color: ${colors.primary['400']};
+    }
   }
 `;
 

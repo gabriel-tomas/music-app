@@ -55,11 +55,19 @@ export const ContainerSubmit = styledCmpnts.div`
     background-color: ${colors.primary['400']};
   }
 
+  button.create-btn:active {
+    background-color: ${colors.primary['500']};
+  }
+
   button.cancel-btn {
     background-color: ${colors.accent['100']};
   }
 
   button.cancel-btn:hover {
     background-color: ${colors.accent['200']};
+  }
+
+  button.cancel-btn:active {
+    background-color: ${colors.accent['300']};
   }
 `;
