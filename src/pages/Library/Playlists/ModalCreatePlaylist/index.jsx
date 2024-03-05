@@ -89,6 +89,11 @@ export default function KeepMountedModal({ open, handleClose }) {
             placeholder="Nome da playlist"
             value={playlistName}
             onChange={handleChangeInput}
+            onKeyUp={(e) => {
+              if (e.key === 'Enter') {
+                handleSubmit();
+              }
+            }}
           ></InputCreate>
           <ContainerSubmit>
             <button className="cancel-btn" onClick={handleClose}>
