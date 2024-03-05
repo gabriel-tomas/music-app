@@ -3,6 +3,15 @@ import styled from 'styled-components';
 import colors from '../../../config/colors';
 import fontSizes from '../../../config/fontSizes';
 
+export const ContainerWrapperForm = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-inline: auto;
+  max-width: 600px;
+  height: calc(100vh - clamp(30px, 20vh, 60px) - 4rem);
+`;
+
 export const ContainerTop = styled.div`
   h1 {
     text-align: center;
@@ -12,7 +21,7 @@ export const ContainerTop = styled.div`
 `;
 
 export const ContainerForm = styled.form`
-  max-width: 600px;
+  width: 100%;
   margin: 0 auto;
   padding: 1rem;
   margin-top: 3rem;

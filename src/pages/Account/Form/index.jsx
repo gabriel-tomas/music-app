@@ -4,7 +4,12 @@ import { isEmail } from 'validator';
 
 import * as authActions from '../../../store/modules/auth/actions';
 
-import { ContainerTop, ContainerForm, ContainerChangeType } from './styled';
+import {
+  ContainerWrapperForm,
+  ContainerTop,
+  ContainerForm,
+  ContainerChangeType,
+} from './styled';
 
 export default function Form() {
   const dispatch = useDispatch();
@@ -131,7 +136,7 @@ export default function Form() {
   };
 
   return (
-    <>
+    <ContainerWrapperForm>
       <ContainerTop>
         <h1>{typeRegister ? 'Crie sua conta' : 'Entre na sua conta'}</h1>
       </ContainerTop>
@@ -209,6 +214,6 @@ export default function Form() {
           </button>
         </div>
       </ContainerChangeType>
-    </>
+    </ContainerWrapperForm>
   );
 }
