@@ -6,7 +6,7 @@ export const Container = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 1500;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,12 +15,12 @@ export const Container = styled.div`
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 101;
+    z-index: 1501;
     background: rgba(0, 0, 0, 0.75);
   }
 
   span {
-    z-index: 102;
+    z-index: 1502;
     font-size: 1.3rem;
     font-weight: 600;
     color: white;
