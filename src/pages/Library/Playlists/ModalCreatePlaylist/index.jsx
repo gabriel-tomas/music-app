@@ -9,6 +9,7 @@ import { get } from 'lodash';
 import { createPlaylist } from '../../../../services/backend/library/create.js';
 
 import * as updatePlaylistActions from '../../../../store/modules/updatePlaylist/actions.js';
+import * as authActions from '../../../../store/modules/auth/actions.js';
 
 import LoadingAllScreen from '../../../../components/LoadingAllScreen';
 
@@ -50,18 +51,19 @@ export default function KeepMountedModal({ open, handleClose }) {
       dispatch(updatePlaylistActions.updatePlaylists());
       setIsLoading(false);
       handleClose();
-      toast.success(response.success);
+      toast.success(response.successMsg);
     } catch (err) {
       const responseData = get(err.response, 'data', '');
       const status = get(err.response, 'status', 0);
       setIsLoading(false);
 
       if (status === 401) {
+        dispatch(authActions.authFail());
         responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
-      } else {
-        toast.error(
-          'Ocorreu um erro desconhecido ao tentar acessar as informações das playlists',
-        );
+      }
+
+      if (status === 400 || status === 500) {
+        responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
       }
     }
   };

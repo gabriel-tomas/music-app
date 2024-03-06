@@ -32,10 +32,7 @@ function* authRequest({ payload }) {
   } catch (err) {
     const responseData = get(err.response, 'data', '');
     const status = get(err.response, 'status', 0);
-    if (status === 400) {
-      responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
-    }
-    if (status === 401) {
+    if (status === 500 || status === 400) {
       responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
     }
     yield put(authActions.authFail());
