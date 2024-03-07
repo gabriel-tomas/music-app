@@ -141,17 +141,5 @@ export const ContainerItemPlaylist = styled.div`
 
   .container-playlist-options {
     padding-left: 1rem;
-
-    button.btn-playlist-options {
-      width: 100%;
-      height: 100%;
-      padding-inline: unset;
-
-      svg {
-        height: 100%;
-        width: 100%;
-        padding: 1rem;
-      }
-    }
   }
 `;

@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { IoDiscOutline, IoAdd } from 'react-icons/io5';
-import { RxDotsHorizontal } from "react-icons/rx";
 
 import getAlbumImageUrl from '../../../utils/musicUtils/getAlbumImageUrl';
 
 import ModalCreatePlaylist from './ModalCreatePlaylist';
+import PlaylistOptions from './PlaylistOptions';
 
 import {
   ContainerUserPlaylists,
@@ -81,9 +81,7 @@ export default function Playlists({ playlists }) {
                   </>
                 )}
                 <div className="container-playlist-options">
-                  <button className="btn-playlist-options">
-                    <RxDotsHorizontal />
-                  </button>
+                  <PlaylistOptions />
                 </div>
               </ContainerItemPlaylist>
             );
