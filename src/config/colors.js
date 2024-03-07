@@ -79,6 +79,8 @@ export default {
   cardColor: '#c1c1c13d',
 
   warningColor: '#e77e7e',
+  warningColorHover: '#df6161',
+  warningColorActive: '#d54949',
 
   messages: {
     success: '#577d3d',

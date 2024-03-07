@@ -81,7 +81,7 @@ export default function Playlists({ playlists }) {
                   </>
                 )}
                 <div className="container-playlist-options">
-                  <PlaylistOptions />
+                  <PlaylistOptions itemKey={key} />
                 </div>
               </ContainerItemPlaylist>
             );
