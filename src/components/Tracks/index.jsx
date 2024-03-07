@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaPlay, FaStop } from 'react-icons/fa';
 
+import TrackOptions from './TrackOptions';
+
 import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
 import * as currentMusicActions from '../../store/modules/currentMusic/actions';
@@ -104,8 +106,13 @@ export default function Tracks({ tracks, numbered }) {
                 </div>
               </div>
             </div>
-            <div className="track-duration">
-              <span>{getMinutesAndSeconds(track.duration_ms)}</span>
+            <div className="right-container">
+              <div className="track-duration">
+                <span>{getMinutesAndSeconds(track.duration_ms)}</span>
+              </div>
+              <div className="container-playlist-options">
+                <TrackOptions track={track} />
+              </div>
             </div>
           </ContainerTrack>
         ))}
