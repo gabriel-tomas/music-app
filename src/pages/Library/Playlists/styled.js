@@ -69,7 +69,7 @@ export const ContainerPlaylistItems = styled.div`
 
 export const ContainerItemPlaylist = styled.div`
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: max-content 1fr minmax(auto, 64px);
   grid-template-rows: 56px;
   gap: 1rem;
 
@@ -135,6 +135,22 @@ export const ContainerItemPlaylist = styled.div`
 
       @media screen and (max-width: 364px) {
         max-width: 80px;
+      }
+    }
+  }
+
+  .container-playlist-options {
+    padding-left: 1rem;
+
+    button.btn-playlist-options {
+      width: 100%;
+      height: 100%;
+      padding-inline: unset;
+
+      svg {
+        height: 100%;
+        width: 100%;
+        padding: 1rem;
       }
     }
   }
