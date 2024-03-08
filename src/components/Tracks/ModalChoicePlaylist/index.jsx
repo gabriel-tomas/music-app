@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -45,6 +46,7 @@ const style = {
 };
 
 export default function KeepMountedModal({ handleClose, track }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const userIsLoggedIn = useSelector((state) => state.auth.token);
@@ -56,8 +58,8 @@ export default function KeepMountedModal({ handleClose, track }) {
   const [userPlaylists, setUserPlaylists] = useState(null);
 
   const handleAddToPlaylist = async (playlistName) => {
-    if (!userIsLoggedIn) return;
     if (!track) return;
+    if (!playlistName) return;
 
     setIsLoading(true);
     try {
@@ -81,6 +83,13 @@ export default function KeepMountedModal({ handleClose, track }) {
       }
     }
   };
+
+  useEffect(() => {
+    if (!userIsLoggedIn) {
+      navigate('/account');
+      return;
+    }
+  }, [userIsLoggedIn]);
 
   useEffect(() => {
     const requestUserPlaylists = async () => {
