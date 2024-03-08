@@ -137,6 +137,39 @@ export const ContainerItemPlaylist = styled.div`
         max-width: 80px;
       }
     }
+
+    .container-songs {
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: ${fontSizes.fontSizeBase};
+        color: ${colors.text['950']};
+      }
+
+      span + span::before {
+        content: ', ';
+      }
+
+      @media screen and (max-width: 965px) {
+        max-width: 300px;
+      }
+
+      @media screen and (max-width: 757px) {
+        max-width: 200px;
+      }
+
+      @media screen and (max-width: 410px) {
+        max-width: 150px;
+      }
+
+      @media screen and (max-width: 364px) {
+        max-width: 80px;
+      }
+    }
   }
 
   .container-playlist-options {

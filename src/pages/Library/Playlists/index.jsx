@@ -58,11 +58,9 @@ export default function Playlists({ playlists }) {
                       <div className="container-songs">
                         {playlists[key].map((song, index) => {
                           return (
-                            <div className="song" key={index}>
-                              <div className="secondary-content">
-                                <span className="song-name">{song.name}</span>
-                              </div>
-                            </div>
+                            <span key={index} className="song-name">
+                              {song.name}
+                            </span>
                           );
                         })}
                       </div>
