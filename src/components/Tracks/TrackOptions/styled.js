@@ -31,6 +31,14 @@ export const ContainerOptions = styled.div`
     padding-inline: 19px;
     height: unset;
     border-radius: unset;
+    display: flex;
+    align-items: center;
+    gap: clamp(0.3rem, 0.16rem + 0.933vw, 1rem);
+
+    svg {
+      height: 100%;
+      width: 20px;
+    }
   }
 
   .option-btn:hover {

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import Popover from '@mui/material/Popover';
-import { RxDotsHorizontal } from 'react-icons/rx';
+import { RxDotsHorizontal, RxPlus } from 'react-icons/rx';
 import PropTypes from 'prop-types';
-/*
-import ModalConfirmPlaylistDelete from '../ModalConfirmPlaylistDelete'; */
+
+import ModalChoiceplaylist from '../ModalChoicePlaylist';
 
 import { ContainerPopUp, BtnPlaylistOptions, ContainerOptions } from './styled';
 
@@ -21,7 +21,7 @@ const popUpBoxStyle = {
 
 export default function BasicPopover({ track }) {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [boxConfirmDelete, setBoxConfirmDelete] = useState(false);
+  const [boxChoicePlaylist, setBoxChoicePlaylist] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -31,11 +31,11 @@ export default function BasicPopover({ track }) {
     setAnchorEl(null);
   };
 
-  const handleOpenConfirmDelete = () => {
+  const handleOpenBoxChoicePlaylist = () => {
     handleClose();
-    setBoxConfirmDelete(true);
+    setBoxChoicePlaylist(true);
   };
-  const handleCloseConfirmDelete = () => setBoxConfirmDelete(false);
+  const handleCloseBoxChoicePlaylist = () => setBoxChoicePlaylist(false);
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -58,21 +58,22 @@ export default function BasicPopover({ track }) {
           sx={popUpBoxStyle}
         >
           <ContainerOptions>
-            <button className="option-btn">Adicionar a playlist</button>
             <button
-              className="option-btn delete"
-              onClick={handleOpenConfirmDelete}
+              className="option-btn"
+              onClick={handleOpenBoxChoicePlaylist}
             >
-              Excluir
+              <RxPlus />
+              Adicionar a playlist
             </button>
           </ContainerOptions>
         </Popover>
       </ContainerPopUp>
-      {/* <ModalConfirmPlaylistDelete
-        open={boxConfirmDelete}
-        handleClose={handleCloseConfirmDelete}
-        itemKey={itemKey}
-      /> */}
+      {boxChoicePlaylist && (
+        <ModalChoiceplaylist
+          handleClose={handleCloseBoxChoicePlaylist}
+          track={track}
+        />
+      )}
     </>
   );
 }

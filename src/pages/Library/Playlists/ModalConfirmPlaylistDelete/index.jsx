@@ -43,7 +43,6 @@ const style = {
 
 export default function KeepMountedModal({ open, handleClose, itemKey }) {
   const dispatch = useDispatch();
-  console.log(itemKey);
 
   const [isLoading, setIsLoading] = useState(false);
   const userIsLoggedIn = useSelector((state) => state.auth.token);
