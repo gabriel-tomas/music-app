@@ -13,7 +13,7 @@ import { getPlaylists } from '../../../services/backend/library/index.js';
 /* import * as updatePlaylistActions from '../../../store/modules/updatePlaylist/actions.js'; */
 import * as authActions from '../../../store/modules/auth/actions.js';
 
-import LoadingAllScreen from '../../../components/LoadingAllScreen';
+import Loading from '../../../components/Loading';
 
 import colors from '../../../config/colors';
 import fontSizes from '../../../config/fontSizes.js';
@@ -142,18 +142,18 @@ export default function KeepMountedModal({ handleClose, track }) {
   }, [updatePlaylists, userIsLoggedIn]); */
 
   return (
-    userPlaylists && (
-      <div>
-        <Modal
-          keepMounted
-          open={true}
-          onClose={handleClose}
-          aria-labelledby="keep-mounted-modal-title"
-          aria-describedby="keep-mounted-modal-description"
-        >
-          <Box sx={style}>
-            <ContainerPlaylists>
-              {Object.keys(userPlaylists.playlists).map((value) => (
+    <div>
+      <Modal
+        keepMounted
+        open={true}
+        onClose={handleClose}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      >
+        <Box sx={style}>
+          <ContainerPlaylists>
+            {userPlaylists &&
+              Object.keys(userPlaylists.playlists).map((value) => (
                 <ContainerItemPlaylist
                   key={value}
                   onClick={() => handleAddToPlaylist(value)}
@@ -161,12 +161,11 @@ export default function KeepMountedModal({ handleClose, track }) {
                   {value}
                 </ContainerItemPlaylist>
               ))}
-            </ContainerPlaylists>
-          </Box>
-        </Modal>
-        <LoadingAllScreen isLoading={isLoading} />
-      </div>
-    )
+            <Loading isLoading={isLoading} smallComponent />
+          </ContainerPlaylists>
+        </Box>
+      </Modal>
+    </div>
   );
 }
 

@@ -17,6 +17,10 @@ export const WrapperLoading = styled.div`
   background-repeat: no-repeat;
   animation: l2 1s infinite alternate;
 
+  &.small-component {
+    width: clamp(2.143rem, 1.25rem + 2.5vw, 2.357rem);
+  }
+
   @keyframes l2 {
     0%,25% {
       background-size: 8px 0,8px 4px,8px 4px,8px 0,8px 4px,8px 4px,8px 0,8px 4px,8px 4px;

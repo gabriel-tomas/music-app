@@ -16,8 +16,11 @@ export const Title = styled(Typography)({
 export const ContainerPlaylists = styledCmpnts.div`
   padding-top: 1rem;
   border-top: 1px solid ${colors.neutral6};
+  min-height: 250px;
   max-height: 350px;
   overflow-y: auto;
+  position: relative;
+
   @media screen and (max-width: 900px) {
     max-height: 280px;
   },
