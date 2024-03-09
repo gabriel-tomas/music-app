@@ -185,3 +185,47 @@ export const ContainerItemPlaylist = styled.div`
     padding-left: 1rem;
   }
 `;
+
+export const ContainerEmptyPlaylists = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2, p {
+    text-align: center;
+  }
+
+  h2 {
+    font-size: ${fontSizes.fontSizeLg};
+    color: ${colors.text['950']};
+    margin-bottom: .6rem;
+  }
+
+  p {
+    font-size: ${fontSizes.fontSizeBase};
+    color: ${colors.text['950']};
+    margin-bottom: 1rem;
+  }
+
+  .create-playlist-empty-playlists-btn {
+    font-size: ${fontSizes.fontSizeBase};
+    background-color: ${colors.primary['200']};
+    padding-inline: unset;
+    height: unset;
+    padding-block: .55rem;
+    padding-inline: 1.2rem;
+  }
+
+  .create-playlist-empty-playlists-btn:hover {
+    background-color: ${colors.primary['300']};
+  }
+
+  .create-playlist-empty-playlists-btn:active {
+    background-color: ${colors.primary['400']};
+  }
+`;

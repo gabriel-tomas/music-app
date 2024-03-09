@@ -12,6 +12,7 @@ import {
   ContainerUserPlaylists,
   ContainerPlaylistItems,
   ContainerItemPlaylist,
+  ContainerEmptyPlaylists,
 } from './styled';
 
 import colors from '../../../config/colors';
@@ -85,7 +86,18 @@ export default function Playlists({ playlists }) {
             );
           })}
         </ContainerPlaylistItems>
-      ) : null}
+      ) : (
+        <ContainerEmptyPlaylists>
+          <h2>Crie novas playlists</h2>
+          <p>Salve suas músicas favoritas e escute a hora que quiser</p>
+          <button
+            className="create-playlist-empty-playlists-btn"
+            onClick={handleOpen}
+          >
+            Criar playlist
+          </button>
+        </ContainerEmptyPlaylists>
+      )}
     </ContainerUserPlaylists>
   );
 }
