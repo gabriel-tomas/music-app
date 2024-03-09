@@ -110,7 +110,7 @@ export const ContainerItemPlaylist = styled.div`
     flex-direction: column;
 
     .name-playlist {
-      max-width: 500px;
+      max-width: 700px;
 
       h2 {
         font-size: calc(${fontSizes.fontSizeBase} + .15rem);
@@ -119,6 +119,10 @@ export const ContainerItemPlaylist = styled.div`
         white-space: nowrap;
         overflow-x: hidden;
         text-overflow: ellipsis;
+      }
+
+      @media screen and (max-width: 1240px) {
+        max-width: 500px;
       }
 
       @media screen and (max-width: 965px) {
@@ -141,6 +145,7 @@ export const ContainerItemPlaylist = styled.div`
     .container-songs {
       overflow: hidden;
       text-overflow: ellipsis;
+      max-width: 700px;
 
       span {
         white-space: nowrap;
@@ -152,6 +157,10 @@ export const ContainerItemPlaylist = styled.div`
 
       span + span::before {
         content: ', ';
+      }
+
+      @media screen and (max-width: 1240px) {
+        max-width: 500px;
       }
 
       @media screen and (max-width: 965px) {
