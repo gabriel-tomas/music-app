@@ -14,6 +14,7 @@ import { getPlaylists } from '../../../services/backend/library/index.js';
 import * as authActions from '../../../store/modules/auth/actions.js';
 
 import Loading from '../../../components/Loading';
+import LoadingAllScreen from '../../../components/LoadingAllScreen';
 
 import colors from '../../../config/colors';
 import fontSizes from '../../../config/fontSizes.js';
@@ -50,23 +51,24 @@ export default function KeepMountedModal({ handleClose, track }) {
   ); */
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingAdding, setisLoadingAdding] = useState(false);
   const [userPlaylists, setUserPlaylists] = useState(null);
 
   const handleAddToPlaylist = async (playlistName) => {
     if (!track) return;
     if (!playlistName) return;
 
-    setIsLoading(true);
+    setisLoadingAdding(true);
     try {
       const response = await addToPlaylist(track, playlistName);
       /* dispatch(updatePlaylistActions.updatePlaylists()); */
-      setIsLoading(false);
+      setisLoadingAdding(false);
       handleClose();
       toast.success(response.successMsg);
     } catch (err) {
       const responseData = get(err.response, 'data', '');
       const status = get(err.response, 'status', 0);
-      setIsLoading(false);
+      setisLoadingAdding(false);
 
       if (status === 401) {
         dispatch(authActions.authFail());
@@ -142,30 +144,33 @@ export default function KeepMountedModal({ handleClose, track }) {
   }, [updatePlaylists, userIsLoggedIn]); */
 
   return (
-    <div>
-      <Modal
-        keepMounted
-        open={true}
-        onClose={handleClose}
-        aria-labelledby="keep-mounted-modal-title"
-        aria-describedby="keep-mounted-modal-description"
-      >
-        <Box sx={style}>
-          <ContainerPlaylists>
-            {userPlaylists &&
-              Object.keys(userPlaylists.playlists).map((value) => (
-                <ContainerItemPlaylist
-                  key={value}
-                  onClick={() => handleAddToPlaylist(value)}
-                >
-                  {value}
-                </ContainerItemPlaylist>
-              ))}
-            <Loading isLoading={isLoading} smallComponent />
-          </ContainerPlaylists>
-        </Box>
-      </Modal>
-    </div>
+    <>
+      <div>
+        <Modal
+          keepMounted
+          open={true}
+          onClose={handleClose}
+          aria-labelledby="keep-mounted-modal-title"
+          aria-describedby="keep-mounted-modal-description"
+        >
+          <Box sx={style}>
+            <ContainerPlaylists>
+              {userPlaylists &&
+                Object.keys(userPlaylists.playlists).map((value) => (
+                  <ContainerItemPlaylist
+                    key={value}
+                    onClick={() => handleAddToPlaylist(value)}
+                  >
+                    {value}
+                  </ContainerItemPlaylist>
+                ))}
+              <Loading isLoading={isLoading} smallComponent />
+            </ContainerPlaylists>
+          </Box>
+        </Modal>
+      </div>
+      <LoadingAllScreen isLoading={isLoadingAdding} />
+    </>
   );
 }
 
