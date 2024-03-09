@@ -169,8 +169,13 @@ export default function Tracks({ tracks, numbered }) {
                       </div>
                     </div>
                   </div>
-                  <div className="track-duration">
-                    <span>{getMinutesAndSeconds(track.duration_ms)}</span>
+                  <div className="right-container">
+                    <div className="track-duration">
+                      <span>{getMinutesAndSeconds(track.duration_ms)}</span>
+                    </div>
+                    <div className="container-playlist-options">
+                      <TrackOptions track={track} />
+                    </div>
                   </div>
                 </ContainerTrackContent>
               </ContainerTrackLi>

@@ -285,11 +285,22 @@ export const ContainerTrackContent = styled.div`
     }
   }
 
+  .right-container {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.3rem, 0.16rem + 0.933vw, 1rem);
+    
+    .track-duration {
+      span {
+        font-weight: 400;
+        font-size: ${fontSizes.fontSizeBase};
+      }
+    }
 
-  .track-duration {
-    span {
-      font-weight: 400;
-      font-size: ${fontSizes.fontSizeBase};
+    .container-playlist-options {
+      height: 50px;
+      width: 50px;
     }
   }
+
 `;
