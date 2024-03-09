@@ -35,13 +35,8 @@ const style = {
   flexDirection: 'column',
   alignItems: 'left',
   justifyContent: 'center',
-  maxHeight: '500px',
-  overflowY: 'auto',
   '.p-info': {
     fontSize: fontSizes.fontSizeBase,
-  },
-  '@media screen and (max-width: 468px)': {
-    paddingInline: 4,
   },
 };
 
