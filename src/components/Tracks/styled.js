@@ -73,14 +73,14 @@ export const ContainerTrack = styled.div`
         font-size: ${fontSizes.fontSizeBase};
         text-align: left;
         white-space: nowrap;
-        width: 100%;
+        max-width: 700px;
         overflow: hidden;
         text-overflow: ellipsis;
       }
 
       .track-artists {
         text-align: left;
-        width: 100%;
+        max-width: 700px;
         display: block;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -97,15 +97,27 @@ export const ContainerTrack = styled.div`
         }
       }
 
-      @media screen and (max-width: 1080px) {
+      @media screen and (max-width: 1280px) {
         .track-name, .track-artists {
           max-width: 500px;
         }
       }
 
-      @media screen and (max-width: 860px) {
+      @media screen and (max-width: 1180px) {
+        .track-name, .track-artists {
+          max-width: 400px;
+        }
+      }
+
+      @media screen and (max-width: 950px) {
         .track-name, .track-artists {
           max-width: 300px;
+        }
+      }
+
+      @media screen and (max-width: 782px) {
+        .track-name, .track-artists {
+          max-width: 200px;
         }
       }
 
