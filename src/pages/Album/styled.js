@@ -170,6 +170,30 @@ export const ContainerAlbumTrack = styled.li`
           max-width: 150px;
         }
       }
+
+      @media screen and (max-width: 370px) {
+        .track-name, .track-artists {
+          max-width: 120px;
+        }
+      }
+
+      @media screen and (max-width: 336px) {
+        .track-name, .track-artists {
+          max-width: 90px;
+        }
+      }
+
+      @media screen and (max-width: 300px) {
+        .track-name, .track-artists {
+          max-width: 80px;
+        }
+      }
+
+      @media screen and (max-width: 294px) {
+        .track-name, .track-artists {
+          max-width: 50px;
+        }
+      }
     }
 
     .right-container {

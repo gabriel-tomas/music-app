@@ -126,6 +126,24 @@ export const ContainerTrack = styled.div`
           max-width: 150px;
         }
       }
+
+      @media screen and (max-width: 350px) {
+        .track-name, .track-artists {
+          max-width: 100px;
+        }
+      }
+
+      @media screen and (max-width: 320px) {
+        .track-name, .track-artists {
+          max-width: 70px;
+        }
+      }
+
+      @media screen and (max-width: 275px) {
+        .track-name, .track-artists {
+          max-width: 50px;
+        }
+      }
     }
 
     @media screen and (max-width: 316px) {
@@ -282,6 +300,30 @@ export const ContainerTrackContent = styled.div`
           max-width: 150px;
         }
       }
+
+      @media screen and (max-width: 388px) {
+        .track-name, .track-artists {
+          max-width: 100px;
+        }
+      }
+
+      @media screen and (max-width: 330px) {
+        .track-name, .track-artists {
+          max-width: 70px;
+        }
+      }
+
+      @media screen and (max-width: 310px) {
+        .track-name, .track-artists {
+          max-width: 50px;
+        }
+      }
+
+      @media screen and (max-width: 278px) {
+        .track-name, .track-artists {
+          max-width: 30px;
+        }
+      }
     }
   }
 
@@ -289,7 +331,7 @@ export const ContainerTrackContent = styled.div`
     display: flex;
     align-items: center;
     gap: clamp(0.3rem, 0.16rem + 0.933vw, 1rem);
-    
+
     .track-duration {
       span {
         font-weight: 400;
