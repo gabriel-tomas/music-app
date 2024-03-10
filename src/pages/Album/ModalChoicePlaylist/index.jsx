@@ -82,6 +82,10 @@ export default function KeepMountedModal({ handleClose, track }) {
     }
   };
 
+  const handlePreventPropagation = (event) => {
+    event.stopPropagation();
+  };
+
   useEffect(() => {
     if (!userIsLoggedIn) {
       navigate('/account');
@@ -153,6 +157,7 @@ export default function KeepMountedModal({ handleClose, track }) {
           onClose={handleClose}
           aria-labelledby="keep-mounted-modal-title"
           aria-describedby="keep-mounted-modal-description"
+          onClick={handlePreventPropagation}
         >
           <Box sx={style}>
             <ContainerPlaylists>
