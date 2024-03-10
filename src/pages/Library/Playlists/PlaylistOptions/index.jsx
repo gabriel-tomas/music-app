@@ -24,18 +24,24 @@ export default function BasicPopover({ itemKey }) {
   const [boxConfirmDelete, setBoxConfirmDelete] = useState(false);
 
   const handleClick = (event) => {
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (event) => {
+    event.stopPropagation();
     setAnchorEl(null);
   };
 
-  const handleOpenConfirmDelete = () => {
-    handleClose();
+  const handleOpenConfirmDelete = (event) => {
+    handleClose(event);
     setBoxConfirmDelete(true);
   };
-  const handleCloseConfirmDelete = () => setBoxConfirmDelete(false);
+
+  const handleCloseConfirmDelete = (event) => {
+    event.stopPropagation();
+    setBoxConfirmDelete(false);
+  };
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;

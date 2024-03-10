@@ -47,7 +47,8 @@ export default function KeepMountedModal({ open, handleClose, itemKey }) {
   const [isLoading, setIsLoading] = useState(false);
   const userIsLoggedIn = useSelector((state) => state.auth.token);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.stopPropagation();
     if (!userIsLoggedIn) return;
     if (!itemKey) return;
 
@@ -56,7 +57,7 @@ export default function KeepMountedModal({ open, handleClose, itemKey }) {
       const response = await deletePlaylist(itemKey);
       dispatch(updatePlaylistActions.updatePlaylists());
       setIsLoading(false);
-      handleClose();
+      handleClose(event);
       toast.success(response.successMsg);
     } catch (err) {
       const responseData = get(err.response, 'data', '');
@@ -75,7 +76,7 @@ export default function KeepMountedModal({ open, handleClose, itemKey }) {
   };
 
   return (
-    <div>
+    <div onClick={(event) => event.stopPropagation()}>
       <Modal
         keepMounted
         open={open}
@@ -99,7 +100,10 @@ export default function KeepMountedModal({ open, handleClose, itemKey }) {
           </ContainerSubmit>
         </Box>
       </Modal>
-      <LoadingAllScreen isLoading={isLoading} />
+      <LoadingAllScreen
+        isLoading={isLoading}
+        preventPropagation={(event) => event.stopPropagation()}
+      />
     </div>
   );
 }

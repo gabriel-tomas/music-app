@@ -72,6 +72,12 @@ export const ContainerItemPlaylist = styled.div`
   grid-template-columns: max-content 1fr minmax(auto, 64px);
   grid-template-rows: 56px;
   gap: 1rem;
+  padding: .5rem;
+  border-radius: .4rem;
+
+  &:hover {
+    background-color: ${colors.neutral2};
+  }
 
   .container-img {
     height: 56px;

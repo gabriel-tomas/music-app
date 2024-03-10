@@ -9,7 +9,7 @@ export const ContainerPopUp = styled.div`
 
 export const BtnPlaylistOptions = styled.button`
   width: 100%;
-  height: 100%;
+  height: 56px;
   padding-inline: unset;
 
   svg {

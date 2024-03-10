@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { IoDiscOutline, IoAdd } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
 import getAlbumImageUrl from '../../../utils/musicUtils/getAlbumImageUrl';
 
@@ -16,8 +17,11 @@ import {
 } from './styled';
 
 import colors from '../../../config/colors';
+import { keyBy } from 'lodash';
 
 export default function Playlists({ playlists }) {
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -40,7 +44,13 @@ export default function Playlists({ playlists }) {
         <ContainerPlaylistItems>
           {keys.map((key, index) => {
             return (
-              <ContainerItemPlaylist key={index}>
+              <ContainerItemPlaylist
+                key={index}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  navigate(`/library/${key}`);
+                }}
+              >
                 {playlists[key].length > 0 ? (
                   <>
                     <div className="container-img">
