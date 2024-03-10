@@ -24,8 +24,6 @@ export default function Playlists({ playlists }) {
   const keys = Object.keys(playlists);
   const username = useSelector((state) => state.auth.user.username);
 
-  console.log(playlists);
-
   return (
     <ContainerUserPlaylists>
       <ModalCreatePlaylist open={open} handleClose={handleClose} />
