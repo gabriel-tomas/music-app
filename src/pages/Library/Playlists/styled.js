@@ -74,6 +74,7 @@ export const ContainerItemPlaylist = styled.div`
   gap: 1rem;
   padding: .5rem;
   border-radius: .4rem;
+  cursor: pointer;
 
   &:hover {
     background-color: ${colors.neutral2};

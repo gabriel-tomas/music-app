@@ -48,7 +48,10 @@ export default function Playlists({ playlists }) {
                 key={index}
                 onClick={(event) => {
                   event.stopPropagation();
-                  navigate(`/library/${key}`);
+                  console.log(playlists);
+                  navigate(`/library/${key}`, {
+                    state: { playlistTracks: playlists[key] },
+                  });
                 }}
               >
                 {playlists[key].length > 0 ? (

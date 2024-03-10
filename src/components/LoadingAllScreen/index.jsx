@@ -19,5 +19,5 @@ Loading.defaultProps = {
 
 Loading.propTypes = {
   isLoading: PropTypes.bool,
-  preventPropagation: PropTypes.bool,
+  preventPropagation: PropTypes.func,
 };

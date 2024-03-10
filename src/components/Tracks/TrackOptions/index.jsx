@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Popover from '@mui/material/Popover';
 import { RxDotsHorizontal, RxPlus } from 'react-icons/rx';
+import { MdDeleteOutline } from 'react-icons/md';
 import PropTypes from 'prop-types';
 
 import ModalChoiceplaylist from '../ModalChoicePlaylist';
@@ -19,7 +20,7 @@ const popUpBoxStyle = {
   },
 };
 
-export default function BasicPopover({ track }) {
+export default function BasicPopover({ track, optionsType }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [boxChoicePlaylist, setBoxChoicePlaylist] = useState(false);
 
@@ -62,8 +63,15 @@ export default function BasicPopover({ track }) {
               className="option-btn"
               onClick={handleOpenBoxChoicePlaylist}
             >
-              <RxPlus />
-              Adicionar a playlist
+              {optionsType === 'outPlaylist' ? (
+                <>
+                  <RxPlus /> Adicionar a playlist
+                </>
+              ) : (
+                <>
+                  <MdDeleteOutline /> Excluir da playlist
+                </>
+              )}
             </button>
           </ContainerOptions>
         </Popover>
@@ -78,6 +86,11 @@ export default function BasicPopover({ track }) {
   );
 }
 
+BasicPopover.defaultProps = {
+  optionsType: 'outPlaylist',
+};
+
 BasicPopover.propTypes = {
   track: PropTypes.object.isRequired,
+  optionsType: PropTypes.string,
 };

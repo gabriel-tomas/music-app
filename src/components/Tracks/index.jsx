@@ -21,7 +21,7 @@ import {
   ContainerTrackContent,
 } from './styled';
 
-export default function Tracks({ tracks, numbered }) {
+export default function Tracks({ tracks, numbered, optionsType }) {
   const dispatch = useDispatch();
   const currentPreviewUrl = useSelector(
     (state) => state.currentMusic.currentPreviewMusic,
@@ -174,7 +174,7 @@ export default function Tracks({ tracks, numbered }) {
                       <span>{getMinutesAndSeconds(track.duration_ms)}</span>
                     </div>
                     <div className="container-playlist-options">
-                      <TrackOptions track={track} />
+                      <TrackOptions track={track} optionsType={optionsType} />
                     </div>
                   </div>
                 </ContainerTrackContent>
@@ -188,9 +188,11 @@ export default function Tracks({ tracks, numbered }) {
 
 Tracks.defaultProps = {
   numbered: false,
+  optionsType: 'outPlaylist',
 };
 
 Tracks.propTypes = {
   tracks: PropTypes.arrayOf(PropTypes.object).isRequired,
   numbered: PropTypes.bool,
+  optionsType: PropTypes.string,
 };
