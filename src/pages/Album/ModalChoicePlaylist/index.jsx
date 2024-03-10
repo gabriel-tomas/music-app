@@ -175,7 +175,10 @@ export default function KeepMountedModal({ handleClose, track }) {
           </Box>
         </Modal>
       </div>
-      <LoadingAllScreen isLoading={isLoadingAdding} />
+      <LoadingAllScreen
+        preventPropagation={handlePreventPropagation}
+        isLoading={isLoadingAdding}
+      />
     </>
   );
 }

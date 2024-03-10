@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { Container, Loader } from './styled';
 
-export default function Loading({ isLoading }) {
+export default function Loading({ isLoading, preventPropagation }) {
   if (!isLoading) return <></>;
 
   return (
-    <Container>
+    <Container onClick={preventPropagation ? preventPropagation : null}>
       <div></div>
       <Loader />
     </Container>
@@ -14,8 +14,10 @@ export default function Loading({ isLoading }) {
 
 Loading.defaultProps = {
   isLoading: false,
+  preventPropagation: null,
 };
 
 Loading.propTypes = {
   isLoading: PropTypes.bool,
+  preventPropagation: PropTypes.bool,
 };
