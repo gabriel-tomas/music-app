@@ -8,6 +8,7 @@ import Category from '../pages/Category';
 import Artist from '../pages/Artist';
 import Account from '../pages/Account';
 import Library from '../pages/Library';
+import LibraryPlaylist from '../pages/LibraryPlaylist';
 import Page404 from '../pages/Page404';
 
 export default function AllRoutes() {
@@ -21,6 +22,7 @@ export default function AllRoutes() {
       <Route path="/artist/:id" element={<Artist />} />
       <Route path="/account" element={<Account />} />
       <Route path="/library" element={<Library />} />
+      <Route path="/library/:playlistName" element={<LibraryPlaylist />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
   );
