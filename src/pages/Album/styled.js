@@ -172,9 +172,20 @@ export const ContainerAlbumTrack = styled.li`
       }
     }
 
-    .track-time {
-      font-weight: 400;
-      font-size: ${fontSizes.fontSizeBase};
+    .right-container {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.3rem, 0.16rem + 0.933vw, 1rem);
+
+      .track-time {
+        font-weight: 400;
+        font-size: ${fontSizes.fontSizeBase};
+      }
+
+      .container-playlist-options {
+        height: 50px;
+        width: 50px;
+      }
     }
   }
 

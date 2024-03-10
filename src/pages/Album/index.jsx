@@ -3,11 +3,16 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { FaPlay, FaStop } from 'react-icons/fa';
+
 import colors from '../../config/colors';
 
 import Loading from '../../components/Loading';
+import TrackOptions from './TrackOptions';
+
 import getAlbum from '../../services/spotifyRequest/albums/album';
 import getAlbumTracks from '../../services/spotifyRequest/albums/albumTracks';
+
+import addAlbumToTrack from '../../utils/addAlbumToTrack';
 
 import * as currentMusicActions from '../../store/modules/currentMusic/actions';
 import * as musicPlayerActions from '../../store/modules/musicPlayer/actions';
@@ -47,7 +52,8 @@ export default function Album() {
           const response = await getAlbum(albumId);
           albumData = { ...response };
         }
-        setAlbum(albumData);
+        const albumModified = addAlbumToTrack(albumData);
+        setAlbum(albumModified);
         setIsLoading(false);
       } catch (err) {
         toast.error('Ocorreu um erro ao tentar carregar os dados do álbum');
@@ -156,9 +162,14 @@ export default function Album() {
                         ))}
                       </div>
                     </div>
-                    <span className="track-time">
-                      {getMinutesAndSeconds(trackItem.duration_ms)}
-                    </span>
+                    <div className="right-container">
+                      <span className="track-time">
+                        {getMinutesAndSeconds(trackItem.duration_ms)}
+                      </span>
+                      <div className="container-playlist-options">
+                        <TrackOptions track={trackItem} />
+                      </div>
+                    </div>
                   </div>
                 </ContainerAlbumTrack>
               ))}
