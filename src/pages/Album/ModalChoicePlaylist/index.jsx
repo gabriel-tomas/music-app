@@ -54,7 +54,8 @@ export default function KeepMountedModal({ handleClose, track }) {
   const [isLoadingAdding, setisLoadingAdding] = useState(false);
   const [userPlaylists, setUserPlaylists] = useState(null);
 
-  const handleAddToPlaylist = async (playlistName) => {
+  const handleAddToPlaylist = async (event, playlistName) => {
+    event.stopPropagation();
     if (!track) return;
     if (!playlistName) return;
 
@@ -63,7 +64,7 @@ export default function KeepMountedModal({ handleClose, track }) {
       const response = await addToPlaylist(track, playlistName);
       /* dispatch(updatePlaylistActions.updatePlaylists()); */
       setisLoadingAdding(false);
-      handleClose();
+      handleClose(event);
       toast.success(response.successMsg);
     } catch (err) {
       const responseData = get(err.response, 'data', '');
@@ -159,7 +160,7 @@ export default function KeepMountedModal({ handleClose, track }) {
                 Object.keys(userPlaylists.playlists).map((value) => (
                   <ContainerItemPlaylist
                     key={value}
-                    onClick={() => handleAddToPlaylist(value)}
+                    onClick={(event) => handleAddToPlaylist(event, value)}
                   >
                     {value}
                   </ContainerItemPlaylist>

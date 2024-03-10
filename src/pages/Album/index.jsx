@@ -90,6 +90,10 @@ export default function Album() {
     }
   };
 
+  const handlePreventPropagation = (event) => {
+    event.stopPropagation();
+  };
+
   return (
     <>
       {album ? (
@@ -156,6 +160,7 @@ export default function Album() {
                             key={artist.id}
                             to={`/artist/${artist.id}`}
                             className="artist-link"
+                            onClick={handlePreventPropagation}
                           >
                             {artist.name}
                           </Link>

@@ -24,18 +24,25 @@ export default function BasicPopover({ track }) {
   const [boxChoicePlaylist, setBoxChoicePlaylist] = useState(false);
 
   const handleClick = (event) => {
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (event) => {
+    event.stopPropagation();
     setAnchorEl(null);
   };
 
-  const handleOpenBoxChoicePlaylist = () => {
-    handleClose();
+  const handleOpenBoxChoicePlaylist = (event) => {
+    event.stopPropagation();
+    handleClose(event);
     setBoxChoicePlaylist(true);
   };
-  const handleCloseBoxChoicePlaylist = () => setBoxChoicePlaylist(false);
+
+  const handleCloseBoxChoicePlaylist = (event) => {
+    event.stopPropagation();
+    setBoxChoicePlaylist(false);
+  };
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
