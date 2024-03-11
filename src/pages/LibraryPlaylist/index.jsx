@@ -100,7 +100,6 @@ export default function LibraryPlaylist() {
               </Link>
             </ContainerNoTracks>
           )}
-          <Loading isLoading={isLoading} />
         </ContainerUserPlaylist>
       )}
       {playlistTracks === false && (
@@ -113,6 +112,7 @@ export default function LibraryPlaylist() {
           </div>
         </ContainerNotFound>
       )}
+      <Loading isLoading={isLoading} />
     </>
   );
 }
