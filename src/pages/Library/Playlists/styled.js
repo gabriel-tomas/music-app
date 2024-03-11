@@ -64,7 +64,7 @@ export const ContainerUserPlaylists = styled.div`
 export const ContainerPlaylistItems = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: clamp(0.7rem, 0.532rem + 1.076vw, 1.1rem);
 `;
 
 export const ContainerItemPlaylist = styled.div`
