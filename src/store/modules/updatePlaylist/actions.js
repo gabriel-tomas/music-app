@@ -11,3 +11,15 @@ export function notUpdatePlaylists() {
     type: types.NOT_UPDATE_PLAYLIST,
   };
 }
+
+export function updateOnlyAPlaylist() {
+  return {
+    type: types.UPDATE_ONLY_A_PLAYLIST,
+  };
+}
+
+export function notUpdateOnlyAPlaylist() {
+  return {
+    type: types.NOT_UPDATE_ONLY_A_PLAYLIST,
+  };
+}
