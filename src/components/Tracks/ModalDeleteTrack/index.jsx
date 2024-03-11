@@ -6,6 +6,8 @@ import Modal from '@mui/material/Modal';
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
 
+import { removeTrackFromPlaylist } from '../../../services/backend/library/remove.js';
+
 import * as updatePlaylistActions from '../../../store/modules/updatePlaylist/actions.js';
 import * as authActions from '../../../store/modules/auth/actions.js';
 
@@ -39,7 +41,12 @@ const style = {
   },
 };
 
-export default function KeepMountedModal({ open, handleClose, track }) {
+export default function KeepMountedModal({
+  open,
+  handleClose,
+  track,
+  playlistName,
+}) {
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -52,11 +59,12 @@ export default function KeepMountedModal({ open, handleClose, track }) {
 
     setIsLoading(true);
     try {
-      /* const response = await deletePlaylist(itemKey); */
+      console.log(track.id, playlistName);
+      const response = await removeTrackFromPlaylist(track.id, playlistName);
       dispatch(updatePlaylistActions.updatePlaylists());
       setIsLoading(false);
       handleClose(event);
-      /* toast.success(response.successMsg); */
+      toast.success(response.successMsg);
     } catch (err) {
       const responseData = get(err.response, 'data', '');
       const status = get(err.response, 'status', 0);
@@ -111,4 +119,5 @@ KeepMountedModal.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   track: PropTypes.object.isRequired,
+  playlistName: PropTypes.string.isRequired,
 };

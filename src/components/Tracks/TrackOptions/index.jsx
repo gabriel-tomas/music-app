@@ -21,7 +21,7 @@ const popUpBoxStyle = {
   },
 };
 
-export default function BasicPopover({ track, optionsType }) {
+export default function BasicPopover({ track, optionsType, playlistName }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [boxChoicePlaylist, setBoxChoicePlaylist] = useState(false);
 
@@ -88,6 +88,7 @@ export default function BasicPopover({ track, optionsType }) {
           open={boxChoicePlaylist}
           handleClose={handleCloseBoxChoicePlaylist}
           track={track}
+          playlistName={playlistName}
         />
       )}
     </>
@@ -96,9 +97,11 @@ export default function BasicPopover({ track, optionsType }) {
 
 BasicPopover.defaultProps = {
   optionsType: 'outPlaylist',
+  playlistName: '',
 };
 
 BasicPopover.propTypes = {
   track: PropTypes.object.isRequired,
   optionsType: PropTypes.string,
+  playlistName: PropTypes.string,
 };

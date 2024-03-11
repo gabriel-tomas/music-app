@@ -90,6 +90,7 @@ export default function LibraryPlaylist() {
               tracks={playlistTracks}
               numbered
               optionsType={'inPlaylist'}
+              playlistName={playlistName}
             />
           ) : (
             <ContainerNoTracks>
