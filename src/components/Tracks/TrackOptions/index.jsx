@@ -5,6 +5,7 @@ import { MdDeleteOutline } from 'react-icons/md';
 import PropTypes from 'prop-types';
 
 import ModalChoiceplaylist from '../ModalChoicePlaylist';
+import ModalDeleteTrack from '../ModalDeleteTrack';
 
 import { ContainerPopUp, BtnPlaylistOptions, ContainerOptions } from './styled';
 
@@ -76,8 +77,15 @@ export default function BasicPopover({ track, optionsType }) {
           </ContainerOptions>
         </Popover>
       </ContainerPopUp>
-      {boxChoicePlaylist && (
+      {boxChoicePlaylist && optionsType === 'outPlaylist' && (
         <ModalChoiceplaylist
+          handleClose={handleCloseBoxChoicePlaylist}
+          track={track}
+        />
+      )}
+      {optionsType === 'inPlaylist' && (
+        <ModalDeleteTrack
+          open={boxChoicePlaylist}
           handleClose={handleCloseBoxChoicePlaylist}
           track={track}
         />

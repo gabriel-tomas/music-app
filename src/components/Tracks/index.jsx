@@ -174,6 +174,7 @@ export default function Tracks({ tracks, numbered, optionsType }) {
                       <span>{getMinutesAndSeconds(track.duration_ms)}</span>
                     </div>
                     <div className="container-playlist-options">
+                      {console.log(optionsType)}
                       <TrackOptions track={track} optionsType={optionsType} />
                     </div>
                   </div>
