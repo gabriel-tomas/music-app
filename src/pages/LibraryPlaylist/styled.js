@@ -3,7 +3,80 @@ import styled from 'styled-components';
 import colors from '../../config/colors';
 import fontSizes from '../../config/fontSizes';
 
-export const ContainerNotFound = styled.div``;
+export const ContainerNotFound = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  h1 {
+    text-align: center;
+    font-size: ${fontSizes.fontSizeLg};
+  }
+
+  .container-link {
+    .redirect-library {
+      font-size: ${fontSizes.fontSizeBase};
+      color: ${colors.text['950']};
+      padding: .5rem 1rem;
+      background-color: ${colors.primary['300']};
+      border-radius: 20rem;
+    }
+
+    .redirect-library:hover {
+      background-color: ${colors.primary['400']};
+    }
+
+    .redirect-library:active {
+      background-color: ${colors.primary['500']};
+    }
+  }
+`;
+
+export const ContainerNoTracks = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    text-align: center;
+    font-size: ${fontSizes.fontSizeLg};
+    margin-bottom: .2rem;
+  }
+
+  p {
+    text-align: center;
+    font-size: ${fontSizes.fontSizeBase};
+    margin-bottom: 1.6rem;
+  }
+
+  .redirect-search {
+    font-size: ${fontSizes.fontSizeBase};
+    color: ${colors.text['950']};
+    padding: .5rem 1rem;
+    background-color: ${colors.primary['300']};
+    border-radius: 20rem;
+  }
+
+  .redirect-search:hover {
+    background-color: ${colors.primary['400']};
+  }
+
+  .redirect-search:active {
+    background-color: ${colors.primary['500']};
+  }
+`;
 
 export const ContainerUserPlaylist = styled.div`
 .header-user-playlists {
