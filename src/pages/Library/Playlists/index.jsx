@@ -17,7 +17,6 @@ import {
 } from './styled';
 
 import colors from '../../../config/colors';
-import { keyBy } from 'lodash';
 
 export default function Playlists({ playlists }) {
   const navigate = useNavigate();
