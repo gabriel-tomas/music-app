@@ -48,8 +48,7 @@ export default function Playlists({ playlists }) {
                 key={index}
                 onClick={(event) => {
                   event.stopPropagation();
-                  console.log(playlists);
-                  navigate(`/library/${key}`, {
+                  navigate(`/library/${encodeURIComponent(key)}`, {
                     state: { playlistTracks: playlists[key] },
                   });
                 }}

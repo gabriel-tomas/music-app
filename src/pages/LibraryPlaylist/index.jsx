@@ -13,6 +13,8 @@ import { getPlaylist } from '../../services/backend/library/show';
 import Tracks from '../../components/Tracks';
 import Loading from '../../components/Loading';
 
+import PlaylistOptions from './PlaylistOptions';
+
 import {
   ContainerNotFound,
   ContainerNoTracks,
@@ -41,7 +43,6 @@ export default function LibraryPlaylist() {
     try {
       setIsLoading(true);
       const response = await getPlaylist(playlistName);
-      console.log(response.playlist);
       setPlaylistTracks(response.playlist);
       setIsLoading(false);
     } catch (err) {
@@ -97,9 +98,7 @@ export default function LibraryPlaylist() {
               <h1 className="title-user-playlists">{username}</h1>
               <span>{playlistName}</span>
             </div>
-            <button className="edit-playlist-btn">
-              <RxDotsHorizontal />
-            </button>
+            <PlaylistOptions itemKey={playlistName} />
           </header>
           {playlistTracks.length !== 0 ? (
             <Tracks

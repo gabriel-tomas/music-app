@@ -79,11 +79,12 @@ export const ContainerNoTracks = styled.div`
 `;
 
 export const ContainerUserPlaylist = styled.div`
-.header-user-playlists {
+  .header-user-playlists {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 
     .container-left {
       display: flex;
