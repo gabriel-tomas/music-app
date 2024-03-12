@@ -13,6 +13,7 @@ export const ContainerTrack = styled.div`
   margin-top: .8rem;
   padding: .5rem;
   border-radius: .4rem;
+  cursor: pointer;
 
   &:hover {
     background-color: ${colors.neutral2};
@@ -186,6 +187,7 @@ export const ContainerTrackLi = styled.li`
   border-radius: .4rem;
   width: 100%;
   counter-increment: playlist-list-counter;
+  cursor: pointer;
 
   &:hover {
     background-color: ${colors.neutral2};
