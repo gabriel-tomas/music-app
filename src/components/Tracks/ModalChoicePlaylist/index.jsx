@@ -54,7 +54,8 @@ export default function KeepMountedModal({ handleClose, track }) {
   const [isLoadingAdding, setisLoadingAdding] = useState(false);
   const [userPlaylists, setUserPlaylists] = useState(null);
 
-  const handleAddToPlaylist = async (playlistName) => {
+  const handleAddToPlaylist = async (event, playlistName) => {
+    event.stopPropagation();
     if (!track) return;
     if (!playlistName) return;
 
@@ -63,7 +64,7 @@ export default function KeepMountedModal({ handleClose, track }) {
       const response = await addToPlaylist(track, playlistName);
       /* dispatch(updatePlaylistActions.updatePlaylists()); */
       setisLoadingAdding(false);
-      handleClose();
+      handleClose(event);
       toast.success(response.successMsg);
     } catch (err) {
       const responseData = get(err.response, 'data', '');
@@ -152,6 +153,7 @@ export default function KeepMountedModal({ handleClose, track }) {
           onClose={handleClose}
           aria-labelledby="keep-mounted-modal-title"
           aria-describedby="keep-mounted-modal-description"
+          onClick={(event) => event.stopPropagation()}
         >
           <Box sx={style}>
             <ContainerPlaylists>
@@ -159,7 +161,7 @@ export default function KeepMountedModal({ handleClose, track }) {
                 Object.keys(userPlaylists.playlists).map((value) => (
                   <ContainerItemPlaylist
                     key={value}
-                    onClick={() => handleAddToPlaylist(value)}
+                    onClick={(event) => handleAddToPlaylist(event, value)}
                   >
                     {value}
                   </ContainerItemPlaylist>
@@ -169,7 +171,10 @@ export default function KeepMountedModal({ handleClose, track }) {
           </Box>
         </Modal>
       </div>
-      <LoadingAllScreen isLoading={isLoadingAdding} />
+      <LoadingAllScreen
+        isLoading={isLoadingAdding}
+        preventPropagation={(event) => event.stopPropagation()}
+      />
     </>
   );
 }

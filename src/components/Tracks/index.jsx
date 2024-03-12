@@ -127,12 +127,27 @@ export default function Tracks({
         {tracks.map(
           (track) =>
             track && (
-              <ContainerTrackLi key={track.id}>
+              <ContainerTrackLi
+                key={track.id}
+                onClick={() => {
+                  console.log('track clicked');
+                  currentPreviewUrl === track.preview_url &&
+                  currentStateMusic === 'playing'
+                    ? handlePlayPauseMusic()
+                    : handleSetMusic(
+                        track.preview_url || '',
+                        getAlbumImageUrl(track.album.images, 300),
+                        track.name,
+                        track.artists,
+                      );
+                }}
+              >
                 <ContainerTrackContent>
                   <div className="left-content">
                     <button
                       className="play-track-btn"
-                      onClick={() =>
+                      onClick={(event) => {
+                        event.stopPropagation();
                         currentPreviewUrl === track.preview_url &&
                         currentStateMusic === 'playing'
                           ? handlePlayPauseMusic()
@@ -141,8 +156,8 @@ export default function Tracks({
                               getAlbumImageUrl(track.album.images, 300),
                               track.name,
                               track.artists,
-                            )
-                      }
+                            );
+                      }}
                     >
                       <div className="container-img">
                         <div className="hover-img">
@@ -166,6 +181,7 @@ export default function Tracks({
                           <Link
                             key={artist.id}
                             to={`/artist/${artist.id}`}
+                            onClick={(event) => event.stopPropagation()}
                             className="artist-link"
                           >
                             {artist.name}

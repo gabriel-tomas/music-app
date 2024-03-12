@@ -23,21 +23,28 @@ const popUpBoxStyle = {
 
 export default function BasicPopover({ track, optionsType, playlistName }) {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [boxChoicePlaylist, setBoxChoicePlaylist] = useState(false);
+  const [boxChoicePlaylist, setBoxDeleteTrack] = useState(false);
 
   const handleClick = (event) => {
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (event) => {
+    event.stopPropagation();
     setAnchorEl(null);
   };
 
-  const handleOpenBoxChoicePlaylist = () => {
-    handleClose();
-    setBoxChoicePlaylist(true);
+  const handleOpenBoxDeleteTrack = (event) => {
+    event.stopPropagation();
+    handleClose(event);
+    setBoxDeleteTrack(true);
   };
-  const handleCloseBoxChoicePlaylist = () => setBoxChoicePlaylist(false);
+
+  const handleCloseBoxDeleteTrack = (event) => {
+    event.stopPropagation();
+    setBoxDeleteTrack(false);
+  };
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -60,10 +67,7 @@ export default function BasicPopover({ track, optionsType, playlistName }) {
           sx={popUpBoxStyle}
         >
           <ContainerOptions>
-            <button
-              className="option-btn"
-              onClick={handleOpenBoxChoicePlaylist}
-            >
+            <button className="option-btn" onClick={handleOpenBoxDeleteTrack}>
               {optionsType === 'outPlaylist' ? (
                 <>
                   <RxPlus /> Adicionar a playlist
@@ -79,14 +83,14 @@ export default function BasicPopover({ track, optionsType, playlistName }) {
       </ContainerPopUp>
       {boxChoicePlaylist && optionsType === 'outPlaylist' && (
         <ModalChoiceplaylist
-          handleClose={handleCloseBoxChoicePlaylist}
+          handleClose={handleCloseBoxDeleteTrack}
           track={track}
         />
       )}
       {optionsType === 'inPlaylist' && (
         <ModalDeleteTrack
           open={boxChoicePlaylist}
-          handleClose={handleCloseBoxChoicePlaylist}
+          handleClose={handleCloseBoxDeleteTrack}
           track={track}
           playlistName={playlistName}
         />
