@@ -59,7 +59,6 @@ export default function KeepMountedModal({
 
     setIsLoading(true);
     try {
-      console.log(track.id, playlistName);
       const response = await removeTrackFromPlaylist(track.id, playlistName);
       dispatch(updatePlaylistActions.updateOnlyAPlaylist());
       setIsLoading(false);

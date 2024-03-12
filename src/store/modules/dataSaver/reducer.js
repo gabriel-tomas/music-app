@@ -22,7 +22,6 @@ export default (state = initialState, action) => {
         newState.pages.Home.albums = action.payload.content.albums;
         newState.pages.Home.playlists = action.payload.content.playlists;
       }
-      console.log(newState);
       return newState;
     }
 
