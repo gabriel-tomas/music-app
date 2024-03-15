@@ -89,45 +89,47 @@ export default function LibraryPlaylist() {
   }, [playlistName, state, userIsLoggedIn, updateOnlyAPlaylist]);
 
   return (
-    <>
-      {playlistTracks && (
-        <ContainerUserPlaylist>
-          <header className="header-user-playlists">
-            <div className="container-left">
-              <h1 className="title-user-playlists">{username}</h1>
-              <span>{playlistName}</span>
-            </div>
-            <PlaylistOptions itemKey={playlistName} />
-          </header>
-          {playlistTracks.length !== 0 ? (
-            <Tracks
-              tracks={playlistTracks}
-              numbered
-              optionsType={'inPlaylist'}
-              playlistName={playlistName}
-            />
-          ) : (
-            <ContainerNoTracks>
-              <h2>Playlist vazia</h2>
-              <p>Adicione novas músicas a sua playlist</p>
-              <Link className="redirect-search" to="/search">
-                Procure por novas músicas
+    userIsLoggedIn && (
+      <>
+        {playlistTracks && (
+          <ContainerUserPlaylist>
+            <header className="header-user-playlists">
+              <div className="container-left">
+                <h1 className="title-user-playlists">{username}</h1>
+                <span>{playlistName}</span>
+              </div>
+              <PlaylistOptions itemKey={playlistName} />
+            </header>
+            {playlistTracks.length !== 0 ? (
+              <Tracks
+                tracks={playlistTracks}
+                numbered
+                optionsType={'inPlaylist'}
+                playlistName={playlistName}
+              />
+            ) : (
+              <ContainerNoTracks>
+                <h2>Playlist vazia</h2>
+                <p>Adicione novas músicas a sua playlist</p>
+                <Link className="redirect-search" to="/search">
+                  Procure por novas músicas
+                </Link>
+              </ContainerNoTracks>
+            )}
+          </ContainerUserPlaylist>
+        )}
+        {playlistTracks === false && (
+          <ContainerNotFound>
+            <h1>Playlist não encontrada</h1>
+            <div className="container-link">
+              <Link className="redirect-library" to="/library">
+                Voltar para biblioteca
               </Link>
-            </ContainerNoTracks>
-          )}
-        </ContainerUserPlaylist>
-      )}
-      {playlistTracks === false && (
-        <ContainerNotFound>
-          <h1>Playlist não encontrada</h1>
-          <div className="container-link">
-            <Link className="redirect-library" to="/library">
-              Voltar para biblioteca
-            </Link>
-          </div>
-        </ContainerNotFound>
-      )}
-      <Loading isLoading={isLoading} />
-    </>
+            </div>
+          </ContainerNotFound>
+        )}
+        <Loading isLoading={isLoading} />
+      </>
+    )
   );
 }
