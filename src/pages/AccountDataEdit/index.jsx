@@ -7,6 +7,8 @@ import Form from './Form';
 
 import LoggedContent from './LoggedContent'; */
 
+import AccountPath from '../../components/AccountPath';
+
 export default function Account() {
   const navigate = useNavigate();
   const userIsLoggedIn = useSelector((state) => state.auth.token);
@@ -24,5 +26,12 @@ export default function Account() {
     }
   }, [userIsLoggedIn]);
 
-  return userIsLoggedIn && <Form />;
+  return (
+    userIsLoggedIn && (
+      <>
+        <AccountPath paths={['Conta', 'Meus Dados', 'Editar Meus Dados']} />
+        <Form />
+      </>
+    )
+  );
 }

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Form from './Form';
 
 import LoadingAllScreen from '../../components/LoadingAllScreen';
+import AccountPath from '../../components/AccountPath';
 
 import LoggedContent from './LoggedContent';
 
@@ -25,6 +26,9 @@ export default function Account() {
       <Form /> <LoadingAllScreen isLoading={isLoadingAuth} />
     </>
   ) : (
-    <LoggedContent />
+    <>
+      <AccountPath paths={['Conta']} />
+      <LoggedContent />
+    </>
   );
 }

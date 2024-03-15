@@ -5,6 +5,8 @@ import { LiaUserEditSolid } from 'react-icons/lia';
 import { GoTrash } from 'react-icons/go';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 
+import AccountPath from '../../components/AccountPath';
+
 import { ContainerOptions } from './styled';
 
 export default function AccountDataOptions() {
@@ -19,21 +21,26 @@ export default function AccountDataOptions() {
   }, [userIsLoggedIn]);
 
   return (
-    <ContainerOptions>
-      <Link className="option" to="/account/data/edit">
-        <div className="left-container">
-          <LiaUserEditSolid />
-          <span>Editar meus dados</span>
-        </div>
-        <MdKeyboardArrowRight className="arrow-right" />
-      </Link>
-      <button className="option delete">
-        <div className="left-container">
-          <GoTrash className="trash-can" />
-          <span>Deletar conta</span>
-        </div>
-        <MdKeyboardArrowRight className="arrow-right" />
-      </button>
-    </ContainerOptions>
+    userIsLoggedIn && (
+      <>
+        <AccountPath paths={['Conta', 'Meus Dados']} />
+        <ContainerOptions>
+          <Link className="option" to="/account/data/edit">
+            <div className="left-container">
+              <LiaUserEditSolid />
+              <span>Editar meus dados</span>
+            </div>
+            <MdKeyboardArrowRight className="arrow-right" />
+          </Link>
+          <button className="option delete">
+            <div className="left-container">
+              <GoTrash className="trash-can" />
+              <span>Deletar conta</span>
+            </div>
+            <MdKeyboardArrowRight className="arrow-right" />
+          </button>
+        </ContainerOptions>
+      </>
+    )
   );
 }
