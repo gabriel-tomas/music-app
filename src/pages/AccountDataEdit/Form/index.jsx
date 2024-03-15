@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { isEmail } from 'validator';
 
 import { ContainerWrapperForm, ContainerTop, ContainerForm } from './styled';
 
-export default function Form() {
+export default function Form({ userName, userEmail }) {
   const dispatch = useDispatch();
 
   const [editForm, setEditForm] = useState(false);
@@ -13,8 +14,8 @@ export default function Form() {
     email: [],
     password: [],
   });
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(userName);
+  const [email, setEmail] = useState(userEmail);
   const [password, setPassword] = useState('**********');
 
   const handleInputUserNameChange = (e) => {
@@ -192,3 +193,8 @@ export default function Form() {
     </ContainerWrapperForm>
   );
 }
+
+Form.propTypes = {
+  userName: PropTypes.string.isRequired,
+  userEmail: PropTypes.string.isRequired,
+};

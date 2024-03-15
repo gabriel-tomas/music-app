@@ -14,11 +14,9 @@ export default function AccountPath({ paths }) {
   return (
     <ContainerPaths>
       {paths.map((path, i) => (
-        <ContainerLink>
+        <ContainerLink key={i}>
           <MdKeyboardArrowRight />
-          <Link key={i} to={accountPaths[path.toLowerCase()]}>
-            {path}
-          </Link>
+          <Link to={accountPaths[path.toLowerCase()]}>{path}</Link>
         </ContainerLink>
       ))}
     </ContainerPaths>
