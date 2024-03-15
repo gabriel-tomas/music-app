@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-/* import Form from './Form';
+import Form from './Form';
 
-import LoadingAllScreen from '../../components/LoadingAllScreen';
+/* import LoadingAllScreen from '../../components/LoadingAllScreen';
 
 import LoggedContent from './LoggedContent'; */
 
@@ -18,5 +18,5 @@ export default function Account() {
     }
   }, [userIsLoggedIn]);
 
-  return userIsLoggedIn && <h1>Form, para editar user</h1>;
+  return userIsLoggedIn && <Form />;
 }

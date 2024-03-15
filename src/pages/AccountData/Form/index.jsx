@@ -2,19 +2,12 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { isEmail } from 'validator';
 
-import * as authActions from '../../../store/modules/auth/actions';
-
-import {
-  ContainerWrapperForm,
-  ContainerTop,
-  ContainerForm,
-  ContainerChangeType,
-} from './styled';
+import { ContainerWrapperForm, ContainerTop, ContainerForm } from './styled';
 
 export default function Form() {
   const dispatch = useDispatch();
 
-  const [typeRegister, setTypeRegister] = useState(true);
+  const [editForm, setEditForm] = useState(false);
   const [inputsErrors, setInputsErrors] = useState({
     username: [],
     email: [],
@@ -22,20 +15,10 @@ export default function Form() {
   });
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  useEffect(() => {
-    setInputsErrors({
-      username: [],
-      email: [],
-      password: [],
-    });
-    setUsername('');
-    setEmail('');
-    setPassword('');
-  }, [typeRegister]);
+  const [password, setPassword] = useState('**********');
 
   const handleInputUserNameChange = (e) => {
+    if (!editForm) return;
     setUsername(e.target.value);
 
     const errors = { ...inputsErrors };
@@ -49,6 +32,7 @@ export default function Form() {
   };
 
   const handleInputEmailChange = (e) => {
+    if (!editForm) return;
     setEmail(e.target.value);
 
     const errors = { ...inputsErrors };
@@ -62,6 +46,7 @@ export default function Form() {
   };
 
   const handleInputPasswordChange = (e) => {
+    if (!editForm) return;
     setPassword(e.target.value);
 
     const errors = { ...inputsErrors };
@@ -80,10 +65,8 @@ export default function Form() {
     errors.email = [];
     errors.password = [];
 
-    if (typeRegister) {
-      if (username.length < 3 || username.length > 24) {
-        errors.username.push('O Nome deve conter entre 3 e 24 caracteres');
-      }
+    if (username.length < 3 || username.length > 24) {
+      errors.username.push('O Nome deve conter entre 3 e 24 caracteres');
     }
 
     if (!isEmail(email)) {
@@ -107,6 +90,7 @@ export default function Form() {
   };
 
   const handleSubmit = (e) => {
+    if (!editForm) return;
     e.preventDefault();
     const everythingWasSent = validAll();
 
@@ -116,51 +100,41 @@ export default function Form() {
       inputsErrors.email.length === 0 &&
       inputsErrors.password.length === 0
     ) {
-      typeRegister
-        ? dispatch(
-            authActions.authRequest({
-              username,
-              email,
-              password,
-              type: 'register',
-            }),
-          )
-        : dispatch(
-            authActions.authRequest({
-              email,
-              password,
-              type: 'login',
-            }),
-          );
+      //
     }
+  };
+
+  const handleEditForm = (e) => {
+    e.preventDefault();
+    setEditForm(!editForm);
+    setPassword('');
   };
 
   return (
     <ContainerWrapperForm>
       <ContainerTop>
-        <h1>{typeRegister ? 'Crie sua conta' : 'Entre na sua conta'}</h1>
+        <h1>Editar meus dados</h1>
       </ContainerTop>
       <ContainerForm className="form font-size-base" onSubmit={handleSubmit}>
-        {typeRegister && (
-          <div className="container-input">
-            <label className="label-placeholder" htmlFor="username">
-              Nome de usuário
-            </label>
-            <input
-              className="input-field"
-              type="text"
-              id="username"
-              value={username}
-              onChange={handleInputUserNameChange}
-            />
-            <ul className="container-errors">
-              {inputsErrors.username.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        <div className="container-input">
+        <div className={`container-input ${!editForm ? 'blocked' : ''}`}>
+          <label className="label-placeholder" htmlFor="username">
+            Nome de usuário
+          </label>
+          <input
+            className="input-field"
+            type="text"
+            id="username"
+            value={username}
+            onChange={handleInputUserNameChange}
+            disabled={!editForm}
+          />
+          <ul className="container-errors">
+            {inputsErrors.username.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+        <div className={`container-input ${!editForm ? 'blocked' : ''}`}>
           <label className="label-placeholder" htmlFor="email">
             E-mail
           </label>
@@ -170,6 +144,7 @@ export default function Form() {
             id="email"
             value={email}
             onChange={handleInputEmailChange}
+            disabled={!editForm}
           />
           <ul className="container-errors">
             {inputsErrors.email.map((error) => (
@@ -177,7 +152,7 @@ export default function Form() {
             ))}
           </ul>
         </div>
-        <div className="container-input">
+        <div className={`container-input ${!editForm ? 'blocked' : ''}`}>
           <label className="label-placeholder" htmlFor="password">
             Senha
           </label>
@@ -187,6 +162,7 @@ export default function Form() {
             id="password"
             value={password}
             onChange={handleInputPasswordChange}
+            disabled={!editForm}
           />
           <ul className="container-errors">
             {inputsErrors.password.map((error) => (
@@ -195,25 +171,24 @@ export default function Form() {
           </ul>
         </div>
         <div className="container-submit">
-          <button className="submit-form" type="submit">
-            {typeRegister ? 'Registrar-se' : 'Entrar'}
+          {editForm && (
+            <button
+              className="cancel-submit"
+              type="button"
+              onClick={editForm ? handleEditForm : null}
+            >
+              Cancelar
+            </button>
+          )}
+          <button
+            className={`submit-form ${!editForm && 'submit-type'}`}
+            type={editForm ? 'submit' : 'button'}
+            onClick={!editForm ? handleEditForm : null}
+          >
+            {editForm ? 'Salvar' : 'Editar'}
           </button>
         </div>
       </ContainerForm>
-      <ContainerChangeType>
-        <div className="container-change-type">
-          <span>
-            {typeRegister ? 'Já possui uma conta?' : 'Não possui uma conta?'}
-          </span>
-          <button
-            className="btn-change"
-            type="button"
-            onClick={() => setTypeRegister(!typeRegister)}
-          >
-            {typeRegister ? 'Faça login aqui' : 'Inscreva-se'}
-          </button>
-        </div>
-      </ContainerChangeType>
     </ContainerWrapperForm>
   );
 }

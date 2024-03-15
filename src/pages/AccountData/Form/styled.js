@@ -47,6 +47,7 @@ export const ContainerForm = styled.form`
       color: ${colors.text['900']};
       background-color: ${colors.whtColor};
       font-weight: normal;
+      transition: .07s background-color;
     }
 
     input.input-field:focus {
@@ -61,10 +62,21 @@ export const ContainerForm = styled.form`
     }
   }
 
+  .container-input.blocked {
+    input {
+      cursor: not-allowed;
+      background-color: ${colors.neutral3};
+      box-shadow: inset 0px 0px 10px rgba(0,0,0,0.03);
+    }
+  }
+
   .container-submit {
     margin-top: 2rem;
+    display: grid;
+    gap: 1.2rem;
+    grid-template-columns: repeat(2, 1fr);
 
-    button.submit-form {
+    button {
       width: 100%;
       padding: .6rem 1rem;
       height: unset;
@@ -74,35 +86,26 @@ export const ContainerForm = styled.form`
       background-color: ${colors.primary['200']};
     }
 
+    button.submit-form {
+      grid-column: 2;
+    }
+
+    button.submit-form.submit-type {
+      grid-column: 1 / -1;
+    }
+
+    button.cancel-submit {
+      width: 100%;
+      padding:.6rem 1rem;
+      height: unset;
+      border-radius:.4rem;
+      font-size: ${fontSizes.fontSizeBase};
+      color: ${colors.text['900']};
+      background-color: ${colors.neutral2};
+    }
+
     button.submit-form:hover {
       background-color: ${colors.primary['300']};
-    }
-  }
-`;
-
-export const ContainerChangeType = styled.div`
-  margin-top: 2rem;
-  width: 100%;
-  font-size: ${fontSizes.fontSizeBase};
-
-  .container-change-type {
-    display: flex;
-    gap: .4rem;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-
-    button.btn-change {
-      height: unset;
-      font-weight: 400;
-      padding-inline: unset;
-      font-weight: 600;
-      font-size: ${fontSizes.fontSizeBase};
-    }
-
-    button.btn-change:hover {
-      text-decoration: underline;
     }
   }
 `;
