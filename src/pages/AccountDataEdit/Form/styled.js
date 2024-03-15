@@ -63,7 +63,7 @@ export const ContainerForm = styled.form`
   }
 
   .container-input.blocked {
-    input {
+    & > input {
       cursor: not-allowed;
       background-color: ${colors.neutral3};
       box-shadow: inset 0px 0px 10px rgba(0,0,0,0.03);

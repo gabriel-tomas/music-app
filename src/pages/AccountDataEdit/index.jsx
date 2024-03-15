@@ -18,5 +18,11 @@ export default function Account() {
     }
   }, [userIsLoggedIn]);
 
+  useEffect(() => {
+    if (!userIsLoggedIn) {
+      return;
+    }
+  }, [userIsLoggedIn]);
+
   return userIsLoggedIn && <Form />;
 }
