@@ -149,37 +149,39 @@ export default function KeepMountedModal({ handleClose, track }) {
   }, [updatePlaylists, userIsLoggedIn]); */
 
   return (
-    <>
-      <div>
-        <Modal
-          keepMounted
-          open={true}
-          onClose={handleClose}
-          aria-labelledby="keep-mounted-modal-title"
-          aria-describedby="keep-mounted-modal-description"
-          onClick={handlePreventPropagation}
-        >
-          <Box sx={style}>
-            <ContainerPlaylists>
-              {userPlaylists &&
-                Object.keys(userPlaylists.playlists).map((value) => (
-                  <ContainerItemPlaylist
-                    key={value}
-                    onClick={(event) => handleAddToPlaylist(event, value)}
-                  >
-                    {value}
-                  </ContainerItemPlaylist>
-                ))}
-              <Loading isLoading={isLoading} smallComponent />
-            </ContainerPlaylists>
-          </Box>
-        </Modal>
-      </div>
-      <LoadingAllScreen
-        preventPropagation={handlePreventPropagation}
-        isLoading={isLoadingAdding}
-      />
-    </>
+    userIsLoggedIn && (
+      <>
+        <div>
+          <Modal
+            keepMounted
+            open={true}
+            onClose={handleClose}
+            aria-labelledby="keep-mounted-modal-title"
+            aria-describedby="keep-mounted-modal-description"
+            onClick={handlePreventPropagation}
+          >
+            <Box sx={style}>
+              <ContainerPlaylists>
+                {userPlaylists &&
+                  Object.keys(userPlaylists.playlists).map((value) => (
+                    <ContainerItemPlaylist
+                      key={value}
+                      onClick={(event) => handleAddToPlaylist(event, value)}
+                    >
+                      {value}
+                    </ContainerItemPlaylist>
+                  ))}
+                <Loading isLoading={isLoading} smallComponent />
+              </ContainerPlaylists>
+            </Box>
+          </Modal>
+        </div>
+        <LoadingAllScreen
+          preventPropagation={handlePreventPropagation}
+          isLoading={isLoadingAdding}
+        />
+      </>
+    )
   );
 }
 
