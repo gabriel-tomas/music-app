@@ -26,7 +26,6 @@ export default function Account() {
     setIsLoading(true);
     try {
       const response = await getUserData();
-      console.log(response);
       setUsernameAndEmail(response.user);
       setIsLoading(false);
     } catch (err) {
