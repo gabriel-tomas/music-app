@@ -42,6 +42,8 @@ export default function Library() {
       if (status === 500) {
         responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
       }
+
+      setUserPlaylists(null);
     }
   };
 
