@@ -9,7 +9,7 @@ export const ContainerWrapperForm = styled.div`
   flex-direction: column;
   margin-inline: auto;
   max-width: 600px;
-  height: calc(100vh - clamp(30px, 20vh, 60px) - 4rem);
+  height: calc(100vh - clamp(30px, 20vh, 60px) - 9.8rem);
 `;
 
 export const ContainerTop = styled.div`

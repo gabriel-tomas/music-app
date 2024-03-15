@@ -9,8 +9,6 @@ export const ContainerPaths = styled.div`
   display: flex;
   align-items: center;
   gap: .4rem;
-
-
 `;
 
 export const ContainerLink = styled.span`
@@ -26,6 +24,11 @@ export const ContainerLink = styled.span`
   a {
     font-size: ${fontSizes.fontSizeBase};
     color: ${colors.text['950']};
+    line-height: 1.18rem;
+
+    @media screen and (max-width: 440px) {
+      font-size: calc(${fontSizes.fontSizeSm} + .1rem);
+    }
   }
 
   @media (hover: hover) {
