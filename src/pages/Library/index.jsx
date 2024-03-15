@@ -22,55 +22,34 @@ export default function Library() {
   );
   const [userPlaylists, setUserPlaylists] = useState(null);
 
-  useEffect(() => {
-    const requestUserPlaylists = async () => {
-      if (!userIsLoggedIn) return;
-      setIsLoading(true);
-      try {
-        const response = await getPlaylists();
-        setUserPlaylists(response);
-        setIsLoading(false);
-      } catch (err) {
-        const responseData = get(err.response, 'data', '');
-        const status = get(err.response, 'status', 0);
-        setIsLoading(false);
+  const requestUserPlaylists = async () => {
+    if (!userIsLoggedIn) return;
+    setIsLoading(true);
+    try {
+      const response = await getPlaylists();
+      setUserPlaylists(response);
+      setIsLoading(false);
+    } catch (err) {
+      const responseData = get(err.response, 'data', '');
+      const status = get(err.response, 'status', 0);
+      setIsLoading(false);
 
-        if (status === 401) {
-          dispatch(authActions.authFail());
-          responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
-        }
-
-        if (status === 500) {
-          responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
-        }
+      if (status === 401) {
+        dispatch(authActions.authFail());
+        responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
       }
-    };
+
+      if (status === 500) {
+        responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
+      }
+    }
+  };
+
+  useEffect(() => {
     requestUserPlaylists();
   }, [userIsLoggedIn]);
 
   useEffect(() => {
-    const requestUserPlaylists = async () => {
-      if (!userIsLoggedIn) return;
-      setIsLoading(true);
-      try {
-        const response = await getPlaylists();
-        setUserPlaylists(response);
-        setIsLoading(false);
-      } catch (err) {
-        const responseData = get(err.response, 'data', '');
-        const status = get(err.response, 'status', 0);
-        setIsLoading(false);
-
-        if (status === 401) {
-          responseData.errorsMsg.forEach((errorMsg) => toast.error(errorMsg));
-        } else {
-          toast.error(
-            'Ocorreu um erro desconhecido ao tentar acessar as informações das playlists',
-          );
-        }
-      }
-    };
-
     if (updatePlaylists) {
       requestUserPlaylists();
       dispatch(updatePlaylistActions.notUpdatePlaylists());
