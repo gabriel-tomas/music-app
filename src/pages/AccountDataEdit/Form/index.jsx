@@ -133,8 +133,15 @@ export default function Form({ userName, userEmail }) {
 
   const handleEditForm = (e) => {
     e.preventDefault();
-    setEditForm(!editForm);
+    setEditForm(true);
     setPassword('');
+  };
+
+  const handleCancelEditForm = () => {
+    setEditForm(false);
+    setUsername(userName);
+    setEmail(userEmail);
+    setPassword('**********');
   };
 
   return (
@@ -205,7 +212,7 @@ export default function Form({ userName, userEmail }) {
             <button
               className="cancel-submit"
               type="button"
-              onClick={editForm ? handleEditForm : null}
+              onClick={handleCancelEditForm}
             >
               Cancelar
             </button>
