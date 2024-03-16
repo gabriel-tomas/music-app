@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { isEmail } from 'validator';
 
+import ConfirmEditUserData from '../ConfirmEditUserData';
+
 import { ContainerWrapperForm, ContainerTop, ContainerForm } from './styled';
+
+import * as userActions from '../../../store/modules/user/actions';
 
 export default function Form({ userName, userEmail }) {
   const dispatch = useDispatch();
@@ -14,6 +18,7 @@ export default function Form({ userName, userEmail }) {
     email: [],
     password: [],
   });
+  const [openBoxConfirm, setOpenBoxConfirm] = useState(false);
   const [username, setUsername] = useState(userName);
   const [email, setEmail] = useState(userEmail);
   const [password, setPassword] = useState('**********');
@@ -101,7 +106,28 @@ export default function Form({ userName, userEmail }) {
       inputsErrors.email.length === 0 &&
       inputsErrors.password.length === 0
     ) {
-      //
+      dispatch(
+        userActions.userUpdateRequest({
+          username,
+          email,
+          password,
+        }),
+      );
+    }
+  };
+
+  const handleSubmitCheck = (e) => {
+    if (!editForm) return;
+    e.preventDefault();
+    const everythingWasSent = validAll();
+
+    if (
+      everythingWasSent &&
+      inputsErrors.username.length === 0 &&
+      inputsErrors.email.length === 0 &&
+      inputsErrors.password.length === 0
+    ) {
+      setOpenBoxConfirm(true);
     }
   };
 
@@ -116,7 +142,10 @@ export default function Form({ userName, userEmail }) {
       <ContainerTop>
         <h1>Editar meus dados</h1>
       </ContainerTop>
-      <ContainerForm className="form font-size-base" onSubmit={handleSubmit}>
+      <ContainerForm
+        className="form font-size-base"
+        onSubmit={handleSubmitCheck}
+      >
         <div className={`container-input ${!editForm ? 'blocked' : ''}`}>
           <label className="label-placeholder" htmlFor="username">
             Nome de usuário
@@ -190,6 +219,11 @@ export default function Form({ userName, userEmail }) {
           </button>
         </div>
       </ContainerForm>
+      <ConfirmEditUserData
+        open={openBoxConfirm}
+        handleClose={() => setOpenBoxConfirm(false)}
+        handleSubmit={handleSubmit}
+      />
     </ContainerWrapperForm>
   );
 }

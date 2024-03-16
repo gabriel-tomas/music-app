@@ -8,10 +8,15 @@ export const SET_VOLUME = 'SET_VOLUME';
 // Data saver types
 export const SAVE_DATA = 'SAVE_DATA';
 
-// register types
+// auth types
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const AUTH_SUCCESS = 'REGISTER_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
+
+// user types
+export const USER_UPDATE_REQUEST = 'USER_UPDATE_REQUEST';
+export const USER_UPDATE_SUCCESS = 'USER_UPDATE_SUCCESS';
+export const USER_UPDATE_FAIL = 'USER_UPDATE_FAIL';
 
 // update playlists types
 export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
