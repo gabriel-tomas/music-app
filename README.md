@@ -2,6 +2,8 @@
 Projeto de um App de Músicas com frontend e backend. O projeto usa [API do Spotify](https://developer.spotify.com/) para pegar as músicas, álbums, playlists e artistas.
 O usuário pode criar sua conta para armazenar nas suas playlists suas músicas favoritas.
 
+Acesse o projeto aqui: https://music-app-i19b.onrender.com/
+
 ![home page](https://github.com/gabriel-tomas/music-app/blob/master/src/static/music-app.png?raw=true)
 
 ## Frontend e Backend
