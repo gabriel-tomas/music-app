@@ -8,8 +8,8 @@ export const ContainerLoggedContent = styled.div`
   justify-content: left;
   flex-direction: column;
   justify-content: space-between;
-  min-height: calc(100vh - 13rem);
-  min-height: calc(100svh - 13rem);
+  min-height: max(240px, calc(100vh - 13rem));
+  min-height: max(240px, calc(100svh - 13rem));
 
   button {
     font-size: ${fontSizes.fontSizeBase};
@@ -39,8 +39,8 @@ export const ContainerLoggedContent = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    min-height: calc(100vh - 16rem);
-    min-height: calc(100svh - 16rem);
+    min-height: max(240px, calc(100vh - 16rem));
+    min-height: max(240px, calc(100svh - 16rem));
   }
 `;
 
