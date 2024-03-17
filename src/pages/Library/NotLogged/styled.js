@@ -28,7 +28,7 @@ export const ContainerNotLogged = styled.div`
   .redirect-link {
     background-color: ${colors.primary['200']};
     font-size: ${fontSizes.fontSizeBase};
-    padding: 1rem 2rem;
+    padding: .7rem 1.4rem;
     border-radius: 20rem;
     align-self: center;
     font-weight: bold;

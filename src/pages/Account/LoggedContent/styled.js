@@ -15,8 +15,9 @@ export const ContainerLoggedContent = styled.div`
     font-size: ${fontSizes.fontSizeBase};
     border-radius: unset;
     height: fit-content;
-    padding-block: 1rem;
-    width: min(250px, 50vw);
+    padding-block: .7rem;
+    padding-inline: 1.4rem;
+    width: min(220px, 50vw);
     margin-inline: auto;
   }
 
@@ -27,6 +28,14 @@ export const ContainerLoggedContent = styled.div`
   button.logout-button {
     background-color: ${colors.primary['300']};
     border-radius: 20rem;
+  }
+
+  button.logout-button:hover {
+    background-color: ${colors.primary['400']};
+  }
+
+  button.logout-button:active {
+    background-color: ${colors.primary['500']};
   }
 
   @media screen and (max-width: 600px) {
