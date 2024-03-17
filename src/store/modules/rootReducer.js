@@ -9,6 +9,7 @@ import updatePlaylists from './updatePlaylist/reducer';
 // music app backend
 import auth from './auth/reducer';
 import user from './user/reducer';
+import deleteAccount from './deleteAccount/reducer';
 
 export default combineReducers({
   currentMusic,
@@ -18,5 +19,6 @@ export default combineReducers({
   dataSaver,
   auth,
   user,
+  deleteAccount,
   updatePlaylists,
 });
