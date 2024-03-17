@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const WrapperLoading = styled.div`
   position: absolute;
-  top: 50%;
+  top: calc(50% + 3rem);
   left: 50%;
   transform: translate(-50%, -50%);
   width: clamp(2.143rem, 1.25rem + 2.5vw, 2.857rem);

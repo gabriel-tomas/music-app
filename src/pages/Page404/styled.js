@@ -14,6 +14,7 @@ export const Container404 = styled.div`
   h1 {
     font-size: ${fontSizes.fontSizeLg};
     color: ${colors.text['950']};
+    margin-top: 1rem;
     margin-bottom: .2rem;
   }
 

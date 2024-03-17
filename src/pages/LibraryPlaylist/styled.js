@@ -5,7 +5,7 @@ import fontSizes from '../../config/fontSizes';
 
 export const ContainerNotFound = styled.div`
   position: absolute;
-  top: 50%;
+  top: calc(50% + 2.05326rem);
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -40,7 +40,7 @@ export const ContainerNotFound = styled.div`
 
 export const ContainerNoTracks = styled.div`
   position: absolute;
-  top: 50%;
+  top: calc(50% + 3rem);
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
