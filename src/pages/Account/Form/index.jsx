@@ -136,7 +136,7 @@ export default function Form() {
   };
 
   return (
-    <ContainerWrapperForm>
+    <ContainerWrapperForm className={!typeRegister ? 'login-form' : ''}>
       <ContainerTop>
         <h1>{typeRegister ? 'Crie sua conta' : 'Entre na sua conta'}</h1>
       </ContainerTop>

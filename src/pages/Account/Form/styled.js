@@ -9,7 +9,11 @@ export const ContainerWrapperForm = styled.div`
   flex-direction: column;
   margin-inline: auto;
   max-width: 600px;
-  height: calc(100vh - clamp(30px, 20vh, 60px) - 4rem);
+  height: max(500px, calc(100vh - clamp(30px, 20vh, 60px) - 4rem));
+
+  &.login-form {
+    height: max(390px, calc(100vh - clamp(30px, 20vh, 60px) - 4rem));
+  }
 `;
 
 export const ContainerTop = styled.div`
