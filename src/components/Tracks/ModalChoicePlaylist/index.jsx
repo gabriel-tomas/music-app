@@ -167,7 +167,7 @@ export default function KeepMountedModal({ handleClose, track }) {
                       {value}
                     </ContainerItemPlaylist>
                   ))}
-                <Loading isLoading={isLoading} smallComponent />
+                <Loading isLoading={isLoading} smallComponent middleComponent />
               </ContainerPlaylists>
             </Box>
           </Modal>
