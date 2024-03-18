@@ -129,7 +129,7 @@ export const ContainerAlbumTrack = styled.li`
         font-size: ${fontSizes.fontSizeBase};
         text-overflow: ellipsis;
         white-space: nowrap;
-        max-width: 700px;
+        max-width: 600px;
         overflow: hidden;
       }
 
@@ -140,7 +140,7 @@ export const ContainerAlbumTrack = styled.li`
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        max-width: 700px;
+        max-width: 600px;
 
         a {
           font-weight: normal;
@@ -155,13 +155,13 @@ export const ContainerAlbumTrack = styled.li`
 
       @media screen and (max-width: 1080px) {
         .track-name, .track-artists {
-          max-width: 500px;
+          max-width: 400px;
         }
       }
 
       @media screen and (max-width: 860px) {
         .track-name, .track-artists {
-          max-width: 300px;
+          max-width: 200px;
         }
       }
 
@@ -171,9 +171,9 @@ export const ContainerAlbumTrack = styled.li`
         }
       }
 
-      @media screen and (max-width: 370px) {
+      @media screen and (max-width: 388px) {
         .track-name, .track-artists {
-          max-width: 120px;
+          max-width: 100px;
         }
       }
 
@@ -183,7 +183,7 @@ export const ContainerAlbumTrack = styled.li`
         }
       }
 
-      @media screen and (max-width: 300px) {
+      @media screen and (max-width: 310px) {
         .track-name, .track-artists {
           max-width: 80px;
         }
