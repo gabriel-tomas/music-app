@@ -10,6 +10,11 @@ export const ContainerWrapperForm = styled.div`
   margin-inline: auto;
   max-width: 600px;
   height: calc(100vh - clamp(30px, 20vh, 60px) - 9.8rem);
+
+  @media screen and (max-height: 650px) {
+    height: auto;
+    margin-top: 2rem;
+  }
 `;
 
 export const ContainerTop = styled.div`
@@ -107,5 +112,9 @@ export const ContainerForm = styled.form`
     button.submit-form:hover {
       background-color: ${colors.primary['300']};
     }
+  }
+
+  @media screen and (max-height: 695px) {
+    margin-top: 1.5rem;
   }
 `;
