@@ -11,7 +11,7 @@ export const ContainerWrapperForm = styled.div`
   max-width: 600px;
   height: calc(100vh - clamp(30px, 20vh, 60px) - 9.8rem);
 
-  @media screen and (max-height: 650px) {
+  @media screen and (max-height: 630px) {
     height: auto;
     margin-top: 2rem;
   }
@@ -37,6 +37,10 @@ export const ContainerForm = styled.form`
     margin-bottom: 1rem;
     gap: .6rem;
     width: 100%;
+
+    @media screen and (max-height: 700px) {
+      margin-bottom: .3rem;
+    }
 
     .label-placeholder {
       font-size: ${fontSizes.fontSizeBase};
@@ -114,7 +118,7 @@ export const ContainerForm = styled.form`
     }
   }
 
-  @media screen and (max-height: 695px) {
+  @media screen and (max-height: 700px) {
     margin-top: 1.5rem;
   }
 `;

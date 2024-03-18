@@ -30,7 +30,7 @@ export const ContainerForm = styled.form`
   padding: 1rem;
   margin-top: 3rem;
 
-  @media screen and (max-height: 660px) {
+  @media screen and (max-height: 700px) {
     margin-top: 1.5rem;
   }
 
@@ -41,7 +41,7 @@ export const ContainerForm = styled.form`
     gap: .6rem;
     width: 100%;
 
-    @media screen and (max-height: 660px) {
+    @media screen and (max-height: 700px) {
       margin-bottom: .3rem;
     }
 
@@ -97,7 +97,7 @@ export const ContainerChangeType = styled.div`
   width: 100%;
   font-size: ${fontSizes.fontSizeBase};
 
-  @media screen and (max-height: 660px) {
+  @media screen and (max-height: 700px) {
     margin-top: 1.5rem;
   }
 
