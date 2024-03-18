@@ -102,9 +102,33 @@ export const ContainerUserPlaylist = styled.div`
         margin-left: 1rem;
       }
 
-      span {
+      span.playlist-name {
+        display: block;
         font-size: ${fontSizes.fontSizeBase};
         color: ${colors.text['950']};
+        max-width: 400px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @media screen and (max-width: 980px) {
+          max-width: 300px;
+        }
+
+        @media screen and (max-width: 830px) {
+          max-width: 200px;
+        }
+
+        @media screen and (max-width: 680px) {
+          max-width: 100px;
+        }
+
+        @media screen and (max-width: 600px) {
+          max-width: 200px;
+        }
+
+        @media screen and (max-width: 476px) {
+          max-width: 100px;
+        }
       }
 
       @media screen and (max-width: 364px) {

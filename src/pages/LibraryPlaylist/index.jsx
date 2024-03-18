@@ -96,7 +96,7 @@ export default function LibraryPlaylist() {
             <header className="header-user-playlists">
               <div className="container-left">
                 <h1 className="title-user-playlists">{username}</h1>
-                <span>{playlistName}</span>
+                <span className="playlist-name">{playlistName}</span>
               </div>
               <PlaylistOptions itemKey={playlistName} />
             </header>
