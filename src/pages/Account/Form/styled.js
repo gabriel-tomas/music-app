@@ -30,12 +30,20 @@ export const ContainerForm = styled.form`
   padding: 1rem;
   margin-top: 3rem;
 
+  @media screen and (max-height: 660px) {
+    margin-top: 1.5rem;
+  }
+
   .container-input {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
     gap: .6rem;
     width: 100%;
+
+    @media screen and (max-height: 660px) {
+      margin-bottom: .3rem;
+    }
 
     .label-placeholder {
       font-size: ${fontSizes.fontSizeBase};
@@ -88,6 +96,10 @@ export const ContainerChangeType = styled.div`
   margin-top: 2rem;
   width: 100%;
   font-size: ${fontSizes.fontSizeBase};
+
+  @media screen and (max-height: 660px) {
+    margin-top: 1.5rem;
+  }
 
   .container-change-type {
     display: flex;
