@@ -32,6 +32,8 @@ export const ContainerItemPlaylist = styledCmpnts.button`
   border-radius: .6rem;
   font-size: ${fontSizes.fontSizeBase};
   font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:hover {
     background-color: ${colors.primary['300']};
