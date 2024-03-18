@@ -68,12 +68,10 @@ export const ContainerAlbumItem = styled.div`
     }
 
     .artists-box {
-      display: flex;
-      align-items: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       a {
-        overflow: hidden;
-        text-overflow: ellipsis;
         white-space: nowrap;
         font-size: ${fontSizes.fontSizeBase};
         color: ${colors.text['950']};
