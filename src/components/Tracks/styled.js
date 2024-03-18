@@ -265,6 +265,10 @@ export const ContainerTrackContent = styled.div`
         overflow: hidden;
       }
 
+      .track-name.inside-user-playlist {
+        max-width: 600px;
+      }
+
       .track-artists {
         text-align: left;
         width: 100%;
@@ -285,9 +289,17 @@ export const ContainerTrackContent = styled.div`
         }
       }
 
+      .track-artists.inside-user-playlist {
+        max-width: 600px;
+      }
+
       @media screen and (max-width: 1080px) {
         .track-name, .track-artists {
           max-width: 500px;
+        }
+
+        .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
+          max-width: 400px;
         }
       }
 
@@ -295,10 +307,14 @@ export const ContainerTrackContent = styled.div`
         .track-name, .track-artists {
           max-width: 300px;
         }
+
+        .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
+          max-width: 200px;
+        }
       }
 
       @media screen and (max-width: 660px) {
-        .track-name, .track-artists {
+        .track-name, .track-artists, .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
           max-width: 150px;
         }
       }
@@ -307,22 +323,26 @@ export const ContainerTrackContent = styled.div`
         .track-name, .track-artists {
           max-width: 100px;
         }
+
+        .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
+          max-width: 90px;
+        }
       }
 
       @media screen and (max-width: 330px) {
-        .track-name, .track-artists {
+        .track-name, .track-artists, .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
           max-width: 70px;
         }
       }
 
       @media screen and (max-width: 310px) {
-        .track-name, .track-artists {
+        .track-name, .track-artists, .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
           max-width: 50px;
         }
       }
 
       @media screen and (max-width: 278px) {
-        .track-name, .track-artists {
+        .track-name, .track-artists, .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
           max-width: 30px;
         }
       }
