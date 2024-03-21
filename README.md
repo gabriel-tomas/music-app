@@ -9,7 +9,7 @@ Acesse o projeto aqui: https://music-app-i19b.onrender.com/
 ## Frontend e Backend
 O projeto possui o frontend feito com **React**, **Redux**, **Redux Sagas**, **styled-components** para o estilo e **react router dom V6** no roteamento.
 
-O backend foi feito com **Express**, **JWTs** para autenticação do usuário e **MongoDB** no banco de dados. [Aqui](https://github.com/gabriel-tomas/music-app_api) você consegue ver como o backend é de forma mais especifica.
+O backend foi feito com **Express**, **JWTs** para autenticação do usuário e **MongoDB** no banco de dados para o armazenamento dos usuários e playlists dos usuários. [Aqui](https://github.com/gabriel-tomas/music-app_api) você consegue ver como o backend é de forma mais especifica.
 
 ## Tecnologias usadas
 - JavaScript
