@@ -4,8 +4,9 @@ import { RxDotsHorizontal } from 'react-icons/rx';
 import PropTypes from 'prop-types';
 
 import ModalConfirmPlaylistDelete from '../ModalConfirmPlaylistDelete';
+import ModalPlaylistEdit from '../ModalPlaylistEdit';
 
-import { ContainerPopUp, BtnPlaylistOptions, ContainerOptions } from './styled';
+import { ContainerPopUp, ContainerOptions } from './styled';
 
 import colors from '../../../config/colors';
 
@@ -22,6 +23,7 @@ const popUpBoxStyle = {
 export default function BasicPopover({ itemKey }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [boxConfirmDelete, setBoxConfirmDelete] = useState(false);
+  const [boxEditPlaylist, setBoxEditPlaylist] = useState(false);
 
   const handleClick = (event) => {
     event.stopPropagation();
@@ -41,6 +43,16 @@ export default function BasicPopover({ itemKey }) {
   const handleCloseConfirmDelete = (event) => {
     event.stopPropagation();
     setBoxConfirmDelete(false);
+  };
+
+  const handleOpenEditPlaylist = (event) => {
+    handleClose(event);
+    setBoxEditPlaylist(true);
+  };
+
+  const handleCloseEditPlaylist = (event) => {
+    event.stopPropagation();
+    setBoxEditPlaylist(false);
   };
 
   const open = Boolean(anchorEl);
@@ -64,7 +76,9 @@ export default function BasicPopover({ itemKey }) {
           sx={popUpBoxStyle}
         >
           <ContainerOptions>
-            <button className="option-btn">Editar</button>
+            <button className="option-btn" onClick={handleOpenEditPlaylist}>
+              Editar
+            </button>
             <button
               className="option-btn delete"
               onClick={handleOpenConfirmDelete}
@@ -78,6 +92,11 @@ export default function BasicPopover({ itemKey }) {
         open={boxConfirmDelete}
         handleClose={handleCloseConfirmDelete}
         itemKey={itemKey}
+      />
+      <ModalPlaylistEdit
+        open={boxEditPlaylist}
+        handleClose={handleCloseEditPlaylist}
+        playlistName={itemKey}
       />
     </>
   );
