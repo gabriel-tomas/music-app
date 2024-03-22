@@ -41,7 +41,7 @@ export const ContainerSubmit = styledCmpnts.div`
   }
 `;
 
-export const InputCreate = styledCmpnts.input`
+export const InputEdit = styledCmpnts.input`
   width: 80%;
   background-color: ${colors.background['50']};
   border-radius: 1rem;

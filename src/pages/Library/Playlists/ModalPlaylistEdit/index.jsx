@@ -16,7 +16,7 @@ import LoadingAllScreen from '../../../../components/LoadingAllScreen';
 import colors from '../../../../config/colors';
 import fontSizes from '../../../../config/fontSizes.js';
 
-import { Title, ContainerSubmit, InputCreate } from './styled.js';
+import { Title, ContainerSubmit, InputEdit } from './styled.js';
 
 const style = {
   position: 'absolute',
@@ -118,7 +118,7 @@ export default function KeepMountedModal({ open, handleClose, playlistName }) {
             </strong>{' '}
             para:
           </p>
-          <InputCreate
+          <InputEdit
             placeholder="Nome da playlist"
             value={newPlaylistName}
             onChange={handleChangeInput}
@@ -127,7 +127,7 @@ export default function KeepMountedModal({ open, handleClose, playlistName }) {
                 handleSubmit(e);
               }
             }}
-          ></InputCreate>
+          ></InputEdit>
           <ContainerSubmit>
             <button className="cancel-btn" onClick={handleClose}>
               Cancelar
