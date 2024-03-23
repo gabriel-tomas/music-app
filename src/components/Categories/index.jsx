@@ -109,7 +109,9 @@ export default function Categories({ slowAppearanceAnimation }) {
                     to={`/category/${category.id}`}
                     className="category-link"
                   >
-                    <div className="container-img">
+                    <div
+                      className={`container-img ${!imgsLoaded ? 'loading-back' : ''}`}
+                    >
                       {imgsLoaded ? (
                         <img
                           src={getAlbumImageUrl(category.icons, 274)}
