@@ -38,7 +38,9 @@ export default function Albums({ albums, slowAppearanceAnimation }) {
       albums.map((album) => loadImage(getAlbumImageUrl(album.images, 640))),
     )
       .then(() => setImgsLoaded(true))
-      .catch(() => toast.error('Ocorreu um erro ao tentar carregar os albums'));
+      .catch(() =>
+        toast.error('Ocorreu um erro ao tentar carregar a imagem dos albums'),
+      );
   }, []);
 
   return (

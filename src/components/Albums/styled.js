@@ -44,13 +44,13 @@ export const ContainerAlbumItem = styled.div`
       height: 100%;
       object-fit: contain;
       box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
-      animation: blurEffect .20s forwards;
+      animation: opacityEffect .20s forwards;
 
       @media screen and (max-width: 600px) {
         border-radius: .4rem;
       }
 
-      @keyframes blurEffect {
+      @keyframes opacityEffect {
         from {
           opacity: 0;
         }
