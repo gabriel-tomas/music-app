@@ -47,10 +47,27 @@ export const ContainerCategoryItem = styled(Link)`
       height: 100%;
       object-fit: contain;
       box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
+      animation: opacityEffect .20s forwards;
 
       @media screen and (max-width: 600px) {
         border-radius: .4rem;
       }
+
+      @keyframes opacityEffect {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      padding: clamp(2.5rem, 2.368rem + 0.842vw, 3rem);
     }
   }
 
