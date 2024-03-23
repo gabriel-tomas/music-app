@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { get } from 'lodash';
+import { FaUserAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
@@ -19,6 +21,8 @@ import {
   ContainerArtistContentItem,
 } from './styled';
 
+import colors from '../../config/colors';
+
 export default function Artist() {
   const [isLoading, setIsLoading] = useState(false);
   const { id: artistId } = useParams();
@@ -26,6 +30,7 @@ export default function Artist() {
   const [artistTopTracks, setArtistTopTracks] = useState(null);
   const [artistAlbums, setArtistAlbums] = useState(null);
   const [artistAlbumsAppearsOn, setArtistAlbumsAppearsOn] = useState(null);
+  const [imgsLoaded, setImgsLoaded] = useState(false);
 
   useEffect(() => {
     const requestArtistItems = async () => {
@@ -58,6 +63,31 @@ export default function Artist() {
     requestArtistItems();
   }, [artistId]);
 
+  useEffect(() => {
+    if (!artist) return;
+
+    const loadImage = (imageUrl) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = imageUrl;
+        loadImg.onload = () => resolve(imageUrl);
+
+        loadImg.onerror = (err) => reject(err);
+      });
+    };
+
+    Promise.all(
+      (() => {
+        if (get(artist, 'images', []).length === 0) return [];
+        return [loadImage(getAlbumImageUrl(artist.images, 320))];
+      })(),
+    )
+      .then(() => setImgsLoaded(true))
+      .catch(() =>
+        toast.error('Ocorreu um erro ao tentar carregar a imagem do artista'),
+      );
+  }, [artist]);
+
   return (
     <>
       {artist && artistTopTracks && artistAlbums && artistAlbumsAppearsOn && (
@@ -65,10 +95,16 @@ export default function Artist() {
           <ContainerArtistInfo>
             <h1 className="title-type">Artista</h1>
             <div className="container-img">
-              <img
-                src={getAlbumImageUrl(artist.images, 320)}
-                alt={artist.name}
-              />
+              {imgsLoaded && get(artist, 'images', []).length !== 0 ? (
+                <img
+                  src={getAlbumImageUrl(artist.images, 320)}
+                  alt={artist.name}
+                />
+              ) : get(artist, 'images', []).length === 0 ? (
+                <FaUserAlt color={colors.secondary['950']} />
+              ) : (
+                <FaUserAlt color={colors.neutral7} />
+              )}
             </div>
             <div className="container-bottom-infos">
               <h2 className="artist-name">{artist.name}</h2>

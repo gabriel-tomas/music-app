@@ -12,16 +12,36 @@ export const ContainerArtistInfo = styled.div`
   }
 
   .container-img {
-      max-width: 300px;
+    max-width: 300px;
+    background-color: ${colors.neutral3};
 
-      @media screen and (max-width: 600px) {
-        max-width: 240px;
-      }
+    @media screen and (max-width: 600px) {
+      max-width: 240px;
+    }
 
-      img {
-        width: 100%;
+    img {
+      width: 100%;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      animation: opacityEffect .20s forwards;
+
+      @keyframes opacityEffect {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
       }
     }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      padding: 6rem;
+    }
+  }
 
   .container-bottom-infos {
     .artist-name {
