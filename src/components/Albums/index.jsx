@@ -41,8 +41,6 @@ export default function Albums({ albums, slowAppearanceAnimation }) {
       .catch(() => toast.error('Ocorreu um erro ao tentar carregar os albums'));
   }, []);
 
-  console.log(imgsLoaded);
-
   return (
     <ContainerAlbums
       className={`${slowAppearanceAnimation && 'slow-appearance-animation'}`}
