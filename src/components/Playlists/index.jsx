@@ -41,8 +41,6 @@ export default function Playlists({
       );
   }, []);
 
-  console.log(playlists);
-
   return (
     <ContainerPlaylists
       className={`${slowAppearanceAnimation && 'slow-appearance-animation'}`}
