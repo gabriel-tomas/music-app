@@ -88,7 +88,9 @@ export default function Categories({ slowAppearanceAnimation }) {
     )
       .then(() => setImgsLoaded(true))
       .catch(() =>
-        toast.error('Ocorreu um erro ao tentar carregar a imagem dos albums'),
+        toast.error(
+          'Ocorreu um erro ao tentar carregar a imagem das categorias',
+        ),
       );
   }, [categories]);
 
