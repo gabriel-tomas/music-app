@@ -56,7 +56,9 @@ export default function Playlists({
                 to={`/playlist/${playlist.id}`}
               >
                 <div>
-                  <div className="container-img">
+                  <div
+                    className={`container-img ${!imgsLoaded ? 'loading-back' : ''}`}
+                  >
                     {playlist.images.length === 0 ? (
                       <IoDiscSharp />
                     ) : imgsLoaded ? (

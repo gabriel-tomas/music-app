@@ -39,6 +39,12 @@ export const ContainerPlaylistItem = styled(Link)`
     height: 100%;
     background-color: transparent;
 
+    &.loading-back {
+      background-color: ${colors.neutral1};
+      box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
+      border-radius: .6rem;
+    }
+
     img {
       border-radius: .6rem;
       width: 100%;
