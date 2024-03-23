@@ -64,6 +64,7 @@ export const ContainerAlbumItem = styled.div`
     svg {
       width: 100%;
       height: 100%;
+      padding: clamp(0.5rem, 0.368rem + 0.842vw, 1rem);
     }
   }
 
