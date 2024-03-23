@@ -1,12 +1,19 @@
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { RiAlbumLine } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
 import { ContainerAlbums, ContainerAlbumItem } from './styled';
 
+import colors from '../../config/colors';
+
 export default function Albums({ albums, slowAppearanceAnimation }) {
   const navigate = useNavigate();
+
+  const [imgsLoaded, setImgsLoaded] = useState(false);
 
   const handleRedirectToAlbum = (link) => {
     navigate(link);
@@ -15,6 +22,26 @@ export default function Albums({ albums, slowAppearanceAnimation }) {
   const handleArtistLinkClick = (event) => {
     event.stopPropagation();
   };
+
+  useEffect(() => {
+    const loadImage = (imageUrl) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = imageUrl;
+        loadImg.onload = () => resolve(imageUrl);
+
+        loadImg.onerror = (err) => reject(err);
+      });
+    };
+
+    Promise.all(
+      albums.map((album) => loadImage(getAlbumImageUrl(album.images, 640))),
+    )
+      .then(() => setImgsLoaded(true))
+      .catch(() => toast.error('Ocorreu um erro ao tentar carregar os albums'));
+  }, []);
+
+  console.log(imgsLoaded);
 
   return (
     <ContainerAlbums
@@ -30,10 +57,14 @@ export default function Albums({ albums, slowAppearanceAnimation }) {
               >
                 <div>
                   <div className="container-img">
-                    <img
-                      src={getAlbumImageUrl(album.images, 640)}
-                      alt={album.name}
-                    />
+                    {imgsLoaded ? (
+                      <img
+                        src={getAlbumImageUrl(album.images, 640)}
+                        alt={album.name}
+                      />
+                    ) : (
+                      <RiAlbumLine color={colors.neutral7} />
+                    )}
                   </div>
                   <div className="secondary-content">
                     <span className="album-name">{album.name}</span>
