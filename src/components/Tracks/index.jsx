@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -36,6 +37,8 @@ export default function Tracks({
     (state) => state.musicPlayer.currentState,
   );
 
+  const [imgsLoaded, setImgsLoaded] = useState(false);
+
   const handleSetMusic = (previewUrl, trackImg, trackTitle, trackArtists) => {
     if (!previewUrl.match(/https:|mp3-preview/i)) {
       toast.info('Preview da música não disponível');
@@ -60,6 +63,28 @@ export default function Tracks({
       dispatch(musicPlayerActions.setActualMusicState('playing'));
     }
   };
+
+  useEffect(() => {
+    const loadImage = (imageUrl) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = imageUrl;
+        loadImg.onload = () => resolve(imageUrl);
+
+        loadImg.onerror = (err) => reject(err);
+      });
+    };
+
+    Promise.all(
+      tracks.map((track) =>
+        loadImage(getAlbumImageUrl(track.album.images, 300)),
+      ),
+    )
+      .then(() => setImgsLoaded(true))
+      .catch(() =>
+        toast.error('Ocorreu um erro ao tentar carregar a imagem dos albums'),
+      );
+  }, []);
 
   return (
     tracks &&
