@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { RiAlbumLine } from 'react-icons/ri';
 import { FaMusic } from 'react-icons/fa';
 
 import * as dataSaverActions from '../../store/modules/dataSaver/actions';
