@@ -73,7 +73,7 @@ export const ContainerCategoryItem = styled(Link)`
     svg {
       width: 100%;
       height: 100%;
-      padding: clamp(2.5rem, 2.368rem + 0.842vw, 3rem);
+      padding: clamp(3.4rem, 3.295rem + 0.674vw, 3.8rem);
     }
   }
 
