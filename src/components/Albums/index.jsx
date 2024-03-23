@@ -56,7 +56,9 @@ export default function Albums({ albums, slowAppearanceAnimation }) {
                 onClick={() => handleRedirectToAlbum(`/album/${album.id}`)}
               >
                 <div>
-                  <div className="container-img">
+                  <div
+                    className={`container-img ${!imgsLoaded ? 'loading-back' : ''}`}
+                  >
                     {imgsLoaded ? (
                       <img
                         src={getAlbumImageUrl(album.images, 640)}
