@@ -33,7 +33,7 @@ export const ContainerArtist = styled.div`
     align-items: center;
     justify-content: center;
     box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
-    background-color: ${colors.secondary['50']};
+    background-color: ${colors.neutral3};
 
     @media screen and (min-width: 1200px) {
       width: 155px;
@@ -150,13 +150,28 @@ export const ContainerArtist = styled.div`
       width: 100%;
       height: 100%;
       object-fit: cover;
+      animation: opacityEffect .20s forwards;
+    }
+
+    svg.non-img-artist {
+      animation: opacityEffect .20s forwards;
     }
 
     svg {
       width: 50%;
       height: 50%;
     }
-  }
+
+    @keyframes opacityEffect {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+}
 
   .container-info-bottom {
     display: flex;
