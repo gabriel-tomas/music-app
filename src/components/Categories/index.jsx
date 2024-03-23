@@ -94,8 +94,6 @@ export default function Categories({ slowAppearanceAnimation }) {
       );
   }, [categories]);
 
-  console.log(categories);
-
   return (
     <>
       {categories && (

@@ -41,6 +41,8 @@ export const ContainerTrack = styled.div`
       .container-img {
         height: 100%;
         position: relative;
+        border-radius: .4rem;
+        background-color: ${colors.neutral3};
 
         .hover-img {
           position: absolute;
@@ -57,6 +59,23 @@ export const ContainerTrack = styled.div`
           border-radius: .4rem;
           height: 100%;
           object-fit: contain;
+          animation: opacityEffect .15s forwards;
+
+          @keyframes opacityEffect {
+            from {
+              opacity: 0;
+            }
+
+            to {
+              opacity: 1;
+            }
+          }
+        }
+
+        svg.default-img {
+          width: 100%;
+          height: 100%;
+          padding: clamp(0.5rem, 0.368rem + 0.842vw, 1rem);
         }
       }
     }
@@ -230,6 +249,8 @@ export const ContainerTrackContent = styled.div`
       .container-img {
         height: 100%;
         position: relative;
+        border-radius: .4rem;
+        background-color: ${colors.neutral3};
 
         .hover-img {
           position: absolute;
@@ -246,6 +267,23 @@ export const ContainerTrackContent = styled.div`
           border-radius: .4rem;
           height: 100%;
           object-fit: contain;
+          animation: opacityEffect .15s forwards;
+
+          @keyframes opacityEffect {
+            from {
+              opacity: 0;
+            }
+
+            to {
+              opacity: 1;
+            }
+          }
+        }
+
+        svg.default-img {
+          width: 100%;
+          height: 100%;
+          padding: clamp(0.5rem, 0.368rem + 0.842vw, 1rem);
         }
       }
     }

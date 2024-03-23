@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaPlay, FaStop } from 'react-icons/fa';
+import { IoMdMusicalNote } from 'react-icons/io';
 
 import TrackOptions from './TrackOptions';
 
@@ -82,7 +83,7 @@ export default function Tracks({
     )
       .then(() => setImgsLoaded(true))
       .catch(() =>
-        toast.error('Ocorreu um erro ao tentar carregar a imagem dos albums'),
+        toast.error('Ocorreu um erro ao tentar carregar a imagem das músicas'),
       );
   }, []);
 
@@ -130,10 +131,17 @@ export default function Tracks({
                       <FaPlay color={colors.neutral5Light} />
                     )}
                   </div>
-                  <img
-                    src={getAlbumImageUrl(track.album.images, 300)}
-                    alt={track.name}
-                  />
+                  {imgsLoaded ? (
+                    <img
+                      src={getAlbumImageUrl(track.album.images, 300)}
+                      alt={track.name}
+                    />
+                  ) : (
+                    <IoMdMusicalNote
+                      className="default-img"
+                      color={colors.neutral7}
+                    />
+                  )}
                 </div>
               </button>
               <div className="track-info">
@@ -208,10 +216,17 @@ export default function Tracks({
                             <FaPlay color={colors.neutral5Light} />
                           )}
                         </div>
-                        <img
-                          src={getAlbumImageUrl(track.album.images, 300)}
-                          alt={track.name}
-                        />
+                        {imgsLoaded ? (
+                          <img
+                            src={getAlbumImageUrl(track.album.images, 300)}
+                            alt={track.name}
+                          />
+                        ) : (
+                          <IoMdMusicalNote
+                            className="default-img"
+                            color={colors.neutral7}
+                          />
+                        )}
                       </div>
                     </button>
                     <div className="track-info">
