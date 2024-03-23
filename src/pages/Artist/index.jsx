@@ -33,6 +33,14 @@ export default function Artist() {
   const [imgsLoaded, setImgsLoaded] = useState(false);
 
   useEffect(() => {
+    setArtist(null);
+    setArtistTopTracks(null);
+    setArtistAlbums(null);
+    setArtistAlbumsAppearsOn(null);
+    setImgsLoaded(false);
+  }, [artistId]);
+
+  useEffect(() => {
     const requestArtistItems = async () => {
       setIsLoading(true);
       try {
