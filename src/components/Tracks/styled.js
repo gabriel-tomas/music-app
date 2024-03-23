@@ -59,17 +59,6 @@ export const ContainerTrack = styled.div`
           border-radius: .4rem;
           height: 100%;
           object-fit: contain;
-          animation: opacityEffect .15s forwards;
-
-          @keyframes opacityEffect {
-            from {
-              opacity: 0;
-            }
-
-            to {
-              opacity: 1;
-            }
-          }
         }
 
         svg.default-img {
@@ -267,17 +256,6 @@ export const ContainerTrackContent = styled.div`
           border-radius: .4rem;
           height: 100%;
           object-fit: contain;
-          animation: opacityEffect .15s forwards;
-
-          @keyframes opacityEffect {
-            from {
-              opacity: 0;
-            }
-
-            to {
-              opacity: 1;
-            }
-          }
         }
 
         svg.default-img {
