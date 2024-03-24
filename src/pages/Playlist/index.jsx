@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { get } from 'lodash';
 import { toast } from 'react-toastify';
 
 import getOnlyTrackFromTracks from '../../utils/musicUtils/getOnlyTrackFromTracks';
+import checkForFalsyTracks from '../../utils/musicUtils/checkForFalsyTracks';
 
 import getPlaylist from '../../services/spotifyRequest/playlists/playlist';
 
@@ -61,7 +63,9 @@ export default function Playlist() {
           </ContainerPlaylistInfo>
           <ContainerPlaylistTracks className="container-playlist-tracks">
             <Tracks
-              tracks={getOnlyTrackFromTracks(playlist.tracks.items)}
+              tracks={checkForFalsyTracks(
+                getOnlyTrackFromTracks(get(playlist, 'tracks.items', [])),
+              )}
               numbered
             />
           </ContainerPlaylistTracks>
