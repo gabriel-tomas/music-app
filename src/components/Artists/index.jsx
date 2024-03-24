@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { FaUserAlt } from 'react-icons/fa';
-import { get } from 'lodash';
 import { toast } from 'react-toastify';
 
 import colors from '../../config/colors';
@@ -11,14 +10,8 @@ import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
 import { ContainerArtists, ContainerArtist } from './styled';
 
-export default function Artists({ artists }) {
-  const navigate = useNavigate();
-
+const ArtistImage = ({ artistImages, artistName }) => {
   const [imgsLoaded, setImgsLoaded] = useState(false);
-
-  const handleRedirectToArtist = (link) => {
-    navigate(link);
-  };
 
   useEffect(() => {
     const loadImage = (imageUrl) => {
@@ -31,17 +24,35 @@ export default function Artists({ artists }) {
       });
     };
 
-    Promise.all(
-      artists.map((artist) => {
-        if (get(artist, 'artist.images', []).length === 0) return;
-        return loadImage(getAlbumImageUrl(artist.images, 640));
-      }),
-    )
+    if (artistImages.length === 0) return;
+
+    loadImage(getAlbumImageUrl(artistImages, 640))
       .then(() => setImgsLoaded(true))
       .catch(() =>
         toast.error('Ocorreu um erro ao tentar carregar a imagem dos artistas'),
       );
   }, []);
+
+  return artistImages.length === 0 ? (
+    <FaUserAlt className="non-img-artist" color={colors.secondary['950']} />
+  ) : imgsLoaded ? (
+    <img src={getAlbumImageUrl(artistImages, 640)} alt={artistName} />
+  ) : (
+    <FaUserAlt className="default-img" color={colors.neutral7} />
+  );
+};
+
+ArtistImage.propTypes = {
+  artistImages: PropTypes.arrayOf(PropTypes.object).isRequired,
+  artistName: PropTypes.string.isRequired,
+};
+
+export default function Artists({ artists }) {
+  const navigate = useNavigate();
+
+  const handleRedirectToArtist = (link) => {
+    navigate(link);
+  };
 
   return (
     <ContainerArtists>
@@ -54,22 +65,10 @@ export default function Artists({ artists }) {
                 onClick={() => handleRedirectToArtist(`/artist/${artist.id}`)}
               >
                 <div className="container-img">
-                  {artist.images.length === 0 && imgsLoaded ? (
-                    <FaUserAlt
-                      className="non-img-artist"
-                      color={colors.secondary['950']}
-                    />
-                  ) : imgsLoaded ? (
-                    <img
-                      src={getAlbumImageUrl(artist.images, 640)}
-                      alt={artist.name}
-                    />
-                  ) : (
-                    <FaUserAlt
-                      className="default-img"
-                      color={colors.neutral7}
-                    />
-                  )}
+                  <ArtistImage
+                    artistImages={artist.images}
+                    artistName={artist.name}
+                  />
                 </div>
                 <div className="container-info-bottom">
                   <span className="artist-name">{artist.name}</span>
