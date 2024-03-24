@@ -20,6 +20,41 @@ import {
   ContainerCategoryItem,
 } from './styled';
 
+const CategoryImage = ({ categoryIcons, categoryName }) => {
+  const [imgsLoaded, setImgsLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadImage = (imageUrl) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = imageUrl;
+        loadImg.onload = () => resolve(imageUrl);
+
+        loadImg.onerror = (err) => reject(err);
+      });
+    };
+
+    loadImage(getAlbumImageUrl(categoryIcons, 274))
+      .then(() => setImgsLoaded(true))
+      .catch(() =>
+        toast.error(
+          'Ocorreu um erro ao tentar carregar a imagem das categorias',
+        ),
+      );
+  }, []);
+
+  return imgsLoaded ? (
+    <img src={getAlbumImageUrl(categoryIcons, 274)} alt={categoryName} />
+  ) : (
+    <FaMusic color={colors.neutral7} />
+  );
+};
+
+CategoryImage.propTypes = {
+  categoryIcons: PropTypes.arrayOf(PropTypes.object).isRequired,
+  categoryName: PropTypes.string.isRequired,
+};
+
 export default function Categories({ slowAppearanceAnimation }) {
   const dispatch = useDispatch();
 
@@ -29,7 +64,6 @@ export default function Categories({ slowAppearanceAnimation }) {
 
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState(null);
-  const [imgsLoaded, setImgsLoaded] = useState(false);
 
   useEffect(() => {
     const tryGetCategoriesSavedData = () => {
@@ -69,31 +103,6 @@ export default function Categories({ slowAppearanceAnimation }) {
     tryGetCategoriesSavedData() && requestSeveralCategories();
   }, []);
 
-  useEffect(() => {
-    if (!categories) return;
-    const loadImage = (imageUrl) => {
-      return new Promise((resolve, reject) => {
-        const loadImg = new Image();
-        loadImg.src = imageUrl;
-        loadImg.onload = () => resolve(imageUrl);
-
-        loadImg.onerror = (err) => reject(err);
-      });
-    };
-
-    Promise.all(
-      categories.map((category) =>
-        loadImage(getAlbumImageUrl(category.icons, 274)),
-      ),
-    )
-      .then(() => setImgsLoaded(true))
-      .catch(() =>
-        toast.error(
-          'Ocorreu um erro ao tentar carregar a imagem das categorias',
-        ),
-      );
-  }, [categories]);
-
   return (
     <>
       {categories && (
@@ -109,17 +118,11 @@ export default function Categories({ slowAppearanceAnimation }) {
                     to={`/category/${category.id}`}
                     className="category-link"
                   >
-                    <div
-                      className={`container-img ${!imgsLoaded ? 'loading-back' : ''}`}
-                    >
-                      {imgsLoaded ? (
-                        <img
-                          src={getAlbumImageUrl(category.icons, 274)}
-                          alt={category.name}
-                        />
-                      ) : (
-                        <FaMusic color={colors.neutral7} />
-                      )}
+                    <div className="container-img">
+                      <CategoryImage
+                        categoryIcons={category.icons}
+                        categoryName={category.name}
+                      />
                     </div>
                     <div className="container-bottom">
                       <span className="category-title">{category.name}</span>

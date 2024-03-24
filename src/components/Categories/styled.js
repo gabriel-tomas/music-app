@@ -41,12 +41,6 @@ export const ContainerCategoryItem = styled(Link)`
     width: 100%;
     background-color: transparent;
 
-    &.loading-back {
-      background-color: ${colors.neutral1};
-      box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
-      border-radius: .6rem;
-    }
-
     img {
       border-radius: .6rem;
       width: 100%;
@@ -74,6 +68,9 @@ export const ContainerCategoryItem = styled(Link)`
       width: 100%;
       height: 100%;
       padding: clamp(3.4rem, 3.295rem + 0.674vw, 3.8rem);
+      background-color: ${colors.neutral1};
+      box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
+      border-radius: .6rem;
     }
   }
 
