@@ -23,6 +23,39 @@ import {
   ContainerTrackContent,
 } from './styled';
 
+const TrackImage = ({ trackImages, trackName }) => {
+  const [imgsLoaded, setImgsLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadImage = (imageUrl) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = imageUrl;
+        loadImg.onload = () => resolve(imageUrl);
+
+        loadImg.onerror = (err) => reject(err);
+      });
+    };
+
+    loadImage(getAlbumImageUrl(trackImages, 300))
+      .then(() => setImgsLoaded(true))
+      .catch(() =>
+        toast.error('Ocorreu um erro ao tentar carregar a imagem das músicas'),
+      );
+  }, []);
+
+  return imgsLoaded ? (
+    <img src={getAlbumImageUrl(trackImages, 300)} alt={trackName} />
+  ) : (
+    <IoMdMusicalNote className="default-img" color={colors.neutral7} />
+  );
+};
+
+TrackImage.propTypes = {
+  trackImages: PropTypes.arrayOf(PropTypes.object),
+  trackName: PropTypes.string,
+};
+
 export default function Tracks({
   tracks,
   numbered,
@@ -37,8 +70,6 @@ export default function Tracks({
   const currentStateMusic = useSelector(
     (state) => state.musicPlayer.currentState,
   );
-
-  const [imgsLoaded, setImgsLoaded] = useState(false);
 
   const handleSetMusic = (previewUrl, trackImg, trackTitle, trackArtists) => {
     if (!previewUrl.match(/https:|mp3-preview/i)) {
@@ -64,28 +95,6 @@ export default function Tracks({
       dispatch(musicPlayerActions.setActualMusicState('playing'));
     }
   };
-
-  useEffect(() => {
-    const loadImage = (imageUrl) => {
-      return new Promise((resolve, reject) => {
-        const loadImg = new Image();
-        loadImg.src = imageUrl;
-        loadImg.onload = () => resolve(imageUrl);
-
-        loadImg.onerror = (err) => reject(err);
-      });
-    };
-
-    Promise.all(
-      tracks.map((track) =>
-        loadImage(getAlbumImageUrl(track.album.images, 300)),
-      ),
-    )
-      .then(() => setImgsLoaded(true))
-      .catch(() =>
-        toast.error('Ocorreu um erro ao tentar carregar a imagem das músicas'),
-      );
-  }, []);
 
   return (
     tracks &&
@@ -131,17 +140,10 @@ export default function Tracks({
                       <FaPlay color={colors.neutral5Light} />
                     )}
                   </div>
-                  {!imgsLoaded ? (
-                    <img
-                      src={getAlbumImageUrl(track.album.images, 300)}
-                      alt={track.name}
-                    />
-                  ) : (
-                    <IoMdMusicalNote
-                      className="default-img"
-                      color={colors.neutral7}
-                    />
-                  )}
+                  <TrackImage
+                    trackImages={track.album.images}
+                    trackName={track.name}
+                  />
                 </div>
               </button>
               <div className="track-info">
@@ -216,17 +218,10 @@ export default function Tracks({
                             <FaPlay color={colors.neutral5Light} />
                           )}
                         </div>
-                        {imgsLoaded ? (
-                          <img
-                            src={getAlbumImageUrl(track.album.images, 300)}
-                            alt={track.name}
-                          />
-                        ) : (
-                          <IoMdMusicalNote
-                            className="default-img"
-                            color={colors.neutral7}
-                          />
-                        )}
+                        <TrackImage
+                          trackImages={track.album.images}
+                          trackName={track.name}
+                        />
                       </div>
                     </button>
                     <div className="track-info">
