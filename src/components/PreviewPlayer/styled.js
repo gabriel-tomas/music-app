@@ -211,16 +211,12 @@ export const ContainerCurrentTrackInfo = styled.div`
     }
 
     .track-artists {
-      display: flex;
-      align-items: center;
-      width: 100%;
       white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
 
       a {
-        display: block;
         white-space: nowrap;
-        width: 100%;
         font-weight: normal;
         font-size: ${fontSizes.fontSizeBase};
         color: ${colors.text['950']};
