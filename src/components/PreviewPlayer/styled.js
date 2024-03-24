@@ -33,6 +33,10 @@ export const ContainerPlayer = styled.div`
     padding-inline: 13px;
   }
 
+  .play-pause-btn.disabled {
+    cursor: not-allowed;
+  }
+
   .container-duration-current-time {
     display: flex;
   }
@@ -175,6 +179,17 @@ export const ContainerCurrentTrackInfo = styled.div`
     img {
       height: 100%;
       border-radius: 5px;
+    }
+
+    svg {
+      width: max-content;
+      max-width: 58px;
+      height: 100%;
+      padding: .4rem;
+      aspect-ratio: 1 / 1;
+      background-color: ${colors.neutral1};
+      box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
+      border-radius:.6rem;
     }
   }
 

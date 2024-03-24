@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaPlay, FaStop, FaVolumeUp } from 'react-icons/fa';
+import { GrDisc } from 'react-icons/gr';
 import {
   IoVolumeHigh,
   IoVolumeMedium,
@@ -15,6 +16,8 @@ import * as actionsVolume from '../../store/modules/playerVolume/actions';
 import getSecondsToMinutes from '../../utils/musicUtils/getSecondsToMinutes';
 
 import { ContainerPlayer, ContainerCurrentTrackInfo } from './styled';
+
+import colors from '../../config/colors';
 
 const audioElement = new Audio();
 export default function PreviewPlayer() {
@@ -84,7 +87,7 @@ export default function PreviewPlayer() {
 
   return (
     <ContainerPlayer>
-      {trackImg && trackTitle && trackArtists && (
+      {trackImg && trackTitle && trackArtists ? (
         <ContainerCurrentTrackInfo
           className={`track-infos ${(userPlatform === 'Android') | (userPlatform === 'iPhone') && 'mobile'}`}
         >
@@ -108,10 +111,27 @@ export default function PreviewPlayer() {
             </div>
           </div>
         </ContainerCurrentTrackInfo>
+      ) : (
+        <ContainerCurrentTrackInfo
+          className={`track-infos without-track ${(userPlatform === 'Android') | (userPlatform === 'iPhone') && 'mobile'}`}
+        >
+          <div className="container-img">
+            <GrDisc color={colors.primary['950']} />
+          </div>
+          <div className="container-right-info">
+            <div className="track-title">
+              <span>Nada tocando</span>
+            </div>
+            <div className="track-artists">
+              <span>Desconhecido</span>
+            </div>
+          </div>
+        </ContainerCurrentTrackInfo>
       )}
       <button
-        className={`play-pause-btn ${(userPlatform === 'Android') | (userPlatform === 'iPhone') && 'mobile'}`}
+        className={`play-pause-btn ${(userPlatform === 'Android') | (userPlatform === 'iPhone') ? 'mobile' : ''} ${!previewUrl ? 'disabled' : ''}`}
         onClick={handlePlayPause}
+        disabled={!previewUrl ? true : false}
       >
         {currentStateMusic === 'playing' ? <FaStop /> : <FaPlay />}
       </button>
