@@ -131,7 +131,7 @@ export default function Tracks({
                       <FaPlay color={colors.neutral5Light} />
                     )}
                   </div>
-                  {imgsLoaded ? (
+                  {!imgsLoaded ? (
                     <img
                       src={getAlbumImageUrl(track.album.images, 300)}
                       alt={track.name}

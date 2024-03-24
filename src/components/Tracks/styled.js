@@ -62,7 +62,7 @@ export const ContainerTrack = styled.div`
         }
 
         svg.default-img {
-          width: 100%;
+          width: 56px;
           height: 100%;
           padding: clamp(0.5rem, 0.368rem + 0.842vw, 1rem);
         }
@@ -259,7 +259,7 @@ export const ContainerTrackContent = styled.div`
         }
 
         svg.default-img {
-          width: 100%;
+          width: 56px;
           height: 100%;
           padding: clamp(0.5rem, 0.368rem + 0.842vw, 1rem);
         }
