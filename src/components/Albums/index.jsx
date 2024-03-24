@@ -10,25 +10,8 @@ import { ContainerAlbums, ContainerAlbumItem } from './styled';
 
 import colors from '../../config/colors';
 
-const AlbumImage = ({ albumImages, albumName }) => {};
-
-AlbumImage.propTypes = {
-  albumImages: PropTypes.arrayOf(PropTypes.object).isRequired,
-  albumName: PropTypes.string.isRequired,
-}
-
-export default function Albums({ albums, slowAppearanceAnimation }) {
-  const navigate = useNavigate();
-
+const AlbumImage = ({ albumImages, albumName }) => {
   const [imgsLoaded, setImgsLoaded] = useState(false);
-
-  const handleRedirectToAlbum = (link) => {
-    navigate(link);
-  };
-
-  const handleArtistLinkClick = (event) => {
-    event.stopPropagation();
-  };
 
   useEffect(() => {
     const loadImage = (imageUrl) => {
@@ -41,14 +24,35 @@ export default function Albums({ albums, slowAppearanceAnimation }) {
       });
     };
 
-    Promise.all(
-      albums.map((album) => loadImage(getAlbumImageUrl(album.images, 640))),
-    )
+    loadImage(getAlbumImageUrl(albumImages, 640))
       .then(() => setImgsLoaded(true))
       .catch(() =>
         toast.error('Ocorreu um erro ao tentar carregar a imagem dos albums'),
       );
   }, []);
+
+  return imgsLoaded ? (
+    <img src={getAlbumImageUrl(albumImages, 640)} alt={albumName} />
+  ) : (
+    <RiAlbumLine color={colors.neutral7} />
+  );
+};
+
+AlbumImage.propTypes = {
+  albumImages: PropTypes.arrayOf(PropTypes.object).isRequired,
+  albumName: PropTypes.string.isRequired,
+};
+
+export default function Albums({ albums, slowAppearanceAnimation }) {
+  const navigate = useNavigate();
+
+  const handleRedirectToAlbum = (link) => {
+    navigate(link);
+  };
+
+  const handleArtistLinkClick = (event) => {
+    event.stopPropagation();
+  };
 
   return (
     <ContainerAlbums
@@ -63,17 +67,11 @@ export default function Albums({ albums, slowAppearanceAnimation }) {
                 onClick={() => handleRedirectToAlbum(`/album/${album.id}`)}
               >
                 <div>
-                  <div
-                    className={`container-img ${!imgsLoaded ? 'loading-back' : ''}`}
-                  >
-                    {imgsLoaded ? (
-                      <img
-                        src={getAlbumImageUrl(album.images, 640)}
-                        alt={album.name}
-                      />
-                    ) : (
-                      <RiAlbumLine color={colors.neutral7} />
-                    )}
+                  <div className="container-img">
+                    <AlbumImage
+                      albumImages={album.images}
+                      albumName={album.name}
+                    />
                   </div>
                   <div className="secondary-content">
                     <span className="album-name">{album.name}</span>
