@@ -39,18 +39,14 @@ export const ContainerPlaylistItem = styled(Link)`
     height: 100%;
     background-color: transparent;
 
-    &.loading-back {
-      background-color: ${colors.neutral1};
-      box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
-      border-radius: .6rem;
-    }
-
     img {
       border-radius: .6rem;
       width: 100%;
       height: 100%;
       object-fit: contain;
       box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
       animation: opacityEffect .20s forwards;
 
       @media screen and (max-width: 600px) {
@@ -72,6 +68,9 @@ export const ContainerPlaylistItem = styled(Link)`
       width: 100%;
       height: 100%;
       padding: clamp(2.4rem, 2.295rem + 0.674vw, 2.8rem);
+      background-color: ${colors.neutral1};
+      box-shadow: 0 5px 5px rgba(0,0,0, 0.17);
+      border-radius: .6rem;
     }
   }
 

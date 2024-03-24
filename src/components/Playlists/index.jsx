@@ -11,12 +11,7 @@ import { ContainerPlaylists, ContainerPlaylistItem } from './styled';
 
 import colors from '../../config/colors';
 
-export default function Playlists({
-  playlists,
-  showDescription,
-  showOwner,
-  slowAppearanceAnimation,
-}) {
+const PlaylistImage = ({ playlistImages, playlistName }) => {
   const [imgsLoaded, setImgsLoaded] = useState(false);
 
   useEffect(() => {
@@ -30,11 +25,7 @@ export default function Playlists({
       });
     };
 
-    Promise.all(
-      playlists.map((playlist) =>
-        loadImage(getAlbumImageUrl(playlist.images, 300)),
-      ),
-    )
+    loadImage(getAlbumImageUrl(playlistImages, 300))
       .then(() => setImgsLoaded(true))
       .catch(() =>
         toast.error(
@@ -43,6 +34,26 @@ export default function Playlists({
       );
   }, []);
 
+  return playlistImages.length === 0 ? (
+    <IoDiscSharp />
+  ) : imgsLoaded ? (
+    <img src={getAlbumImageUrl(playlistImages, 300)} alt={playlistName} />
+  ) : (
+    <RiAlbumLine color={colors.neutral7} />
+  );
+};
+
+PlaylistImage.propTypes = {
+  playlistImages: PropTypes.arrayOf(PropTypes.object).isRequired,
+  playlistName: PropTypes.string.isRequired,
+};
+
+export default function Playlists({
+  playlists,
+  showDescription,
+  showOwner,
+  slowAppearanceAnimation,
+}) {
   return (
     <ContainerPlaylists
       className={`${slowAppearanceAnimation && 'slow-appearance-animation'}`}
@@ -56,19 +67,11 @@ export default function Playlists({
                 to={`/playlist/${playlist.id}`}
               >
                 <div>
-                  <div
-                    className={`container-img ${!imgsLoaded ? 'loading-back' : ''}`}
-                  >
-                    {playlist.images.length === 0 ? (
-                      <IoDiscSharp />
-                    ) : imgsLoaded ? (
-                      <img
-                        src={getAlbumImageUrl(playlist.images, 300)}
-                        alt={playlist.name}
-                      />
-                    ) : (
-                      <RiAlbumLine color={colors.neutral7} />
-                    )}
+                  <div className="container-img">
+                    <PlaylistImage
+                      playlistImages={playlist.images}
+                      playlistName={playlist.name}
+                    />
                   </div>
                   <div className="secondary-content">
                     <span className="playlist-name">{playlist.name}</span>
