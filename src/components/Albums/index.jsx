@@ -10,6 +10,13 @@ import { ContainerAlbums, ContainerAlbumItem } from './styled';
 
 import colors from '../../config/colors';
 
+const AlbumImage = ({ albumImages, albumName }) => {};
+
+AlbumImage.propTypes = {
+  albumImages: PropTypes.arrayOf(PropTypes.object).isRequired,
+  albumName: PropTypes.string.isRequired,
+}
+
 export default function Albums({ albums, slowAppearanceAnimation }) {
   const navigate = useNavigate();
 

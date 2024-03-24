@@ -52,8 +52,8 @@ const TrackImage = ({ trackImages, trackName }) => {
 };
 
 TrackImage.propTypes = {
-  trackImages: PropTypes.arrayOf(PropTypes.object),
-  trackName: PropTypes.string,
+  trackImages: PropTypes.arrayOf(PropTypes.object).isRequired,
+  trackName: PropTypes.string.isRequired,
 };
 
 export default function Tracks({
