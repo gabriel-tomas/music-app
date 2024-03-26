@@ -49,6 +49,9 @@ export default function PreviewPlayer() {
       if (!previewUrl.match(/https:|mp3-preview/i)) return;
       if (currentStateMusic === 'playing') {
         if (audioElement.src !== previewUrl) audioElement.src = previewUrl;
+        if (currentTime !== 0 && duration !== 0 && currentTime === duration) {
+          audioElement.currentTime = 0;
+        }
         await audioElement.play();
         audioElement.addEventListener('timeupdate', () => {
           document.querySelector('.music-range').style.width = `${
@@ -60,9 +63,6 @@ export default function PreviewPlayer() {
             getSecondsToMinutes(audioElement.currentTime.toFixed(0)),
           );
         });
-        /* audioElement.addEventListener('ended', () => {
-          dispatch(actions.setActualMusicState('none'));
-        }); */
         setDuration(getSecondsToMinutes(audioElement.duration.toFixed(0)));
       } else {
         audioElement.pause();

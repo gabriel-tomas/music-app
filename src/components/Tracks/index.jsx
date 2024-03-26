@@ -80,10 +80,10 @@ export default function Tracks({
     trackArtists,
     trackIndex,
   ) => {
-    /*  if (previewUrl === currentPreviewUrl) {
+    if (previewUrl === currentPreviewUrl) {
       dispatch(musicPlayerActions.setActualMusicState('playing'));
       return;
-    } */
+    }
     if (!previewUrl.match(/https:|mp3-preview/i)) {
       toast.info('Preview da música não disponível');
       return;
