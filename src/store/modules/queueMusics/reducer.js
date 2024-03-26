@@ -9,7 +9,6 @@ export default (state = initialState, action) => {
     case types.SET_QUEUE_TRACKS: {
       const newState = { ...state };
       newState.queueTracks = action.payload.queueTracks;
-      console.log(newState);
       return newState;
     }
 

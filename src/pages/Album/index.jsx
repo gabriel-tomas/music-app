@@ -15,8 +15,10 @@ import getAlbumTracks from '../../services/spotifyRequest/albums/albumTracks';
 import addAlbumToTrack from '../../utils/addAlbumToTrack';
 
 import * as currentMusicActions from '../../store/modules/currentMusic/actions';
+import * as queueTracksActions from '../../store/modules/queueMusics/actions';
 import * as musicPlayerActions from '../../store/modules/musicPlayer/actions';
 
+import getDataTracksQueue from '../../utils/musicUtils/getDataTracksQueue';
 import getMinutesAndSeconds from '../../utils/musicUtils/getMinutesAndSeconds';
 
 import {
@@ -65,7 +67,17 @@ export default function Album() {
     requestAlbum();
   }, [albumId, state]);
 
-  const handleSetMusic = (previewUrl, trackImg, trackTitle, trackArtists) => {
+  const handleSetMusic = (
+    previewUrl,
+    trackImg,
+    trackTitle,
+    trackArtists,
+    trackIndex,
+  ) => {
+    if (previewUrl === currentPreviewUrl) {
+      dispatch(musicPlayerActions.setActualMusicState('playing'));
+      return;
+    }
     if (!previewUrl.match(/https:|mp3-preview/i)) {
       toast.info('Preview da música não disponível');
       return;
@@ -76,6 +88,11 @@ export default function Album() {
         trackImg,
         trackTitle,
         trackArtists,
+      }),
+    );
+    dispatch(
+      queueTracksActions.setQueueTracks({
+        queueTracks: getDataTracksQueue(album.tracks.items, trackIndex),
       }),
     );
     dispatch(musicPlayerActions.setActualMusicState('playing'));
@@ -128,7 +145,7 @@ export default function Album() {
           </ContainerAlbumInfo>
           <ContainerAlbumTracks>
             <ol>
-              {album.tracks.items.map((trackItem) => (
+              {album.tracks.items.map((trackItem, index) => (
                 <ContainerAlbumTrack
                   key={trackItem.id}
                   onClick={() =>
@@ -140,6 +157,7 @@ export default function Album() {
                           album.images[0].url,
                           trackItem.name,
                           trackItem.artists,
+                          index,
                         )
                   }
                 >
