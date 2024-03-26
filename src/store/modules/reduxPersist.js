@@ -6,7 +6,7 @@ export default (reducers) => {
     {
       key: 'Music-App',
       storage,
-      whitelist: ['currentMusic', 'playerVolume', 'auth'],
+      whitelist: ['currentMusic', 'queueMusics', 'playerVolume', 'auth'],
     },
     reducers,
   );

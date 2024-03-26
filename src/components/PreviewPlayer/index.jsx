@@ -12,6 +12,8 @@ import {
 } from 'react-icons/io5';
 
 import * as actions from '../../store/modules/musicPlayer/actions';
+import * as currentMusicActions from '../../store/modules/currentMusic/actions';
+import * as queueTracksActions from '../../store/modules/queueMusics/actions';
 import * as actionsVolume from '../../store/modules/playerVolume/actions';
 import getSecondsToMinutes from '../../utils/musicUtils/getSecondsToMinutes';
 
@@ -36,6 +38,7 @@ export default function PreviewPlayer() {
     (state) => state.musicPlayer.currentState,
   );
   const userPlatform = useSelector((state) => state.userPlatform.userPlatform);
+  const queueTracks = useSelector((state) => state.queueMusics.queueTracks);
   const [currentTime, setCurrentTime] = useState(0);
   /* const [volume, setVolume] = useState(0.3); */
   const volume = useSelector((state) => state.playerVolume.playerVolume);
@@ -57,9 +60,9 @@ export default function PreviewPlayer() {
             getSecondsToMinutes(audioElement.currentTime.toFixed(0)),
           );
         });
-        audioElement.addEventListener('ended', () => {
+        /* audioElement.addEventListener('ended', () => {
           dispatch(actions.setActualMusicState('none'));
-        });
+        }); */
         setDuration(getSecondsToMinutes(audioElement.duration.toFixed(0)));
       } else {
         audioElement.pause();
@@ -71,6 +74,29 @@ export default function PreviewPlayer() {
   useEffect(() => {
     audioElement.volume = volume;
   }, [volume]);
+
+  useEffect(() => {
+    if (currentTime !== 0 && duration !== 0 && currentTime === duration) {
+      if (queueTracks.length > 0) {
+        setTimeout(() => {
+          dispatch(
+            currentMusicActions.setCurrentMusic({
+              previewUrl: queueTracks[0].previewUrl,
+              trackImg: queueTracks[0].trackImg,
+              trackTitle: queueTracks[0].trackTitle,
+              trackArtists: queueTracks[0].trackArtists,
+            }),
+          );
+          dispatch(queueTracksActions.shiftQueueTracks());
+          dispatch(actions.setActualMusicState('playing'));
+        }, 300);
+
+        dispatch(actions.setActualMusicState('none'));
+      } else {
+        dispatch(actions.setActualMusicState('none'));
+      }
+    }
+  }, [currentTime]);
 
   const handlePlayPause = () => {
     if (currentStateMusic === 'playing') {

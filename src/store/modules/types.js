@@ -5,6 +5,10 @@ export const SET_STOP_MUSIC = 'SET_STOP_MUSIC';
 export const SET_ACTUAL_MUSIC_STATE = 'SET_ACTUAL_MUSIC_STATE';
 export const SET_VOLUME = 'SET_VOLUME';
 
+// Queue Types
+export const SET_QUEUE_TRACKS = 'SET_QUEUE_TRACKS';
+export const SHIFT_QUEUE_TRACKS = 'SHIFT_QUEUE_TRACKS';
+
 // Data saver types
 export const SAVE_DATA = 'SAVE_DATA';
 

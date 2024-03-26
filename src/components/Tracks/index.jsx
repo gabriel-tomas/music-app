@@ -9,7 +9,9 @@ import { IoMdMusicalNote } from 'react-icons/io';
 import TrackOptions from './TrackOptions';
 
 import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
+import getDataTracksQueue from '../../utils/musicUtils/getDataTracksQueue';
 
+import * as queueTracksActions from '../../store/modules/queueMusics/actions';
 import * as currentMusicActions from '../../store/modules/currentMusic/actions';
 import * as musicPlayerActions from '../../store/modules/musicPlayer/actions';
 import colors from '../../config/colors';
@@ -71,7 +73,17 @@ export default function Tracks({
     (state) => state.musicPlayer.currentState,
   );
 
-  const handleSetMusic = (previewUrl, trackImg, trackTitle, trackArtists) => {
+  const handleSetMusic = (
+    previewUrl,
+    trackImg,
+    trackTitle,
+    trackArtists,
+    trackIndex,
+  ) => {
+    /*  if (previewUrl === currentPreviewUrl) {
+      dispatch(musicPlayerActions.setActualMusicState('playing'));
+      return;
+    } */
     if (!previewUrl.match(/https:|mp3-preview/i)) {
       toast.info('Preview da música não disponível');
       return;
@@ -82,6 +94,11 @@ export default function Tracks({
         trackImg,
         trackTitle,
         trackArtists,
+      }),
+    );
+    dispatch(
+      queueTracksActions.setQueueTracks({
+        queueTracks: getDataTracksQueue(tracks, trackIndex),
       }),
     );
     dispatch(musicPlayerActions.setActualMusicState('playing'));
@@ -100,7 +117,7 @@ export default function Tracks({
     tracks &&
     (!numbered ? (
       <ContainerTracks>
-        {tracks.map((track) => (
+        {tracks.map((track, index) => (
           <ContainerTrack
             key={track.id}
             onClick={() => {
@@ -112,6 +129,7 @@ export default function Tracks({
                     getAlbumImageUrl(track.album.images, 300),
                     track.name,
                     track.artists,
+                    index,
                   );
             }}
           >
@@ -128,6 +146,7 @@ export default function Tracks({
                         getAlbumImageUrl(track.album.images, 300),
                         track.name,
                         track.artists,
+                        index,
                       );
                 }}
               >
@@ -176,7 +195,7 @@ export default function Tracks({
     ) : (
       <ContainerTracksOl>
         {tracks.map(
-          (track) =>
+          (track, index) =>
             track && (
               <ContainerTrackLi
                 key={track.id}
@@ -189,6 +208,7 @@ export default function Tracks({
                         getAlbumImageUrl(track.album.images, 300),
                         track.name,
                         track.artists,
+                        index,
                       );
                 }}
               >
@@ -206,6 +226,7 @@ export default function Tracks({
                               getAlbumImageUrl(track.album.images, 300),
                               track.name,
                               track.artists,
+                              index,
                             );
                       }}
                     >
