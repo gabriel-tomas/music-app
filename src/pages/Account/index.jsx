@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 
 import Form from './Form';
 
