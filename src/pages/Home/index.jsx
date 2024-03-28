@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 import getAlbumsReleases from '../../services/spotifyRequest/albums/albumsRelease';
 import getFeaturedPlaylists from '../../services/spotifyRequest/playlists/getFeaturedPlaylists';
 
+import defineQuantityItems from '../../utils/defineQuantityItems';
+
 import * as dataSaverActions from '../../store/modules/dataSaver/actions';
 
 import { ContainerHome } from './styled';
@@ -36,8 +38,8 @@ export default function Home() {
       return requestHomeItems;
     };
 
-    const homeAlbumsReleases = async () => {
-      const response = await getAlbumsReleases();
+    const homeAlbumsReleases = async (limit) => {
+      const response = await getAlbumsReleases(limit);
       setAlbums(response);
       return response;
     };
@@ -51,8 +53,9 @@ export default function Home() {
     const requestHomeContent = async () => {
       setIsLoading(true);
       try {
-        const albumsResponse = await homeAlbumsReleases();
-        const playlistsResponse = await homeFeaturedPlaylists(5);
+        const limit = defineQuantityItems();
+        const albumsResponse = await homeAlbumsReleases(limit);
+        const playlistsResponse = await homeFeaturedPlaylists(limit);
         dispatch(
           dataSaverActions.setDataSave({
             type: 'home',

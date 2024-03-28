@@ -1,8 +1,8 @@
 import base, { requestSpotifyToken } from '../index';
 
-export default async () => {
+export default async (limit = 5) => {
   const token = await requestSpotifyToken();
-  const request = await base.get('/browse/new-releases?limit=5', {
+  const request = await base.get(`/browse/new-releases?limit=${limit}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
