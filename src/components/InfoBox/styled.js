@@ -8,13 +8,24 @@ export const Title = styled.h1`
   color: ${colors.text['950']};
   font-weight: bold;
   margin-bottom: 1.5rem;
-
 `;
 
 export const ContainerInfoBox = styled.div`
   @media screen and (max-height: 760px) {
     max-height: 250px;
     overflow-y: scroll;
+  }
+
+  @media screen and (max-height: 481px) {
+    max-height: 150px;
+  }
+
+  @media screen and (max-height: 348px) {
+    max-height: 100px;
+  }
+
+  @media screen and (max-height: 310px) {
+    max-height: 80px;
   }
 
   p {
