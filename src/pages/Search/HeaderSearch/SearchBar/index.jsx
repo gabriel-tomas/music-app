@@ -11,8 +11,9 @@ export default function Search() {
   const [searchString, setSearchString] = useState('');
 
   const handleSearchKeyEnter = (e) => {
+    if (!searchString.trim()) return;
     if (e.keyCode === 13) {
-      navigate(`/search?q=${encodeURIComponent(searchString)}`);
+      navigate(`/search?q=${encodeURIComponent(searchString.trim())}`);
     }
   };
 
