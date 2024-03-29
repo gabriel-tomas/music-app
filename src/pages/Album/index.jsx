@@ -136,7 +136,7 @@ export default function Album() {
     )
       .then(() => setImgsLoaded(true))
       .catch(() =>
-        toast.error('Ocorreu um erro ao tentar carregar a imagem do artista'),
+        toast.error('Ocorreu um erro ao tentar carregar a imagem do album'),
       );
   }, [album]);
 
