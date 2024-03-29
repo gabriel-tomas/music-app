@@ -118,7 +118,7 @@ export default function Tracks({
       <ContainerTracks>
         {tracks.map((track, index) => (
           <ContainerTrack
-            key={track.id}
+            key={index}
             onClick={() => {
               currentPreviewUrl === track.preview_url &&
               currentStateMusic === 'playing'
@@ -197,7 +197,7 @@ export default function Tracks({
           (track, index) =>
             track && (
               <ContainerTrackLi
-                key={track.id}
+                key={index}
                 onClick={() => {
                   currentPreviewUrl === track.preview_url &&
                   currentStateMusic === 'playing'
