@@ -20,6 +20,7 @@ export const ContainerInfoBox = styled.div`
   p {
     font-size: ${fontSizes.fontSizeBase};
     color: ${colors.text['950']};
+    line-height: 1.73rem;
   }
 
   p + p {
