@@ -2,7 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { FaPlay, FaStop } from 'react-icons/fa';
+import { FaPlay, FaStop, FaUserAlt } from 'react-icons/fa';
+
+import { get } from 'lodash';
 
 import colors from '../../config/colors';
 
@@ -13,6 +15,7 @@ import getAlbum from '../../services/spotifyRequest/albums/album';
 import getAlbumTracks from '../../services/spotifyRequest/albums/albumTracks';
 
 import addAlbumToTrack from '../../utils/addAlbumToTrack';
+import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
 import * as currentMusicActions from '../../store/modules/currentMusic/actions';
 import * as queueTracksActions from '../../store/modules/queueMusics/actions';
@@ -41,6 +44,7 @@ export default function Album() {
   const { state } = useLocation();
   const { id: albumId } = useParams();
   const [album, setAlbum] = useState(null);
+  const [imgsLoaded, setImgsLoaded] = useState(false);
 
   useEffect(() => {
     const requestAlbum = async () => {
@@ -111,6 +115,31 @@ export default function Album() {
     event.stopPropagation();
   };
 
+  useEffect(() => {
+    if (!album) return;
+
+    const loadImage = (imageUrl) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = imageUrl;
+        loadImg.onload = () => resolve(imageUrl);
+
+        loadImg.onerror = (err) => reject(err);
+      });
+    };
+
+    Promise.all(
+      (() => {
+        if (get(album, 'images', []).length === 0) return [];
+        return [loadImage(getAlbumImageUrl(album.images, 640))];
+      })(),
+    )
+      .then(() => setImgsLoaded(true))
+      .catch(() =>
+        toast.error('Ocorreu um erro ao tentar carregar a imagem do artista'),
+      );
+  }, [album]);
+
   return (
     <>
       {album ? (
@@ -121,7 +150,14 @@ export default function Album() {
             </h1>
             <div className="bottom-content">
               <div className="container-img">
-                <img src={album.images[0].url} alt={album.name} />
+                {imgsLoaded ? (
+                  <img
+                    src={getAlbumImageUrl(album.images, 640)}
+                    alt={album.name}
+                  />
+                ) : (
+                  <FaUserAlt color={colors.neutral7} />
+                )}
               </div>
               <h2 className="album-name">{album.name}</h2>
               <div className="album-info">
