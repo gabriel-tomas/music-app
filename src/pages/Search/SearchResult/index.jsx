@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { get } from 'lodash';
+
 import searchForItem from '../../../services/spotifyRequest/search/searchForItem';
 
 import Loading from '../../../components/Loading';
@@ -9,10 +11,16 @@ import Tracks from '../../../components/Tracks';
 import Artists from '../../../components/Artists';
 import Playlists from '../../../components/Playlists';
 
-import { ContainerSearchResults, ContainerSearchResult } from './styled';
+import {
+  ContainerSearchResults,
+  ContainerSearchResult,
+  ContainerNotFound,
+} from './styled';
 import { toast } from 'react-toastify';
 
 export default function Search({ searchString, slowAppearanceAnimation }) {
+  searchString = encodeURIComponent(searchString);
+
   const [searchItems, setSearchItems] = useState({});
   const searchResultsName = {
     albums: 'Álbums',
@@ -64,40 +72,56 @@ export default function Search({ searchString, slowAppearanceAnimation }) {
           {typeResult === typesResult.all &&
             Object.keys(searchItems).map((key) => (
               <ContainerSearchResult key={key}>
-                {key === 'albums' && (
-                  <>
-                    <h2 className="title-item-section">
-                      {searchResultsName[key]}
-                    </h2>
-                    <Albums albums={searchItems[key].items} />
-                  </>
-                )}
-                {key === 'tracks' && (
-                  <>
-                    <h2 className="title-item-section">
-                      {searchResultsName[key]}
-                    </h2>
-                    <Tracks tracks={searchItems[key].items} />
-                  </>
-                )}
-                {key === 'artists' && (
-                  <>
-                    <h2 className="title-item-section">
-                      {searchResultsName[key]}
-                    </h2>
-                    <Artists artists={searchItems[key].items} />
-                  </>
-                )}
-                {key === 'playlists' && (
-                  <>
-                    <h2 className="title-item-section">
-                      {searchResultsName[key]}
-                    </h2>
-                    <Playlists playlists={searchItems[key].items} />
-                  </>
-                )}
+                {key === 'albums' &&
+                  get(searchItems, 'albums.total', 0) > 0 && (
+                    <>
+                      <h2 className="title-item-section">
+                        {searchResultsName[key]}
+                      </h2>
+                      <Albums albums={searchItems[key].items} />
+                    </>
+                  )}
+                {key === 'tracks' &&
+                  get(searchItems, 'tracks.total', 0) > 0 && (
+                    <>
+                      <h2 className="title-item-section">
+                        {searchResultsName[key]}
+                      </h2>
+                      <Tracks tracks={searchItems[key].items} />
+                    </>
+                  )}
+                {key === 'artists' &&
+                  get(searchItems, 'artists.total', 0) > 0 && (
+                    <>
+                      <h2 className="title-item-section">
+                        {searchResultsName[key]}
+                      </h2>
+                      <Artists artists={searchItems[key].items} />
+                    </>
+                  )}
+                {key === 'playlists' &&
+                  get(searchItems, 'playlists.total', 0) > 0 && (
+                    <>
+                      <h2 className="title-item-section">
+                        {searchResultsName[key]}
+                      </h2>
+                      <Playlists playlists={searchItems[key].items} />
+                    </>
+                  )}
               </ContainerSearchResult>
             ))}
+          {get(searchItems, 'albums.total', 0) === 0 &&
+            get(searchItems, 'tracks.total', 0) === 0 &&
+            get(searchItems, 'artists.total', 0) === 0 &&
+            get(searchItems, 'playlists.total', 0) === 0 && (
+              <ContainerNotFound>
+                <h1>
+                  Nada encontrado com &quot;{decodeURIComponent(searchString)}
+                  &quot;
+                </h1>
+                <p>Confira se você digitou corretamente</p>
+              </ContainerNotFound>
+            )}
         </ContainerSearchResults>
       ) : null}
       <Loading isLoading={isLoading} />

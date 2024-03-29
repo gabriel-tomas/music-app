@@ -12,7 +12,7 @@ export default function Search() {
 
   const handleSearchKeyEnter = (e) => {
     if (e.keyCode === 13) {
-      navigate(`/search?q=${searchString}`);
+      navigate(`/search?q=${encodeURIComponent(searchString)}`);
     }
   };
 
