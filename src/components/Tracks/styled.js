@@ -277,12 +277,8 @@ export const ContainerTrackContent = styled.div`
         font-size: ${fontSizes.fontSizeBase};
         text-overflow: ellipsis;
         white-space: nowrap;
-        max-width: 700px;
-        overflow: hidden;
-      }
-
-      .track-name.inside-user-playlist {
         max-width: 600px;
+        overflow: hidden;
       }
 
       .track-artists {
@@ -292,7 +288,7 @@ export const ContainerTrackContent = styled.div`
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        max-width: 700px;
+        max-width: 600px;
 
         a {
           font-weight: normal;
@@ -305,60 +301,44 @@ export const ContainerTrackContent = styled.div`
         }
       }
 
-      .track-artists.inside-user-playlist {
-        max-width: 600px;
-      }
-
-      @media screen and (max-width: 1080px) {
+      @media screen and (max-width: 1140px) {
         .track-name, .track-artists {
-          max-width: 500px;
-        }
-
-        .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
           max-width: 400px;
         }
       }
 
-      @media screen and (max-width: 860px) {
+      @media screen and (max-width: 920px) {
         .track-name, .track-artists {
-          max-width: 300px;
-        }
-
-        .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
           max-width: 200px;
         }
       }
 
       @media screen and (max-width: 660px) {
-        .track-name, .track-artists, .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
+        .track-name, .track-artists {
           max-width: 150px;
         }
       }
 
       @media screen and (max-width: 388px) {
         .track-name, .track-artists {
-          max-width: 100px;
-        }
-
-        .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
           max-width: 90px;
         }
       }
 
       @media screen and (max-width: 330px) {
-        .track-name, .track-artists, .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
+        .track-name, .track-artists {
           max-width: 70px;
         }
       }
 
       @media screen and (max-width: 310px) {
-        .track-name, .track-artists, .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
+        .track-name, .track-artists {
           max-width: 50px;
         }
       }
 
       @media screen and (max-width: 278px) {
-        .track-name, .track-artists, .track-name.inside-user-playlist, .track-artists.inside-user-playlist {
+        .track-name, .track-artists {
           max-width: 30px;
         }
       }

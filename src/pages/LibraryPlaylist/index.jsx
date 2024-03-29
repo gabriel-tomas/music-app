@@ -106,7 +106,6 @@ export default function LibraryPlaylist() {
                 numbered
                 optionsType={'inPlaylist'}
                 playlistName={playlistName}
-                typeInsideUserPlaylist
               />
             ) : (
               <ContainerNoTracks>

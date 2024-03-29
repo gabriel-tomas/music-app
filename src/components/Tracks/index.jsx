@@ -63,7 +63,6 @@ export default function Tracks({
   numbered,
   optionsType,
   playlistName,
-  typeInsideUserPlaylist,
 }) {
   const dispatch = useDispatch();
   const currentPreviewUrl = useSelector(
@@ -246,14 +245,8 @@ export default function Tracks({
                       </div>
                     </button>
                     <div className="track-info">
-                      <span
-                        className={`track-name ${typeInsideUserPlaylist ? 'inside-user-playlist' : ''}`}
-                      >
-                        {track.name}
-                      </span>
-                      <div
-                        className={`track-artists ${typeInsideUserPlaylist ? 'inside-user-playlist' : ''}`}
-                      >
+                      <span className={`track-name`}>{track.name}</span>
+                      <div className={`track-artists`}>
                         {track.artists.map((artist) => (
                           <Link
                             key={artist.id}
