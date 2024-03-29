@@ -3,8 +3,13 @@ import { useParams } from 'react-router-dom';
 import { get } from 'lodash';
 import { toast } from 'react-toastify';
 
+import { FaUserAlt } from 'react-icons/fa';
+
+import colors from '../../config/colors';
+
 import getOnlyTrackFromTracks from '../../utils/musicUtils/getOnlyTrackFromTracks';
 import checkForFalsyTracks from '../../utils/musicUtils/checkForFalsyTracks';
+import getAlbumImageUrl from '../../utils/musicUtils/getAlbumImageUrl';
 
 import getPlaylist from '../../services/spotifyRequest/playlists/playlist';
 
@@ -21,6 +26,7 @@ export default function Playlist() {
   const { id: playlistId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [playlist, setPlaylist] = useState(null);
+  const [imgsLoaded, setImgsLoaded] = useState(false);
 
   useEffect(() => {
     const requestPlaylist = async () => {
@@ -39,6 +45,31 @@ export default function Playlist() {
     requestPlaylist();
   }, [playlistId]);
 
+  useEffect(() => {
+    if (!playlist) return;
+
+    const loadImage = (imageUrl) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = imageUrl;
+        loadImg.onload = () => resolve(imageUrl);
+
+        loadImg.onerror = (err) => reject(err);
+      });
+    };
+
+    Promise.all(
+      (() => {
+        if (get(playlist, 'images', []).length === 0) return [];
+        return [loadImage(getAlbumImageUrl(playlist.images, 640))];
+      })(),
+    )
+      .then(() => setImgsLoaded(true))
+      .catch(() =>
+        toast.error('Ocorreu um erro ao tentar carregar a imagem da playlist'),
+      );
+  }, [playlist]);
+
   return (
     <>
       {playlist ? (
@@ -47,7 +78,16 @@ export default function Playlist() {
             <h1 className="playlist-type">Playlist</h1>
             <div className="bottom-content">
               <div className="container-img">
-                <img src={playlist.images[0].url} alt={playlist.name} />
+                {imgsLoaded && get(playlist, 'images', []).length !== 0 ? (
+                  <img
+                    src={getAlbumImageUrl(playlist.images, 640)}
+                    alt={playlist.name}
+                  />
+                ) : get(playlist, 'images', []).length === 0 ? (
+                  <FaUserAlt color={colors.secondary['950']} />
+                ) : (
+                  <FaUserAlt color={colors.neutral7} />
+                )}
               </div>
               <div className="container-playlist-info-top">
                 <h2 className="playlist-name">{playlist.name}</h2>
