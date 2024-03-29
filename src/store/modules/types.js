@@ -9,6 +9,9 @@ export const SET_VOLUME = 'SET_VOLUME';
 export const SET_QUEUE_TRACKS = 'SET_QUEUE_TRACKS';
 export const SHIFT_QUEUE_TRACKS = 'SHIFT_QUEUE_TRACKS';
 
+// Info Showed type
+export const SET_INFO_SHOW = 'SET_INFO_SHOW';
+
 // Data saver types
 export const SAVE_DATA = 'SAVE_DATA';
 

@@ -12,11 +12,13 @@ import { ContainerHome } from './styled';
 import Loading from '../../components/Loading';
 import Albums from '../../components/Albums';
 import Playlists from '../../components/Playlists';
+import InfoBox from '../../components/InfoBox';
 
 export default function Home() {
   const dispatch = useDispatch();
 
   const homeDataSaved = useSelector((state) => state.dataSaver.pages.Home);
+  const infoShowed = useSelector((state) => state.infoShow.infoShowed);
 
   const [isLoading, setIsLoading] = useState(false);
   const [albums, setAlbums] = useState(null);
@@ -107,6 +109,7 @@ export default function Home() {
           ) : null}
         </ContainerHome>
       )}
+      {!infoShowed && <InfoBox />}
       <Loading isLoading={isLoading} />
     </>
   );

@@ -6,6 +6,7 @@ import playerVolume from './playerVolume/reducer';
 import userPlatform from './userPlatform/reducer';
 import dataSaver from './dataSaver/reducer';
 import updatePlaylists from './updatePlaylist/reducer';
+import infoShow from './infoShow/reducer';
 
 // music app backend
 import auth from './auth/reducer';
@@ -23,4 +24,5 @@ export default combineReducers({
   user,
   deleteAccount,
   updatePlaylists,
+  infoShow,
 });
