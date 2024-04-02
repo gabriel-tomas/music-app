@@ -14,6 +14,8 @@ export default function Search() {
     if (!searchString.trim()) return;
     if (e.keyCode === 13) {
       navigate(`/search?q=${encodeURIComponent(searchString.trim())}`);
+      const currentElement = e.currentTarget;
+      currentElement.blur();
     }
   };
 
