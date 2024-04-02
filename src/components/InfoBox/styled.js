@@ -38,14 +38,12 @@ export const ContainerInfoBox = styled.div`
     margin-top: 1rem;
   }
 
-  p {
-    .redirect-project {
-      font-size: ${fontSizes.fontSizeBase};
-      color: ${colors.text['600']};
-    }
-    .redirect-project:hover {
-      color: ${colors.text['700']};
-      text-decoration: underline;
-    }
+  a {
+    font-size: ${fontSizes.fontSizeBase};
+    color: ${colors.text['600']};
+  }
+  a:hover {
+    color: ${colors.text['700']};
+    text-decoration: underline;
   }
 `;

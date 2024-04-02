@@ -70,6 +70,12 @@ export default function TransitionsModal() {
             <Title>Aviso!</Title>
             <ContainerInfoBox>
               <p>
+                Projeto feito por{' '}
+                <a href="https://github.com/gabriel-tomas" target="_blank">
+                  Gabriel Tomás
+                </a>
+              </p>
+              <p>
                 O projeto é feito com o único e exclusivo objetivo de praticar
                 certas tecnologias, ele é feito somente para propositos
                 educacionais.
