@@ -195,7 +195,7 @@ export const ContainerItemPlaylist = styled.div`
 
 export const ContainerEmptyPlaylists = styled.div`
   position: absolute;
-  top: 50%;
+  top: calc(50% + 3rem);
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
