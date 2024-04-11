@@ -38,7 +38,7 @@ VITE_BACKEND_URL="url_do_backend" # < não é obrigatório
 VITE_CLIENT_ID="spotify_client_id"
 VITE_CLIENT_SECRET="spotify_client_secret"
 ```
-Você pode seguir o "Para rodar o projeto localmente" do backend aqui para ter um VITE_BACKEND_URL: https://github.com/gabriel-tomas/music-app_api?tab=readme-ov-file#para-rodar-o-projeto-localmente
+Você pode seguir o "Para rodar o projeto localmente" do backend para ter um VITE_BACKEND_URL: https://github.com/gabriel-tomas/music-app_api?tab=readme-ov-file#para-rodar-o-projeto-localmente
 
 O VITE_BACKEND_URL não é necessário para o projeto funcionar, mas coisas como: criação de contas, logar-se em contas, acessar biblioteca do usuário não estarão disponíveis.
 
