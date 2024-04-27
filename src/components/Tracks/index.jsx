@@ -79,7 +79,7 @@ export default function Tracks({
     trackArtists,
     trackIndex,
   ) => {
-    if (previewUrl === currentPreviewUrl) {
+    if (previewUrl !== '' && previewUrl === currentPreviewUrl) {
       dispatch(musicPlayerActions.setActualMusicState('playing'));
       return;
     }
