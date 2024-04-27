@@ -1,9 +1,11 @@
 export default (arrayTracks) => {
   const newArray = [];
-  arrayTracks.forEach((track) => {
-    if (track) {
-      newArray.push(track);
-    }
-  });
+  if (Array.isArray(arrayTracks)) {
+    arrayTracks.forEach((track) => {
+      if (track) {
+        newArray.push(track);
+      }
+    });
+  }
   return newArray;
 };
